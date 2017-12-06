@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BackGoodsTransportController">
+            <connections>
+                <outlet property="companyNameLabel" destination="7FC-zs-Gmn" id="UcZ-ZF-TBI"/>
+                <outlet property="transportNumberField" destination="wwY-zD-HME" id="8yf-1P-5SD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCa-iG-b5a">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.4039215686" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="YQ4-jC-NCQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="提交物流信息">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="uploadTransportData:" destination="-1" eventType="touchUpInside" id="BJj-3I-L3G"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pa6-D2-UnD">
+                    <rect key="frame" x="10" y="84" width="355" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物流名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ke-J6-y0b">
+                            <rect key="frame" x="10" y="10" width="61.5" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-8A-dsK">
+                            <rect key="frame" x="325" y="5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="GUp-8A-dsK" secondAttribute="height" multiplier="1:1" id="55a-l1-8jj"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="icon-bottom-arrow-off.png"/>
+                            <connections>
+                                <action selector="tapAlterView:" destination="-1" eventType="touchUpInside" id="2ei-vz-3m3"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FC-zs-Gmn">
+                            <rect key="frame" x="81.5" y="10" width="0.0" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="8Ke-J6-y0b" firstAttribute="top" secondItem="Pa6-D2-UnD" secondAttribute="top" constant="10" id="CpH-pC-gUO"/>
+                        <constraint firstAttribute="bottom" secondItem="8Ke-J6-y0b" secondAttribute="bottom" constant="10" id="GyA-CG-rv0"/>
+                        <constraint firstItem="8Ke-J6-y0b" firstAttribute="leading" secondItem="Pa6-D2-UnD" secondAttribute="leading" constant="10" id="M3q-CE-KrQ"/>
+                        <constraint firstAttribute="height" constant="40" id="P21-Da-zC4"/>
+                        <constraint firstItem="7FC-zs-Gmn" firstAttribute="leading" secondItem="8Ke-J6-y0b" secondAttribute="trailing" constant="10" id="P8h-Qp-h2z"/>
+                        <constraint firstItem="GUp-8A-dsK" firstAttribute="top" secondItem="Pa6-D2-UnD" secondAttribute="top" constant="5" id="jqt-Lk-EFA"/>
+                        <constraint firstAttribute="bottom" secondItem="GUp-8A-dsK" secondAttribute="bottom" constant="5" id="myM-sU-LQu"/>
+                        <constraint firstAttribute="trailing" secondItem="GUp-8A-dsK" secondAttribute="trailing" id="sF4-NA-nVQ"/>
+                        <constraint firstAttribute="bottom" secondItem="7FC-zs-Gmn" secondAttribute="bottom" constant="10" id="seh-gS-fwB"/>
+                        <constraint firstItem="7FC-zs-Gmn" firstAttribute="top" secondItem="Pa6-D2-UnD" secondAttribute="top" constant="10" id="tT4-4R-3bw"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写物流编号：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-zD-HME">
+                    <rect key="frame" x="10" y="144" width="355" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="SQP-V2-9yk"/>
+                    </constraints>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wwY-zD-HME" firstAttribute="top" secondItem="Pa6-D2-UnD" secondAttribute="bottom" constant="20" id="5P7-Jf-Jqi"/>
+                <constraint firstItem="MCa-iG-b5a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7hL-zm-bu5"/>
+                <constraint firstAttribute="trailing" secondItem="MCa-iG-b5a" secondAttribute="trailing" id="Co7-jk-2qg"/>
+                <constraint firstItem="Pa6-D2-UnD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Pdo-C4-nLz"/>
+                <constraint firstAttribute="trailing" secondItem="Pa6-D2-UnD" secondAttribute="trailing" constant="10" id="VWR-3A-pdS"/>
+                <constraint firstItem="wwY-zD-HME" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="VdN-sw-j0Q"/>
+                <constraint firstAttribute="trailing" secondItem="wwY-zD-HME" secondAttribute="trailing" constant="10" id="ptO-3g-5Rx"/>
+                <constraint firstAttribute="bottom" secondItem="MCa-iG-b5a" secondAttribute="bottom" id="wtV-IQ-m7f"/>
+                <constraint firstItem="Pa6-D2-UnD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="yhv-Fx-38J"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-bottom-arrow-off.png" width="13" height="7"/>
+    </resources>
+</document>

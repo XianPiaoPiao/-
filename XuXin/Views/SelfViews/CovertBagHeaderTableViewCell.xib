@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="KGk-i7-Jjw" customClass="CovertBagHeaderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="307" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="307" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_shopcart_radio_on@2x" translatesAutoresizingMaskIntoConstraints="NO" id="GOo-E5-UqR">
+                        <rect key="frame" x="11" y="8" width="80" height="79"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="GOo-E5-UqR" secondAttribute="height" multiplier="79:78" id="oX6-bs-Gys"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shopcart_shop@2x" translatesAutoresizingMaskIntoConstraints="NO" id="Azy-hm-8YQ">
+                        <rect key="frame" x="109" y="8" width="80" height="79"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shopcart_right_arrow@3x" translatesAutoresizingMaskIntoConstraints="NO" id="k4y-HJ-4dx">
+                        <rect key="frame" x="226" y="12" width="71" height="71"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="k4y-HJ-4dx" secondAttribute="height" multiplier="1:1" id="rCQ-Nj-UfY"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="膳城天香" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWR-Pn-7Yg">
+                        <rect key="frame" x="199" y="8" width="27" height="79"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yb8-U3-ybL">
+                        <rect key="frame" x="0.0" y="94" width="307" height="1"/>
+                        <color key="backgroundColor" red="0.8970218300819397" green="0.8970218300819397" blue="0.8970218300819397" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="kFs-2j-Yg1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yb8-U3-ybL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1SU-2E-jvZ"/>
+                    <constraint firstAttribute="trailing" secondItem="k4y-HJ-4dx" secondAttribute="trailing" constant="10" id="1j0-iz-Qfj"/>
+                    <constraint firstItem="Azy-hm-8YQ" firstAttribute="bottom" secondItem="GOo-E5-UqR" secondAttribute="bottom" id="Axs-N8-9lb"/>
+                    <constraint firstItem="KWR-Pn-7Yg" firstAttribute="leading" secondItem="Azy-hm-8YQ" secondAttribute="trailing" constant="10" id="F2D-bA-b6g"/>
+                    <constraint firstAttribute="bottom" secondItem="GOo-E5-UqR" secondAttribute="bottom" constant="8" id="JKE-nZ-2rB"/>
+                    <constraint firstItem="GOo-E5-UqR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="MFD-F4-r9n"/>
+                    <constraint firstAttribute="trailing" secondItem="yb8-U3-ybL" secondAttribute="trailing" id="MSd-si-wxd"/>
+                    <constraint firstItem="Azy-hm-8YQ" firstAttribute="width" secondItem="GOo-E5-UqR" secondAttribute="width" id="NOn-Z9-Vtx"/>
+                    <constraint firstAttribute="bottom" secondItem="yb8-U3-ybL" secondAttribute="bottom" id="RDI-7Y-b54"/>
+                    <constraint firstItem="GOo-E5-UqR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="RvW-US-8Bp"/>
+                    <constraint firstItem="Azy-hm-8YQ" firstAttribute="top" secondItem="GOo-E5-UqR" secondAttribute="top" id="WSc-an-AB4"/>
+                    <constraint firstItem="Azy-hm-8YQ" firstAttribute="height" secondItem="GOo-E5-UqR" secondAttribute="height" id="ZI8-ia-EXg"/>
+                    <constraint firstItem="k4y-HJ-4dx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="bo3-Gn-q78"/>
+                    <constraint firstAttribute="bottom" secondItem="k4y-HJ-4dx" secondAttribute="bottom" constant="12" id="fUs-z2-m0r"/>
+                    <constraint firstItem="Azy-hm-8YQ" firstAttribute="leading" secondItem="GOo-E5-UqR" secondAttribute="trailing" constant="18" id="iP9-63-FEF"/>
+                    <constraint firstItem="k4y-HJ-4dx" firstAttribute="leading" secondItem="KWR-Pn-7Yg" secondAttribute="trailing" id="noq-Ks-m0i"/>
+                    <constraint firstItem="KWR-Pn-7Yg" firstAttribute="bottom" secondItem="Azy-hm-8YQ" secondAttribute="bottom" id="tgv-1Y-N2P"/>
+                    <constraint firstItem="KWR-Pn-7Yg" firstAttribute="top" secondItem="Azy-hm-8YQ" secondAttribute="top" id="voC-kv-Su8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="371.5" y="116"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_shopcart_radio_on@2x" width="11" height="11"/>
+        <image name="icon_shopcart_right_arrow@3x" width="360" height="203"/>
+        <image name="icon_shopcart_shop@2x" width="360" height="203"/>
+    </resources>
+</document>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="KGk-i7-Jjw" customClass="GoodsListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="407" height="149"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVR-JB-nB0">
+                        <rect key="frame" x="10" y="10" width="129.5" height="129.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="mVR-JB-nB0" secondAttribute="height" multiplier="1:1" id="I3Z-mA-ECW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4D-UP-eIf">
+                        <rect key="frame" x="149.5" y="10" width="247.5" height="43"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArP-QT-oEm">
+                        <rect key="frame" x="149.5" y="96.5" width="247.5" height="43"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IK-Dp-fMf">
+                        <rect key="frame" x="149.5" y="53" width="247.5" height="43.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP0-j2-aXz">
+                        <rect key="frame" x="0.0" y="148" width="407" height="1"/>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="vaX-QK-T3m"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="LP0-j2-aXz" secondAttribute="trailing" id="1yG-rU-W3q"/>
+                    <constraint firstItem="7IK-Dp-fMf" firstAttribute="top" secondItem="z4D-UP-eIf" secondAttribute="bottom" id="5Ai-yg-aQ4"/>
+                    <constraint firstItem="mVR-JB-nB0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="96S-7n-jUG"/>
+                    <constraint firstItem="ArP-QT-oEm" firstAttribute="leading" secondItem="mVR-JB-nB0" secondAttribute="trailing" constant="10" id="HPa-MH-3u0"/>
+                    <constraint firstAttribute="trailing" secondItem="ArP-QT-oEm" secondAttribute="trailing" constant="10" id="Pz5-bG-9Pg"/>
+                    <constraint firstItem="ArP-QT-oEm" firstAttribute="trailing" secondItem="z4D-UP-eIf" secondAttribute="trailing" id="SDA-zh-AQ0"/>
+                    <constraint firstAttribute="trailing" secondItem="z4D-UP-eIf" secondAttribute="trailing" constant="10" id="Wb7-GX-ax1"/>
+                    <constraint firstItem="7IK-Dp-fMf" firstAttribute="trailing" secondItem="z4D-UP-eIf" secondAttribute="trailing" id="YZc-nL-qk7"/>
+                    <constraint firstItem="ArP-QT-oEm" firstAttribute="top" secondItem="7IK-Dp-fMf" secondAttribute="bottom" id="aQ6-CX-DeD"/>
+                    <constraint firstItem="ArP-QT-oEm" firstAttribute="height" secondItem="z4D-UP-eIf" secondAttribute="height" id="adM-uf-7I9"/>
+                    <constraint firstItem="mVR-JB-nB0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="fuN-TY-fDD"/>
+                    <constraint firstAttribute="bottom" secondItem="mVR-JB-nB0" secondAttribute="bottom" constant="10" id="g3T-aL-8GM"/>
+                    <constraint firstItem="LP0-j2-aXz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jPf-9c-o8o"/>
+                    <constraint firstItem="7IK-Dp-fMf" firstAttribute="leading" secondItem="z4D-UP-eIf" secondAttribute="leading" id="kcT-wN-98J"/>
+                    <constraint firstItem="7IK-Dp-fMf" firstAttribute="height" secondItem="z4D-UP-eIf" secondAttribute="height" id="mip-bS-Xdf"/>
+                    <constraint firstItem="z4D-UP-eIf" firstAttribute="leading" secondItem="mVR-JB-nB0" secondAttribute="trailing" constant="10" id="nbt-Af-Zyg"/>
+                    <constraint firstItem="z4D-UP-eIf" firstAttribute="top" secondItem="mVR-JB-nB0" secondAttribute="top" id="oqS-xz-hWK"/>
+                    <constraint firstItem="ArP-QT-oEm" firstAttribute="leading" secondItem="z4D-UP-eIf" secondAttribute="leading" id="qyT-eD-4ia"/>
+                    <constraint firstAttribute="bottom" secondItem="LP0-j2-aXz" secondAttribute="bottom" id="twZ-of-Xv8"/>
+                    <constraint firstItem="ArP-QT-oEm" firstAttribute="bottom" secondItem="mVR-JB-nB0" secondAttribute="bottom" id="uih-Os-wLB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="goodsImageView" destination="mVR-JB-nB0" id="AWA-18-Zp4"/>
+                <outlet property="goodsNameLabel" destination="z4D-UP-eIf" id="0tU-XY-af9"/>
+                <outlet property="numberLabel" destination="7IK-Dp-fMf" id="byh-wW-Oxd"/>
+                <outlet property="pointLabel" destination="ArP-QT-oEm" id="5DA-Wi-LyE"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="144"/>
+        </tableViewCell>
+    </objects>
+</document>

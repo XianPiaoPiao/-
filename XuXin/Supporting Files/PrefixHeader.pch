@@ -1,0 +1,49 @@
+//
+//  PrefixHeader.pch
+//  XuXin
+//
+//  Created by xuxin on 16/8/18.
+//  Copyright © 2016年 ChongqingWanZhongXinDa. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#define HalfOfScreenScale ([UIScreen mainScreen].bounds.size.height/667.0f/2)
+//16进制宏定义
+#define UIColorFromHexValue(hexValue) [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0f green:((float)((hexValue & 0xFF00) >> 8))/255.0f blue:((float)(hexValue & 0xFF))/255.0f alpha:1]
+
+#define LLFWeakSelf(type)  __weak typeof(type) weak##type = type;
+#import <Foundation/Foundation.h>
+#import "define.h"
+#import "API.h"
+
+#import "AFNetworking.h"
+#import "MJRefresh.h"
+#import "YYModel.h"
+#import "UIImageView+WebCache.h"
+#import "Masonry.h"
+#import "MBProgressHUD.h"
+
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MAMapKit/MAMapKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import "SVProgressHUD.h"
+
+//#import "ReactiveCocoa.h"
+#import "ReactiveObjC.h"
+#import "EaseLoadingView.h"
+#import "UIColor+HexColor.h"
+#import "UIButton+SSEdgeInsets.h"
+#import "EasySearchBar.h"
+#import "HaiduiArchiverTools.h"
+#import "User.h"
+#import "PayWayConfig.h"
+//#import "HaiDuiRefresgHerder.h"
+#import "EaseLoadingView.h"
+#import "NSDate+Extension.h"
+
+#import "MTA.h"
+#import "MTAConfig.h"
+
+#endif /* PrefixHeader_pch */

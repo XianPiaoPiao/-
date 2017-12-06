@@ -1,9 +1,9 @@
 //
 //  main.m
-//  XuXin
+//  SCHClient
 //
-//  Created by xienashen on 2017/10/13.
-//  Copyright © 2017年 xienashen. All rights reserved.
+//  Created by w独木桥 on 16/5/3.
+//  Copyright © 2016年 homework. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

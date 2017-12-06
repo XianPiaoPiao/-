@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RedwWalletStatusController">
+            <connections>
+                <outlet property="activityBtn" destination="Nid-Gf-PeK" id="DXH-m1-mnJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PFB-Tr-SSF">
+                    <rect key="frame" x="10" y="74" width="355" height="120"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未激活红包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv7-iI-S4q">
+                            <rect key="frame" x="110" y="15" width="120" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="MK1-mh-X1C"/>
+                                <constraint firstAttribute="width" constant="120" id="s25-dz-pfg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐给三位好友，好友成功注册后即可激活红包" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfE-zw-a8X">
+                            <rect key="frame" x="110" y="50" width="165" height="31.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nid-Gf-PeK">
+                            <rect key="frame" x="285" y="30" width="60" height="60"/>
+                            <color key="backgroundColor" red="0.90120542049999997" green="0.041791641089999998" blue="0.044197546349999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Nid-Gf-PeK" secondAttribute="height" multiplier="1:1" id="lcS-Xv-HCZ"/>
+                                <constraint firstAttribute="width" constant="60" id="n4y-iF-iZC"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="立即激活">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="activityRedWallet:" destination="-1" eventType="touchUpInside" id="ZbK-2T-6bc"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redPackets_icon_big100.png" translatesAutoresizingMaskIntoConstraints="NO" id="z3z-S3-TxI">
+                            <rect key="frame" x="20" y="20" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="z3z-S3-TxI" secondAttribute="height" multiplier="1:1" id="58l-ce-zNV"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Nid-Gf-PeK" firstAttribute="centerY" secondItem="PFB-Tr-SSF" secondAttribute="centerY" id="1aN-ua-omy"/>
+                        <constraint firstItem="RfE-zw-a8X" firstAttribute="top" secondItem="uv7-iI-S4q" secondAttribute="bottom" constant="5" id="5gH-ta-Tyw"/>
+                        <constraint firstAttribute="height" constant="120" id="Fot-dO-f3n"/>
+                        <constraint firstItem="Nid-Gf-PeK" firstAttribute="leading" secondItem="RfE-zw-a8X" secondAttribute="trailing" constant="10" id="MLe-Cb-GdZ"/>
+                        <constraint firstItem="z3z-S3-TxI" firstAttribute="top" secondItem="PFB-Tr-SSF" secondAttribute="top" constant="20" id="MYa-bj-ayR"/>
+                        <constraint firstItem="uv7-iI-S4q" firstAttribute="top" secondItem="PFB-Tr-SSF" secondAttribute="top" constant="15" id="OWn-yQ-tXJ"/>
+                        <constraint firstItem="uv7-iI-S4q" firstAttribute="leading" secondItem="z3z-S3-TxI" secondAttribute="trailing" constant="10" id="ZzX-xI-go8"/>
+                        <constraint firstAttribute="trailing" secondItem="Nid-Gf-PeK" secondAttribute="trailing" constant="10" id="j1q-s6-MmF"/>
+                        <constraint firstItem="RfE-zw-a8X" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="z3z-S3-TxI" secondAttribute="bottom" id="lev-In-Ohy"/>
+                        <constraint firstAttribute="bottom" secondItem="z3z-S3-TxI" secondAttribute="bottom" constant="20" id="oRZ-1w-xpq"/>
+                        <constraint firstItem="z3z-S3-TxI" firstAttribute="leading" secondItem="PFB-Tr-SSF" secondAttribute="leading" constant="20" id="uMl-5n-VgO"/>
+                        <constraint firstItem="RfE-zw-a8X" firstAttribute="leading" secondItem="uv7-iI-S4q" secondAttribute="leading" id="w5m-Ok-MY2"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在使用线上支付时可以直接使用红包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Lw-AA-awE">
+                    <rect key="frame" x="10" y="199" width="355" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="dWK-9N-R1Z"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-ML-I6q">
+                    <rect key="frame" x="10" y="70" width="355" height="4"/>
+                    <color key="backgroundColor" red="0.90120542049999997" green="0.041791641089999998" blue="0.044197546349999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="55K-Z9-wfi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4Lw-AA-awE" firstAttribute="top" secondItem="PFB-Tr-SSF" secondAttribute="bottom" constant="5" id="0xL-d5-2mn"/>
+                <constraint firstItem="4Lw-AA-awE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="H1A-xk-gew"/>
+                <constraint firstItem="PFB-Tr-SSF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="N5k-rE-FnV"/>
+                <constraint firstItem="PFB-Tr-SSF" firstAttribute="top" secondItem="Vs9-ML-I6q" secondAttribute="bottom" id="NDe-xt-gI8"/>
+                <constraint firstAttribute="trailing" secondItem="4Lw-AA-awE" secondAttribute="trailing" constant="10" id="cn4-zv-7kt"/>
+                <constraint firstAttribute="trailing" secondItem="PFB-Tr-SSF" secondAttribute="trailing" constant="10" id="dEq-s7-ceL"/>
+                <constraint firstItem="Vs9-ML-I6q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="yo6-34-wLA"/>
+                <constraint firstItem="PFB-Tr-SSF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="z0i-nM-3dG"/>
+                <constraint firstAttribute="trailing" secondItem="Vs9-ML-I6q" secondAttribute="trailing" constant="10" id="zzP-Aq-5vd"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="100.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="redPackets_icon_big100.png" width="142" height="152"/>
+    </resources>
+</document>

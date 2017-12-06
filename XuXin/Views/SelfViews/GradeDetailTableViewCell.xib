@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="92" id="KGk-i7-Jjw" customClass="GradeDetailTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="356" height="92"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="356" height="91"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014-12-21 12:03:32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-TR-sjb">
+                        <rect key="frame" x="10" y="10" width="346" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="CUo-UH-8Sk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换编号：23232323" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NC-cd-DtV">
+                        <rect key="frame" x="10" y="34" width="261" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pte-WF-oC0">
+                        <rect key="frame" x="271" y="35" width="80" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="8OW-so-XpO"/>
+                            <constraint firstAttribute="height" constant="21" id="goq-if-6B3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.92941176469999998" green="0.4039215686" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7NC-cd-DtV" secondAttribute="bottom" constant="5" id="4Kr-Ug-4Tx"/>
+                    <constraint firstItem="Tar-TR-sjb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="52c-DL-i3w"/>
+                    <constraint firstItem="7NC-cd-DtV" firstAttribute="leading" secondItem="Tar-TR-sjb" secondAttribute="leading" id="5mz-Mx-gjV"/>
+                    <constraint firstItem="pte-WF-oC0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6r9-Z6-t4A"/>
+                    <constraint firstAttribute="trailing" secondItem="Tar-TR-sjb" secondAttribute="trailing" id="HrK-RR-Uok"/>
+                    <constraint firstItem="pte-WF-oC0" firstAttribute="leading" secondItem="7NC-cd-DtV" secondAttribute="trailing" id="PB6-oX-xuj"/>
+                    <constraint firstItem="7NC-cd-DtV" firstAttribute="top" secondItem="Tar-TR-sjb" secondAttribute="bottom" constant="4" id="VFd-cg-KQ9"/>
+                    <constraint firstAttribute="trailing" secondItem="pte-WF-oC0" secondAttribute="trailing" constant="5" id="ZTi-1c-GHO"/>
+                    <constraint firstItem="Tar-TR-sjb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="t8V-0f-dvH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addTimeLabel" destination="Tar-TR-sjb" id="LTL-z0-dx9"/>
+                <outlet property="orderNumberLbael" destination="7NC-cd-DtV" id="ywF-T2-qrb"/>
+                <outlet property="priceValueLabel" destination="pte-WF-oC0" id="czz-Y7-gei"/>
+            </connections>
+            <point key="canvasLocation" x="460" y="206"/>
+        </tableViewCell>
+    </objects>
+</document>

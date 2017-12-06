@@ -1,0 +1,6 @@
+framework module Pods_XuXin {
+  umbrella header "Pods-XuXin-umbrella.h"
+
+  export *
+  module * { export * }
+}

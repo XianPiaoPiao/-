@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BalanceTrueViewController">
+            <connections>
+                <outlet property="VCScrollView" destination="d0o-37-wSH" id="lTM-mg-Jvl"/>
+                <outlet property="addBankCardView" destination="39n-ya-Ynv" id="9nI-Ld-9hu"/>
+                <outlet property="contentView" destination="k4o-fI-5Yw" id="Lww-YJ-l3H"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0o-37-wSH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4o-fI-5Yw">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39n-ya-Ynv">
+                                    <rect key="frame" x="0.0" y="10" width="375" height="50"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择提款账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViL-Hn-qy3">
+                                            <rect key="frame" x="52" y="12" width="294" height="26"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-right-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qku-Jq-dNw">
+                                            <rect key="frame" x="356" y="20.5" width="9" height="9"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="9" id="g32-BZ-7yP"/>
+                                                <constraint firstAttribute="width" constant="9" id="ywU-iT-KOO"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addBankCard.png" translatesAutoresizingMaskIntoConstraints="NO" id="lhx-xj-Fv8">
+                                            <rect key="frame" x="10" y="12" width="26" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="lhx-xj-Fv8" secondAttribute="height" multiplier="1:1" id="0MP-aj-BzR"/>
+                                                <constraint firstAttribute="width" secondItem="lhx-xj-Fv8" secondAttribute="height" multiplier="15:13" id="fFR-1D-9OH"/>
+                                                <constraint firstAttribute="width" constant="30" id="l6I-C3-KGq"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="fFR-1D-9OH"/>
+                                                    <exclude reference="l6I-C3-KGq"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="lhx-xj-Fv8" firstAttribute="top" secondItem="39n-ya-Ynv" secondAttribute="top" constant="12" id="16y-GC-pmP"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qku-Jq-dNw" secondAttribute="trailing" constant="10" id="KZ1-xG-0hM"/>
+                                        <constraint firstAttribute="bottom" secondItem="lhx-xj-Fv8" secondAttribute="bottom" constant="12" id="PJK-Mi-RvF"/>
+                                        <constraint firstItem="Qku-Jq-dNw" firstAttribute="centerY" secondItem="39n-ya-Ynv" secondAttribute="centerY" id="Wtr-bh-Q3z"/>
+                                        <constraint firstItem="Qku-Jq-dNw" firstAttribute="leading" secondItem="ViL-Hn-qy3" secondAttribute="trailing" constant="10" id="cSP-v1-NLM"/>
+                                        <constraint firstAttribute="height" constant="50" id="deZ-9C-1Yk"/>
+                                        <constraint firstItem="ViL-Hn-qy3" firstAttribute="bottom" secondItem="lhx-xj-Fv8" secondAttribute="bottom" id="geT-Rh-ViO"/>
+                                        <constraint firstItem="ViL-Hn-qy3" firstAttribute="leading" secondItem="lhx-xj-Fv8" secondAttribute="trailing" constant="16" id="iuR-hb-59i"/>
+                                        <constraint firstItem="ViL-Hn-qy3" firstAttribute="top" secondItem="lhx-xj-Fv8" secondAttribute="top" id="kF7-jV-yHo"/>
+                                        <constraint firstItem="lhx-xj-Fv8" firstAttribute="leading" secondItem="39n-ya-Ynv" secondAttribute="leading" constant="10" id="p4e-Oe-p8b"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.93802434206008911" green="0.93802434206008911" blue="0.93802434206008911" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="39n-ya-Ynv" firstAttribute="top" secondItem="k4o-fI-5Yw" secondAttribute="top" constant="10" id="45t-me-m56"/>
+                                <constraint firstAttribute="trailing" secondItem="39n-ya-Ynv" secondAttribute="trailing" id="OVY-qg-LsH"/>
+                                <constraint firstItem="39n-ya-Ynv" firstAttribute="leading" secondItem="k4o-fI-5Yw" secondAttribute="leading" id="icW-oZ-iHN"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="k4o-fI-5Yw" secondAttribute="bottom" id="GtL-gr-XwB"/>
+                        <constraint firstAttribute="trailing" secondItem="k4o-fI-5Yw" secondAttribute="trailing" id="HU3-Rz-H36"/>
+                        <constraint firstItem="k4o-fI-5Yw" firstAttribute="top" secondItem="d0o-37-wSH" secondAttribute="top" id="HvX-5T-9CS"/>
+                        <constraint firstItem="k4o-fI-5Yw" firstAttribute="width" secondItem="d0o-37-wSH" secondAttribute="width" id="ggj-88-t8E"/>
+                        <constraint firstItem="k4o-fI-5Yw" firstAttribute="height" secondItem="d0o-37-wSH" secondAttribute="height" id="jwO-9R-t09"/>
+                        <constraint firstItem="k4o-fI-5Yw" firstAttribute="leading" secondItem="d0o-37-wSH" secondAttribute="leading" id="ppH-k6-zMu"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="0.93802434206008911" green="0.93802434206008911" blue="0.93802434206008911" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="d0o-37-wSH" secondAttribute="trailing" id="88d-hI-bVr"/>
+                <constraint firstItem="d0o-37-wSH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gb0-SH-Ufd"/>
+                <constraint firstAttribute="bottom" secondItem="d0o-37-wSH" secondAttribute="bottom" id="dop-I8-6eJ"/>
+                <constraint firstItem="d0o-37-wSH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="toX-sH-Ggq"/>
+            </constraints>
+            <point key="canvasLocation" x="381" y="71"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="addBankCard.png" width="80" height="80"/>
+        <image name="icon-right-arrow.png" width="6" height="11"/>
+    </resources>
+</document>
