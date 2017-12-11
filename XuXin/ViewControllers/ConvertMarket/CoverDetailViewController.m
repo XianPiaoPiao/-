@@ -209,10 +209,11 @@ NSString * const CoverDeatailIdertifer3 = @"CovertDetailTVCell";
             _covervtTableView.mj_footer.hidden = YES;
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [_covervtTableView reloadData];
-        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//
+//            [_covervtTableView reloadData];
+//        });
+        [_covervtTableView reloadData];
 
       
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
