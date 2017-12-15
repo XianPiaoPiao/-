@@ -30,6 +30,8 @@
 #import "LandingViewController.h"
 #import "OrderCommentsController.h"
 #import "ShopsGoodsBaseController.h"
+#import "StorecouponView.h"
+#import "CouponsViewController.h"
 
 NSString * const userCommentCellIndertifer = @"UserCommentsCell";
 NSString * const recommondIdertifer1 = @"RecommodTableViewCell";
@@ -65,6 +67,11 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
 @property (nonatomic ,strong)NSMutableArray * onLineGoodsArray;
 
 @property(nonatomic ,strong)NSMutableArray * commentsArray;
+
+@property (nonatomic, strong) CouponsViewController *couponVC;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *bgView;
+
 
 @end
 
@@ -171,6 +178,8 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
     [self firstLoad];
     //更多商家数据请求
     [self creatUI];
+    
+    [self createCouponView];
 }
 
 -(BOOL)fd_prefersNavigationBarHidden {
@@ -228,6 +237,61 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
     [buttonBgView addSubview:button];
     [button addTarget:self action:@selector(joinHaidui) forControlEvents:UIControlEventTouchDown];
     self.tableView.tableFooterView = buttonBgView;
+}
+
+- (void)createCouponView{
+    _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _bgView.backgroundColor = [UIColor colorWithHexString:WordColor alpha:0.5];
+    
+    [self.view addSubview:_bgView];
+    
+    _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenH/3, ScreenW, screenH/3*2)];
+    _contentView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_contentView];
+    
+    _couponVC = [[CouponsViewController alloc] init];
+    __weak typeof(self)weakself= self;
+    _couponVC.finishBtnBlock = ^(BOOL flag) {
+        [weakself hiddenOrShowCouponVC:YES];
+    };
+    [self addChildViewController:_couponVC];
+    [self.contentView addSubview:_couponVC.view];
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    [_bgView setAlpha:0.0f];
+    [_contentView setAlpha:0.0f];
+}
+
+- (void)hiddenOrShowCouponVC:(BOOL)flag{
+    if (flag) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
+        [UIView setAnimationDuration:1.0];
+        
+        [_bgView setAlpha:0.0f];
+        [_contentView setAlpha:0.0f];
+        
+        [UIView commitAnimations];
+    }else {
+        _bgView.hidden = NO;
+        _contentView.hidden = NO;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+//        [UIView setAnimationDidStopSelector:@selector(didAfterHidden:)];
+        [UIView setAnimationDuration:1.0];
+        
+        [_bgView setAlpha:1.0f];
+        [_contentView setAlpha:1.0f];
+        
+        [UIView commitAnimations];
+    }
+    
+}
+- (void)didAfterHidden{
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    
 }
 #pragma mark ---面对面支付
 -(void)pay{
@@ -319,6 +383,9 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
                 
                 _backBtn.selected = NO;
             }
+            
+            _couponVC.storeID = _shopModel.id;
+            
         }
         
         //到主线程刷新数据
@@ -557,7 +624,7 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section ==0) {
-        return 40;
+        return 40+45;
     }else if (indexPath.section == 1){
         return 140;
     }else if (indexPath.section == 2){
@@ -836,6 +903,14 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
         
         [btn setImage:[UIImage imageNamed:@"shangjia_dianhua@3x"] forState:UIControlStateNormal];
         
+        StorecouponView *couponView = [[StorecouponView alloc] initWithFrame:CGRectMake(0, 40, ScreenW, 45)];
+        UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(GetCoupons)];
+        couponView.tag = 12;
+        [couponView addGestureRecognizer:tapges];
+        couponView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithHexString:BackColor];
+        couponView.userInteractionEnabled = YES;
+        [cell.contentView addSubview:couponView];
+        
          return cell;
     }else if (indexPath.section ==1){
         //线上商品
@@ -863,6 +938,12 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
      
     }
     return 0;
+}
+
+#pragma mark -----领取优惠券
+- (void)GetCoupons{
+    NSLog(@"领取优惠券");
+    [self hiddenOrShowCouponVC:NO];
 }
 
 //打电话

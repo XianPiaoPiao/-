@@ -19,4 +19,5 @@
 
 //订单类型
 @property (nonatomic ,assign)NSInteger orderType;
+@property (nonatomic, assign) NSInteger type;//红包订单类型
 @end

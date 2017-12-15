@@ -18,6 +18,8 @@
 #import "WXApi.h"
 #import "payRequsestHandler.h"
 // 微信支付头文件
+//红包选择
+#import "ChooseCouponViewController.h"
 
 @interface MyOrderTableViewController ()
 
@@ -29,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *zhifubaoBtn;
 @property (weak, nonatomic) IBOutlet UILabel *orderPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *redpacketDescLabel;
+@property (weak, nonatomic) IBOutlet UILabel *couponDescLabel;
 @property (nonatomic ,copy)NSString * outTrade_no;
 @property (nonatomic ,copy)NSString * orderBody;
 @property(nonatomic,copy)NSString * orderSubjiect;
@@ -36,6 +40,8 @@
 @property(nonatomic,copy)NSString * notify_url;
 @property (nonatomic ,copy)NSString * noncestr;
 @property (nonatomic ,copy)NSString * sign;
+@property (nonatomic, copy)NSString *redPacketId;
+@property (nonatomic, copy) NSString *couponId;
 //微信
 @property (nonatomic ,copy)NSString * prepareId;
 
@@ -46,6 +52,11 @@
 @property (nonatomic ,assign)NSInteger lastBtn;
 
 @property (nonatomic ,copy)NSString * useRedWalletPrice;
+
+@property (nonatomic, strong) ChooseCouponViewController *couponVC;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *bgView;
+
 @end
 
 @implementation MyOrderTableViewController{
@@ -83,8 +94,115 @@
     self.view.backgroundColor = [UIColor colorWithHexString:BackColor];
    
     [self settingUI];
+    
+    [self createCouponView];
   
 }
+
+- (void)createCouponView{
+    
+    _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _bgView.backgroundColor = [UIColor colorWithHexString:WordColor alpha:0.5];
+    
+    [self.view addSubview:_bgView];
+    
+    _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenH/2 - 64, ScreenW, screenH/2)];
+
+    _contentView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_contentView];
+    
+    _couponVC = [[ChooseCouponViewController alloc] init];
+    __weak typeof(self)weakself= self;
+    _couponVC.storeId = _orderId;
+    
+    _couponVC.orderType = [NSString stringWithFormat:@"%ld",(long)_type];
+    
+    _couponVC.cancelBtnBlock = ^(BOOL flag) {
+        [weakself hiddenOrShowCouponVC:YES];
+    };
+    _couponVC.couponBlock = ^(StoreCouponModel *couponModel) {
+        if ([couponModel.price intValue] > 0) {
+            
+            _couponId = couponModel.id;
+            
+            CGFloat orderValue =  [weakself.orderPrice floatValue];
+            CGFloat couponValue = [couponModel.price floatValue];
+            
+            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - couponValue];
+            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - couponValue];
+            weakself.couponDescLabel.text = couponModel.name;
+        }else {
+            //未使用红包显示
+            CGFloat orderValue =  [weakself.orderPrice floatValue];
+            
+            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue];
+            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue];
+            weakself.couponDescLabel.text = couponModel.name;
+        }
+        
+    };
+    
+    _couponVC.redpacketBlock = ^(StoreCouponModel *couponModel) {
+        if ([couponModel.price intValue] > 0) {
+            isUseRedwallet = YES;
+            _redPacketId = couponModel.id;
+            
+            CGFloat orderValue =  [weakself.orderPrice floatValue];
+            CGFloat redValue = [couponModel.price floatValue];
+            //使用红包显示
+            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - redValue];
+            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - redValue];
+            weakself.redpacketDescLabel.text = couponModel.name;
+        }else {
+            //未使用红包显示
+            CGFloat orderValue =  [weakself.orderPrice floatValue];
+            
+            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue];
+            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue];
+            weakself.redpacketDescLabel.text = couponModel.name;
+            isUseRedwallet = NO;
+        }
+    };
+    
+    [self addChildViewController:_couponVC];
+    [self.contentView addSubview:_couponVC.view];
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    [_bgView setAlpha:0.0f];
+    [_contentView setAlpha:0.0f];
+}
+
+- (void)hiddenOrShowCouponVC:(BOOL)flag{
+    if (flag) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
+        [UIView setAnimationDuration:1.0];
+        
+        [_bgView setAlpha:0.0f];
+        [_contentView setAlpha:0.0f];
+        
+        [UIView commitAnimations];
+    }else {
+        _bgView.hidden = NO;
+        _contentView.hidden = NO;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:1.0];
+        
+        [_bgView setAlpha:1.0f];
+        [_contentView setAlpha:1.0f];
+        
+        [UIView commitAnimations];
+    }
+    
+}
+- (void)didAfterHidden{
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    
+}
+
 //钱包
 -(void)returnWalletList{
     
@@ -107,7 +225,7 @@
 -(void)settingUI{
     
     //确认支付
-    UIButton * surePayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 452, ScreenW - 20, 50)];
+    UIButton * surePayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 502, ScreenW - 20, 50)];
     [self.view addSubview:surePayBtn];
     [surePayBtn setTitle:@"确认支付" forState:UIControlStateNormal];
     surePayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -155,6 +273,10 @@
         
         readPayVC.orderId = self.orderId;
         
+        readPayVC.redpacketId = self.redPacketId;
+        
+//        readPayVC.couponId = self.couponId;
+        
         readPayVC.order_sn = [NSString stringWithFormat:@"订单号:%@", _orderNumber];
         
         CGFloat price =  [_useRedWalletPrice floatValue] - _sendFee;
@@ -166,7 +288,7 @@
         
       
         
-    [self.navigationController pushViewController:readPayVC animated:YES];
+        [self.navigationController pushViewController:readPayVC animated:YES];
         
     }else if (self.balanceBtn.selected == YES){
         //余额
@@ -194,7 +316,7 @@
     self.weixinBtn.tag = buttonTag + 3;
     self.zhifubaoBtn.tag = buttonTag + 4;
     
-if (indexPath.row == 4|| indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7) {
+if (indexPath.row == 5|| indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8) {
         if (_lastBtn != 0) {
             
             UIButton * lastButton = [self.view viewWithTag:_lastBtn ];
@@ -204,23 +326,23 @@ if (indexPath.row == 4|| indexPath.row == 5 || indexPath.row == 6 || indexPath.r
     }
   
     //预充值支付
-    if (indexPath.row == 4) {
+    if (indexPath.row == 5) {
         _lastBtn = buttonTag + 1;
      self.supendPayBtn.selected = YES;
    //       [[NSNotificationCenter defaultCenter] postNotificationName:@"supendCharge" object:nil userInfo:nil];
    //余额支付
-    } else if (indexPath.row == 5){
+    } else if (indexPath.row == 6){
         
         _lastBtn = buttonTag + 2;
         self.balanceBtn.selected = YES;
  
-    } else if (indexPath.row == 6){
+    } else if (indexPath.row == 7){
         
         _lastBtn = buttonTag + 3;
         self.weixinBtn.selected = YES;
         
 
-    } else if (indexPath.row == 7){
+    } else if (indexPath.row == 8){
         
         _lastBtn = buttonTag + 4;
         self.zhifubaoBtn.selected = YES;
@@ -228,28 +350,14 @@ if (indexPath.row == 4|| indexPath.row == 5 || indexPath.row == 6 || indexPath.r
     }
  
     if (indexPath.row == 2) {
-        
-        if (isUseRedwallet == NO) {
-             
-            [self.redWalletBtn setImage:[UIImage imageNamed:@"icon_pane_circle_on.png"]];
-               isUseRedwallet = YES;
-            
-            CGFloat orderValue =  [_orderPrice floatValue];
-            //使用红包显示
-            _orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue- 5];
-            _useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue- 5];
-            
-        }else if (isUseRedwallet == YES){
-            //未使用红包显示
-            CGFloat orderValue =  [_orderPrice floatValue];
-
-             _orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue];
-             _useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue];
-            
-            [self.redWalletBtn setImage:[UIImage imageNamed:@"icon_pane_circle_off.png"]];
-                isUseRedwallet = NO;
-        }
-     
+        _couponVC.isCoupon = NO;
+        [_couponVC requestDataRedPacket];
+        [self hiddenOrShowCouponVC:NO];
+    }
+    if (indexPath.row == 3) {
+        _couponVC.isCoupon = YES;
+        [_couponVC requestData];
+        [self hiddenOrShowCouponVC:NO];
     }
    
 }

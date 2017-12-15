@@ -31,6 +31,11 @@
 @property (nonatomic ,copy)NSString * sendPriceValue;
 
 @property (nonatomic ,assign) BOOL isUseRedWallet;
+
+@property (nonatomic, copy) NSString *couponId;
+
+@property (nonatomic, copy) NSString *redpacketId;
+
 //购物车数量
 @property (nonatomic ,assign)NSInteger shopCarNumber;
 
