@@ -1,4 +1,4 @@
-//
+
 //  CovertOrderViewController.m
 //  XuXin
 //
@@ -178,8 +178,8 @@
     
     FaceToFaceOrderModel * model = self.dataArray[0];
     
-    if (model.orderPrice >= 150 && [User defalutManager].redPacket > 0 ) {
-        
+//    if (model.orderPrice >= 150 && [User defalutManager].redPacket > 0 ) {
+    
         UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         
         MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
@@ -191,18 +191,18 @@
         //   myOrderVC.storeName = _storeName;
         [self.navigationController pushViewController:myOrderVC animated:YES];
         
-    }else{
-        
-        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-        
-        myOrderVC.orderPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
-        myOrderVC.orderId =[NSString stringWithFormat:@"%ld", model.orderId];
-        myOrderVC.orderNumber = model.orderSn;
-        
-        [self.navigationController pushViewController:myOrderVC animated:YES];
-    }
+//    }else{
+//        
+//        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        
+//        SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
+//        
+//        myOrderVC.orderPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
+//        myOrderVC.orderId =[NSString stringWithFormat:@"%ld", model.orderId];
+//        myOrderVC.orderNumber = model.orderSn;
+//        
+//        [self.navigationController pushViewController:myOrderVC animated:YES];
+//    }
 
 }
 #pragma mark ---数据请求

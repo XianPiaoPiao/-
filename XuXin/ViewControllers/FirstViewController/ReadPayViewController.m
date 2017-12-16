@@ -398,6 +398,46 @@
 
     }];
 }
+
+#pragma mark ---余额支付预充值 优惠券
+-(void)requestReadyPayCoupon{
+    
+    __weak typeof(self)weakself = self;
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    param[@"orderId"] = _orderId;
+    param[@"pwd"] = _payField.text;
+//    param[@"type"] = _payType;
+//    param[@"packetid"]
+    
+    [weakself.httpManager POST:balancePayShopcoinUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [SVProgressHUD dismiss];
+        
+        NSString * str = responseObject[@"isSucc"];
+        if ([str integerValue] == 1) {
+            
+            [self showStaus:@"充值成功"];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                UIViewController * vc = self.navigationController.viewControllers[1];
+                
+                [self.navigationController popToViewController:vc animated:YES];
+            });
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [SVProgressHUD dismiss];
+        
+    }];
+}
+
 -(void)creatNavgationBar{
     
     [self addNavgationTitle:@"支付订单"];

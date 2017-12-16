@@ -80,8 +80,8 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
         
         CGFloat  totalMoney = [_amountMoney floatValue];
         
-        if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-            
+//        if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
+        
             UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             
             MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
@@ -95,22 +95,22 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
             
             [self.navigationController pushViewController:myOrderVC animated:YES];
             
-        }else{
-            
-            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            
-            SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-            myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-            
-            myOrderVC.orderId = self.orderId;
-            //订单类型，线下订单
-            myOrderVC.orderType = 2;
-            //订单号
-            myOrderVC.orderNumber = self.orderSn;
-            
-            [self.navigationController pushViewController:myOrderVC animated:YES];
-        
-    }
+//        }else{
+//
+//            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//
+//            SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
+//            myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+//
+//            myOrderVC.orderId = self.orderId;
+//            //订单类型，线下订单
+//            myOrderVC.orderType = 2;
+//            //订单号
+//            myOrderVC.orderNumber = self.orderSn;
+//
+//            [self.navigationController pushViewController:myOrderVC animated:YES];
+//
+//      }
     
     }else{
         
@@ -157,8 +157,8 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
             
           CGFloat  totalMoney = [_amountMoney floatValue];
                 
-            if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-                
+//            if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
+            
                 UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
                 
                 MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
@@ -172,21 +172,21 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
                 
                 [weakself.navigationController pushViewController:myOrderVC animated:YES];
                 
-            }else{
-                
-                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                
-                SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-                myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-                
-                myOrderVC.orderId = weakself.orderId;
-                //订单类型，线下订单
-                myOrderVC.orderType = 2;
-                //订单号
-                myOrderVC.orderNumber = weakself.orderSn;
-                
-                [weakself.navigationController pushViewController:myOrderVC animated:YES];
-            }
+//            }else{
+//                
+//                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//                
+//                SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
+//                myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+//                
+//                myOrderVC.orderId = weakself.orderId;
+//                //订单类型，线下订单
+//                myOrderVC.orderType = 2;
+//                //订单号
+//                myOrderVC.orderNumber = weakself.orderSn;
+//                
+//                [weakself.navigationController pushViewController:myOrderVC animated:YES];
+//            }
         }
 
     } failure:^(NSError *error) {

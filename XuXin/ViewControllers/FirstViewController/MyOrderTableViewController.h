@@ -12,6 +12,7 @@
 
 @property (nonatomic,copy)NSString * orderNumber;
 @property (nonatomic,copy)NSString * orderId;
+@property (nonatomic, copy) NSString *storecartId;
 
 @property (nonatomic ,copy)NSString *  orderPrice;
 
@@ -19,5 +20,6 @@
 
 //订单类型
 @property (nonatomic ,assign)NSInteger orderType;
-@property (nonatomic, assign) NSInteger type;//红包订单类型
+@property (nonatomic, assign) NSInteger type;//红包订单类型 1：面对面
+@property (nonatomic, copy) NSString *couponID;
 @end

@@ -285,6 +285,8 @@
 #define findUserRedPacketByOrderUrl fullURL(@"/app/findUserRedPacketByOrder.htm")
 //查询当前登录用户的所有优惠券
 #define findUserCouponUrl fullURL(@"/app/findUserCoupon.htm")
+//线上线下使用优惠券红包支付1.0版本
+#define lineoutlinePayOrderUsePracktUrl fullURL(@"/app/lineoutline/payOrderUsePrackt.htm")
 
 
 

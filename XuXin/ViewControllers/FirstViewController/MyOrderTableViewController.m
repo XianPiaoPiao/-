@@ -95,7 +95,9 @@
    
     [self settingUI];
     
-    [self createCouponView];
+    if (_type == 1 || [User defalutManager].redPacket > 0) {
+        [self createCouponView];
+    }
   
 }
 
@@ -113,7 +115,7 @@
     
     _couponVC = [[ChooseCouponViewController alloc] init];
     __weak typeof(self)weakself= self;
-    _couponVC.storeId = _orderId;
+    _couponVC.storevcartId = _storecartId;
     
     _couponVC.orderType = [NSString stringWithFormat:@"%ld",(long)_type];
     
@@ -309,6 +311,24 @@
     }
 }
 #pragma mark ---选择付款方式
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return 108;
+    }
+    if (indexPath.row == 1 || indexPath.row == 4) {
+        return 8;
+    }
+    if (indexPath.row == 2 && [User defalutManager].redPacket <= 0){
+        return 0;
+    }
+    if (indexPath.row == 3 && _type == 0) {
+        return 0;
+    }
+
+    return 58;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.supendPayBtn.tag = buttonTag + 1;
@@ -316,7 +336,7 @@
     self.weixinBtn.tag = buttonTag + 3;
     self.zhifubaoBtn.tag = buttonTag + 4;
     
-if (indexPath.row == 5|| indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8) {
+    if (indexPath.row == 5|| indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8) {
         if (_lastBtn != 0) {
             
             UIButton * lastButton = [self.view viewWithTag:_lastBtn ];
@@ -328,7 +348,7 @@ if (indexPath.row == 5|| indexPath.row == 6 || indexPath.row == 7 || indexPath.r
     //预充值支付
     if (indexPath.row == 5) {
         _lastBtn = buttonTag + 1;
-     self.supendPayBtn.selected = YES;
+        self.supendPayBtn.selected = YES;
    //       [[NSNotificationCenter defaultCenter] postNotificationName:@"supendCharge" object:nil userInfo:nil];
    //余额支付
     } else if (indexPath.row == 6){

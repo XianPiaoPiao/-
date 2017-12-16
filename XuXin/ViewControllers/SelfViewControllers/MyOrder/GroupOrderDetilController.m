@@ -716,8 +716,8 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
     
     totalMoney = self.model.price + self.model.freight;
     
-    if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-        
+//    if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
+    
         UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         
         MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
@@ -731,21 +731,21 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
         
         [self.navigationController pushViewController:myOrderVC animated:YES];
         
-    }else{
-        
-        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-        //订单类型，线下订单
-        myOrderVC.orderType = 2;
-        
-        myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-        myOrderVC.orderId =  self.model.id;
-        //订单号
-        myOrderVC.orderNumber =  self.model.order_sn;
-        
-        [self.navigationController pushViewController:myOrderVC animated:YES];
-    }
+//    }else{
+//        
+//        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        
+//        SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
+//        //订单类型，线下订单
+//        myOrderVC.orderType = 2;
+//        
+//        myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+//        myOrderVC.orderId =  self.model.id;
+//        //订单号
+//        myOrderVC.orderNumber =  self.model.order_sn;
+//        
+//        [self.navigationController pushViewController:myOrderVC animated:YES];
+//    }
 
 }
 #pragma mark ---申请退款

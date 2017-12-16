@@ -11,7 +11,9 @@
 
 @interface ChooseCouponViewController : BaseViewContrlloer
 
-@property (nonatomic, copy) NSString *storeId;
+@property (nonatomic, copy) NSString *orderId;
+
+@property (nonatomic, copy) NSString *storevcartId;
 
 @property (nonatomic, copy) NSString *orderType;
 

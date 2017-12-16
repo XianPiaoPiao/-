@@ -55,7 +55,7 @@
     
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     //订单类型，0线上线下，1面对面
-    param[@"id"] = _storeId;
+    param[@"id"] = _storevcartId;
     param[@"type"] = _orderType;
     [weakself POST:findUserCouponInfoByStoreIdUrl parameters:param success:^(id responseObject) {
         if ([responseObject[@"isSucc"] intValue] == 1) {
@@ -95,7 +95,7 @@
     
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     //订单类型，0线上线下，1面对面
-    param[@"id"] = _storeId;
+    param[@"id"] = _orderId;
     param[@"type"] = _orderType;
     [weakself POST:findUserRedPacketByOrderUrl parameters:param success:^(id responseObject) {
         if ([responseObject[@"isSucc"] intValue] == 1) {

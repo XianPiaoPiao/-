@@ -151,14 +151,14 @@
            NSString * orderOk = responseObject[@"result"][@"order_sn"];
            NSString * orderId = responseObject[@"result"][@"order_id"];
            //    创建通知===以下条件反
-           if ([_priceTextfield.text intValue] < 150 ) {//[_priceTextfield.text intValue] >= 150 && [User defalutManager].redPacket > 0
-               
+//           if ([_priceTextfield.text intValue] < 150 ) {//[_priceTextfield.text intValue] >= 150 && [User defalutManager].redPacket > 0
+           
                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
                
                MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
                myOrderVC.orderPrice =_priceTextfield.text;
                myOrderVC.orderId = orderId;
-               
+//               myOrderVC.storecartId = sto
                //订单号
                myOrderVC.orderNumber = orderOk;
                
@@ -168,22 +168,22 @@
                
                [self.navigationController pushViewController:myOrderVC animated:YES];
                
-           }else{
-               
-               UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-               
-               SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-               myOrderVC.orderPrice =_priceTextfield.text;
-               myOrderVC.orderId = orderId;
-               //订单号
-               myOrderVC.orderNumber = orderOk;
-               //订单类型,面对面
-               myOrderVC.orderType = 3;
-               
-               myOrderVC.storeName = _storeName;
-               
-               [self.navigationController pushViewController:myOrderVC animated:YES];
-           }
+//           }else{
+//
+//               UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//
+//               SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
+//               myOrderVC.orderPrice =_priceTextfield.text;
+//               myOrderVC.orderId = orderId;
+//               //订单号
+//               myOrderVC.orderNumber = orderOk;
+//               //订单类型,面对面
+//               myOrderVC.orderType = 3;
+//
+//               myOrderVC.storeName = _storeName;
+//
+//               [self.navigationController pushViewController:myOrderVC animated:YES];
+//           }
            
        }
        
