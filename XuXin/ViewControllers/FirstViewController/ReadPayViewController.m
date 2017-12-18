@@ -148,21 +148,33 @@
 #pragma  mark ---面对面密码验证
 -(void)requetdData{
     
-    
     __weak typeof(self)weakself = self;
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     
     param[@"orderId"] = self.orderId;
     
-    param[@"payType"] = [NSString stringWithFormat:@"%ld",(long)self.payType];
-    param[@"payPassword"] =_payField.text;
-   
+    NSString *urlString;
+    
     if (_isUseRedWallet == YES) {
-          
-        param[@"userRedPacket"] = @"1";
+        
+        if (_redpacketId != nil) {
+            param[@"redpacketid"] = _redpacketId;
+        }
+        if (_couponId != nil) {
+            param[@"couponid"] = _redpacketId;
+        }
+        
+        param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
+        param[@"payPassword"] = _payField.text;
+        urlString = payFace2FaceOrderUseCouponUrl;
+    } else {
+        
+        param[@"type"] = [NSString stringWithFormat:@"%ld",_payType];
+        param[@"pwd"] = _payField.text;
+        urlString = payOrderUrl;
     }
     
-    [self POST:payOrderUrl parameters:param success:^(id responseObject) {
+    [self POST:urlString parameters:param success:^(id responseObject) {
        
        [SVProgressHUD dismiss];
        //
@@ -213,14 +225,21 @@
     
     param[@"type"] = [NSString stringWithFormat:@"%ld",_payType];
     
+    NSString *urlString;
+    
     if (_isUseRedWallet == YES) {
         
-        param[@"userRedPacket"] = @"1";
+        if (_redpacketId != nil) {
+            param[@"packetid"] = _redpacketId;
+        }
+        urlString = lineoutlinePayOrderUsePracktUrl;
+    } else {
+        urlString = lineoutlinePayOrderUrl;
     }
     
     param[@"pwd"] = _payField.text;
 
-   [self POST:lineoutlinePayOrderUrl parameters:param success:^(id responseObject) {
+   [self POST:urlString parameters:param success:^(id responseObject) {
        
        NSInteger  i = [responseObject[@"isSucc"] integerValue];
 
@@ -396,45 +415,6 @@
         
         [SVProgressHUD dismiss];
 
-    }];
-}
-
-#pragma mark ---余额支付预充值 优惠券
--(void)requestReadyPayCoupon{
-    
-    __weak typeof(self)weakself = self;
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    param[@"orderId"] = _orderId;
-    param[@"pwd"] = _payField.text;
-//    param[@"type"] = _payType;
-//    param[@"packetid"]
-    
-    [weakself.httpManager POST:balancePayShopcoinUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        [SVProgressHUD dismiss];
-        
-        NSString * str = responseObject[@"isSucc"];
-        if ([str integerValue] == 1) {
-            
-            [self showStaus:@"充值成功"];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                UIViewController * vc = self.navigationController.viewControllers[1];
-                
-                [self.navigationController popToViewController:vc animated:YES];
-            });
-            
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        [SVProgressHUD dismiss];
-        
     }];
 }
 

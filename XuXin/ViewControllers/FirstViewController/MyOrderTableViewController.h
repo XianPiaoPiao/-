@@ -20,6 +20,7 @@
 
 //订单类型
 @property (nonatomic ,assign)NSInteger orderType;
-@property (nonatomic, assign) NSInteger type;//红包订单类型 1：面对面
-@property (nonatomic, copy) NSString *couponID;
+///红包订单类型 1:面对面 0:线上线下 2:无优惠券的情况（没有使用或从未支付订单来）
+@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) BOOL isUseCoupon;
 @end

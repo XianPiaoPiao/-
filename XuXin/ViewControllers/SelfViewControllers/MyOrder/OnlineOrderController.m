@@ -199,6 +199,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     _couponVC.couponBlock = ^(StoreCouponModel *couponModel) {
         if ([couponModel.price intValue] > 0) {
             _couponId = couponModel.id;
+            
         }
         UILabel *valueLbl = [weakself.view viewWithTag:122];
         valueLbl.text = couponModel.name;
@@ -217,7 +218,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:0.5];
         
         [_bgView setAlpha:0.0f];
         [_contentView setAlpha:0.0f];
@@ -228,7 +229,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         _contentView.hidden = NO;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDelegate:self];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:0.5];
         
         [_bgView setAlpha:1.0f];
         [_contentView setAlpha:1.0f];
@@ -622,7 +623,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         myOrderVC.type = 0;
         
         if (_couponId != nil) {
-            myOrderVC.couponID = _couponId;
+            myOrderVC.isUseCoupon = YES;
         }
 
         [self.navigationController pushViewController:myOrderVC animated:YES];
@@ -701,14 +702,9 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     
     [self POST:urlString parameters:param success:^(id responseObject) {
         
-        
         NSString * str = responseObject[@"isSucc"];
         
-        
-        
         if ([str integerValue] == 1) {
-            
-           
             
             CGFloat totalMoney = 0;
             weakself.orderId = responseObject[@"result"][@"orderId"];
@@ -749,6 +745,13 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
             myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
             //订单类型,线上订单
             myOrderVC.orderType = 1;
+            if (_couponId == nil ) {
+                myOrderVC.isUseCoupon = NO;
+            } else {
+                myOrderVC.isUseCoupon = YES;
+            }
+            
+            myOrderVC.type = 0;
             
             myOrderVC.orderId = weakself.orderId;
             myOrderVC.storecartId = _storeCartId;

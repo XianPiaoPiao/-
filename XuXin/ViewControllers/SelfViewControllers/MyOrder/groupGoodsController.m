@@ -169,6 +169,8 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
                 myOrderVC.orderId = weakself.orderId;
                 //订单号
                 myOrderVC.orderNumber = weakself.orderSn;
+            
+                myOrderVC.storecartId = _storeCartId;
                 
                 [weakself.navigationController pushViewController:myOrderVC animated:YES];
                 

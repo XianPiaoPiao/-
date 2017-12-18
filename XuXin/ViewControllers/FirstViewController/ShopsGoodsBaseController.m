@@ -344,7 +344,7 @@ NSString * const goodsCellIndertifer = @"goodsCell";
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:0.5];
         
         [_bgView setAlpha:0.0f];
         [_contentView setAlpha:0.0f];
@@ -355,7 +355,7 @@ NSString * const goodsCellIndertifer = @"goodsCell";
         _contentView.hidden = NO;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDelegate:self];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:0.5];
         
         [_bgView setAlpha:1.0f];
         [_contentView setAlpha:1.0f];

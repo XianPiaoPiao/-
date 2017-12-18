@@ -188,14 +188,14 @@
             NSString * orderId = responseObject[@"result"][@"order_id"];
             //    创建通知
 //            if ([_priceValue intValue] >= 150 && [User defalutManager].redPacket > 0) {
-                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                
-                MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
-                myOrderVC.orderPrice =_priceValue;
-                myOrderVC.orderId = orderId;
-                myOrderVC.orderNumber = orderOk;
-                //    myOrderVC.storeName = _store;
-                [self.navigationController pushViewController:myOrderVC animated:YES];
+            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            
+            MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
+            myOrderVC.orderPrice =_priceValue;
+            myOrderVC.orderId = orderId;
+            myOrderVC.orderNumber = orderOk;
+            //    myOrderVC.storeName = _store;
+            [self.navigationController pushViewController:myOrderVC animated:YES];
                 
 //            }else{
 //                

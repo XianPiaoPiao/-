@@ -267,7 +267,7 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:0.5];
         
         [_bgView setAlpha:0.0f];
         [_contentView setAlpha:0.0f];
@@ -279,7 +279,7 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDelegate:self];
 //        [UIView setAnimationDidStopSelector:@selector(didAfterHidden:)];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:0.5];
         
         [_bgView setAlpha:1.0f];
         [_contentView setAlpha:1.0f];
@@ -394,7 +394,7 @@ NSString * const GroupGoodsIndertifer = @"StoresGoodsCellTableViewCell";
             [weakself.tableView reloadData];
             
             _supView.titleLabel.text = self.shopModel.store_name;
-            NSLog(@"%@",self.shopModel.store_name);
+            
             if (self.shopModel.store_evaluate == 0) {
                 
                 _supView.starsView.starValue = 5;

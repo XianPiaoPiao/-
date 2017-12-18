@@ -287,8 +287,8 @@
 #define findUserCouponUrl fullURL(@"/app/findUserCoupon.htm")
 //线上线下使用优惠券红包支付1.0版本
 #define lineoutlinePayOrderUsePracktUrl fullURL(@"/app/lineoutline/payOrderUsePrackt.htm")
-
-
+//面对面支付使用优惠券红包1.0版本
+#define payFace2FaceOrderUseCouponUrl fullURL(@"/app/pay/payFace2FaceOrderUseCoupon.htm")
 
 
 

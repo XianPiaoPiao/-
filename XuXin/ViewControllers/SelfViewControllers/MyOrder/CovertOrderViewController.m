@@ -185,7 +185,7 @@
         MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
         
         myOrderVC.orderPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
-        
+        myOrderVC.type = 1;
         myOrderVC.orderId =[NSString stringWithFormat:@"%ld", model.orderId];
         myOrderVC.orderNumber = model.orderSn;
         //   myOrderVC.storeName = _storeName;

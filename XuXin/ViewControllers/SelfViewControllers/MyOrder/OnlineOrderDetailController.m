@@ -97,7 +97,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
         [[EaseLoadingView defalutManager] stopLoading];
         
         NSString * str = responseObject[@"isSucc"];
-        
+        NSLog(@"线上=======\n%@",responseObject);
         if ([str intValue] == 1) {
             
             NSDictionary * dic = responseObject[@"result"];
