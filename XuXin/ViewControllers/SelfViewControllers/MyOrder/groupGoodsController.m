@@ -14,6 +14,7 @@
 #import "MyOrderTableViewController.h"
 #import "SBMyOrderTableviewController.h"
 #import "GoodsLIstViewController.h"
+#import "ChooseCouponViewController.h"
 NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
 @interface groupGoodsController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (nonatomic ,strong)UITableView * tableView;
@@ -21,6 +22,11 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
 @property (nonatomic ,copy)NSString * orderId;
 
 @property (nonatomic ,copy)NSString * orderSn;
+@property (nonatomic, strong) ChooseCouponViewController *couponVC;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *bgView;
+
+@property (nonatomic, copy) NSString *couponId;
 @end
 
 @implementation groupGoodsController{
@@ -33,7 +39,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     
     [self creatNavgationBar];
     [self creatTableView];
-    
+    [self createCouponView];
     
 }
 -(NSMutableArray *)ImageArray{
@@ -73,6 +79,73 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     _tableView.tableFooterView = footView;
     
 }
+- (void)createCouponView{
+    _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _bgView.backgroundColor = [UIColor colorWithHexString:WordColor alpha:0.5];
+    
+    [self.view addSubview:_bgView];
+    
+    _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenH/2, ScreenW, screenH/2)];
+    _contentView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_contentView];
+    
+    _couponVC = [[ChooseCouponViewController alloc] init];
+    __weak typeof(self)weakself= self;
+    _couponVC.storevcartId = _storeCartId;
+    _couponVC.orderId = _orderId;
+    _couponVC.isCoupon = YES;
+    _couponVC.orderType = [NSString stringWithFormat:@"0"];
+    [_couponVC requestData];
+    _couponVC.cancelBtnBlock = ^(BOOL flag) {
+        [weakself hiddenOrShowCouponVC:YES];
+    };
+    _couponVC.couponBlock = ^(StoreCouponModel *couponModel) {
+        if ([couponModel.price intValue] > 0) {
+            _couponId = couponModel.id;
+            
+        }
+        UILabel *valueLbl = [weakself.view viewWithTag:122];
+        valueLbl.text = couponModel.name;
+        [weakself hiddenOrShowCouponVC:YES];
+    };
+    [self addChildViewController:_couponVC];
+    [self.contentView addSubview:_couponVC.view];
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    [_bgView setAlpha:0.0f];
+    [_contentView setAlpha:0.0f];
+}
+
+- (void)hiddenOrShowCouponVC:(BOOL)flag{
+    if (flag) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
+        [UIView setAnimationDuration:0.5];
+        
+        [_bgView setAlpha:0.0f];
+        [_contentView setAlpha:0.0f];
+        
+        [UIView commitAnimations];
+    }else {
+        _bgView.hidden = NO;
+        _contentView.hidden = NO;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:0.5];
+        
+        [_bgView setAlpha:1.0f];
+        [_contentView setAlpha:1.0f];
+        
+        [UIView commitAnimations];
+    }
+    
+}
+- (void)didAfterHidden{
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    
+}
 #pragma mark ---提交订单
 -(void)uploadOrder{
     
@@ -92,6 +165,8 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
             myOrderVC.orderId = self.orderId;
             //订单号
             myOrderVC.orderNumber = self.orderSn;
+        
+            myOrderVC.type = 0;
             
             [self.navigationController pushViewController:myOrderVC animated:YES];
             
@@ -145,9 +220,15 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     param[@"remarks"] = _textView.text;
     
     param[@"storeCartId"] =_storeCartId;
-
+    NSString *urlString ;
+     if (_couponId != nil) {
+     param[@"couponid"] = _couponId;
+         urlString = appSaveLineOrderUseCouponUrl;
+     } else {
+         urlString = app_save_line_orderUrl;
+     }
     
-    [self POST:app_save_line_orderUrl parameters:param success:^(id responseObject) {
+    [self POST:urlString parameters:param success:^(id responseObject) {
         
         NSString * str = responseObject[@"isSucc"];
         weakself.orderId = responseObject[@"result"][@"orderId"];
@@ -165,7 +246,13 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
                 myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
                 //订单类型,线下订单
                 myOrderVC.orderType = 2;
-                
+                if (_couponId == nil ) {
+                    myOrderVC.isUseCoupon = NO;
+                } else {
+                    myOrderVC.isUseCoupon = YES;
+                }
+            
+                myOrderVC.type = 0;
                 myOrderVC.orderId = weakself.orderId;
                 //订单号
                 myOrderVC.orderNumber = weakself.orderSn;
@@ -278,6 +365,29 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
         [cell.contentView addSubview:moneyLabel];
         
         return cell;
+    }if (indexPath.section == 2) {
+        
+        //店铺优惠
+        UITableViewCell * cell = [[UITableViewCell alloc] init];
+        cell.selectionStyle = NO;
+        
+        UILabel * couponLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+        couponLabel.text = @"店铺优惠:";
+        couponLabel.font = [UIFont systemFontOfSize:15];
+        [cell.contentView addSubview:couponLabel];
+        
+        UILabel * valueLabel =[[UILabel alloc] initWithFrame:CGRectMake(130, 10, ScreenW-160, 20)];
+        
+        valueLabel.textAlignment = 2;
+        valueLabel.tag = 122;
+        valueLabel.font = [UIFont systemFontOfSize:15];
+        
+        valueLabel.textColor = [UIColor colorWithHexString:MainColor];
+        [cell.contentView addSubview:valueLabel];
+        UIImageView *rightImgView = [[UIImageView alloc] initWithFrame:CGRectMake(ScreenW-20, 15, 8, 10)];
+        rightImgView.image = [UIImage imageNamed:@"icon_address_right_arrow"];
+        [cell.contentView addSubview:rightImgView];
+        return cell;
     }else{
         
         UITableViewCell * cell = [[UITableViewCell alloc] init];
@@ -298,6 +408,10 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
         
         return 130;
     
+    }else if (indexPath.section == 2){
+        
+        return 40;
+        
     }else {
         return 120;
     }
@@ -314,7 +428,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return  3;
+    return  4;
 }
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     
@@ -326,6 +440,9 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     if (indexPath.section == 1) {
         
         [self jumpGoodsListVC];
+    } else if (indexPath.section == 2) {
+        
+        [self hiddenOrShowCouponVC:NO];
     }
 }
 #pragma mark ---商品列表

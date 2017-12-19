@@ -592,7 +592,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
         myOrderVC.orderId = self.model.id;
         //订单号
         myOrderVC.orderNumber = self.model.order_sn;
-        
+    
         [self.navigationController pushViewController:myOrderVC animated:YES];
         
 //    }else{
