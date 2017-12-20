@@ -726,6 +726,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
 //                    totalMoney = totalMoney + _sendFee;
 //
 //                }
+                
                 totalMoney = [responseObject[@"result"][@"price"] floatValue];
             }else if (_couponId != nil){
                 totalMoney = [responseObject[@"result"][@"price"] floatValue];
@@ -754,7 +755,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
             myOrderVC.type = 0;
             
             myOrderVC.orderId = weakself.orderId;
-            myOrderVC.storecartId = _storeCartId;
+//            myOrderVC.storecartId = _storeCartId;
             //订单号
             myOrderVC.orderNumber =weakself.orderSn;;
             

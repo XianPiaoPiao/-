@@ -161,7 +161,7 @@
             param[@"redpacketid"] = _redpacketId;
         }
         if (_couponId != nil) {
-            param[@"couponid"] = _redpacketId;
+            param[@"couponid"] = _couponId;
         }
         
         param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
@@ -169,8 +169,8 @@
         urlString = payFace2FaceOrderUseCouponUrl;
     } else {
         
-        param[@"type"] = [NSString stringWithFormat:@"%ld",_payType];
-        param[@"pwd"] = _payField.text;
+        param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
+        param[@"payPassword"] = _payField.text;
         urlString = payOrderUrl;
     }
     

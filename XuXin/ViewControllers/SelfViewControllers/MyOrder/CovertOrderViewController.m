@@ -81,17 +81,26 @@
     
     _redwalletLabel.textColor = [UIColor colorWithHexString:@"#05b5ef"];
     
-    if (model.usedRedPacket == 0) {
+    _couponLabel.textColor = [UIColor colorWithHexString:@"#05b5ef"];
+    
+    if (model.redpacketmoeny > 0) {
         
-        _redwalletLabel.text = [NSString stringWithFormat:@"￥0"];
-        _turePayLabel.text = [NSString stringWithFormat:@"￥%.1f", model.orderPrice];
+        _redwalletLabel.text = [NSString stringWithFormat:@"￥%ld",model.redpacketmoeny];
         
     }else{
         
-        _redwalletLabel.text = [NSString stringWithFormat:@"￥5"];
-        _turePayLabel.text = [NSString stringWithFormat:@"￥%.1f", model.orderPrice - 5];
+        _redwalletLabel.text = [NSString stringWithFormat:@"￥0"];
+    }
+    if (model.couponmoeny > 0) {
+        
+        _couponLabel.text = [NSString stringWithFormat:@"￥%ld",model.couponmoeny];
+        
+    }else{
+        
+        _couponLabel.text = [NSString stringWithFormat:@"￥0"];
     }
     
+    _turePayLabel.text = [NSString stringWithFormat:@"￥%.1f", model.orderPrice - model.redpacketmoeny - model.couponmoeny];
 
     _turePayLabel.textColor = [UIColor colorWithHexString:MainColor];
     _orderStutasLabel.textColor = [UIColor colorWithHexString:MainColor];
@@ -103,7 +112,7 @@
      
         _orderStutasLabel.text = @"未支付";
   
-        UIView * bgView =[[UIView alloc] initWithFrame:CGRectMake(0, 454, ScreenW, 40)];
+        UIView * bgView =[[UIView alloc] initWithFrame:CGRectMake(0, 494+self.StatusBarHeight, ScreenW, 40)];
         bgView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:bgView];
         
@@ -141,7 +150,7 @@
             
         }else{
     
-            UIView * bgView =[[UIView alloc] initWithFrame:CGRectMake(0, 454+self.StatusBarHeight, ScreenW, 40)];
+            UIView * bgView =[[UIView alloc] initWithFrame:CGRectMake(0, 494+self.StatusBarHeight, ScreenW, 40)];
             bgView.backgroundColor = [UIColor whiteColor];
             [self.view addSubview:bgView];
             
@@ -177,32 +186,26 @@
 -(void)facePayAgain{
     
     FaceToFaceOrderModel * model = self.dataArray[0];
+   
+    UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
-//    if (model.orderPrice >= 150 && [User defalutManager].redPacket > 0 ) {
+    MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
     
-        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
-        
-        myOrderVC.orderPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
+    myOrderVC.orderPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
+    myOrderVC.orderType = 3;
+    myOrderVC.orderId =[NSString stringWithFormat:@"%ld", model.orderId];
+    myOrderVC.orderNumber = model.orderSn;
+    if (model.couponmoeny > 0 || model.redpacketmoeny > 0) {
         myOrderVC.type = 1;
-        myOrderVC.orderId =[NSString stringWithFormat:@"%ld", model.orderId];
-        myOrderVC.orderNumber = model.orderSn;
-        //   myOrderVC.storeName = _storeName;
-        [self.navigationController pushViewController:myOrderVC animated:YES];
-        
-//    }else{
-//        
-//        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//        
-//        SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-//        
-//        myOrderVC.orderPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
-//        myOrderVC.orderId =[NSString stringWithFormat:@"%ld", model.orderId];
-//        myOrderVC.orderNumber = model.orderSn;
-//        
-//        [self.navigationController pushViewController:myOrderVC animated:YES];
-//    }
+        myOrderVC.redpacketmoeny = model.redpacketmoeny;
+        myOrderVC.couponmoeny = model.couponmoeny;
+        myOrderVC.isUseCoupon = YES;
+    } else {
+        myOrderVC.type = 1;
+    }
+    myOrderVC.redpacketmoeny = model.redpacketmoeny;
+    myOrderVC.couponmoeny = model.couponmoeny;
+    [self.navigationController pushViewController:myOrderVC animated:YES];
 
 }
 #pragma mark ---数据请求

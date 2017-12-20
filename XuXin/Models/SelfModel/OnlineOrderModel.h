@@ -42,6 +42,10 @@
 
 @property (nonatomic ,assign)NSInteger usedRedPacket;
 
-;
-
+/*
+ 24    redpacketmoeny    使用红包抵扣金额    是    [string]
+ 25    couponmoeny    使用优惠券抵扣金额    是    [string]
+ */
+@property (nonatomic, assign)NSInteger redpacketmoeny;
+@property (nonatomic, assign) NSInteger couponmoeny;
 @end

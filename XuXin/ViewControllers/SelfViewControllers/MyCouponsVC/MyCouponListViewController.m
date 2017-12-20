@@ -72,8 +72,8 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponTableViewCell" forIndexPath:indexPath];
     }
     StoreCouponModel *model = _couponArray[indexPath.row];
-    cell.descLabel.text = model.order_price;
-    cell.priceLabel.text = model.price;
+    cell.descLabel.text = [NSString stringWithFormat:@"满%@元可使用",model.order_price];
+    cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
     
     NSTimeInterval timeS = [model.start_time doubleValue]/1000.0;
     NSTimeInterval timeE = [model.end_time doubleValue]/1000.0;
@@ -95,7 +95,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     StoreCouponModel *model = _couponArray[indexPath.row];
-    [User defalutManager].selectedShop =[NSString stringWithFormat:@"%ld",(long)model.store_id];
+    NSInteger storeId = [model.store_id integerValue];
+    [User defalutManager].selectedShop =[NSString stringWithFormat:@"%ld",(long)storeId];
     
     UIStoryboard * storybord =  [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     

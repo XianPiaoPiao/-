@@ -128,7 +128,7 @@ if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
         }
     } failure:^(NSError *error) {
         
-
+        NSLog(@"失败");
         
     }];
    

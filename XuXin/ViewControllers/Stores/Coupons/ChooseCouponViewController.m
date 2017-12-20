@@ -10,7 +10,9 @@
 #import "StoreCouponModel.h"
 #import "ChooseCouponTableViewCell.h"
 
-@interface ChooseCouponViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ChooseCouponViewController ()<UITableViewDelegate, UITableViewDataSource>{
+    UILabel *label;
+}
 
 @property (nonatomic, strong) UITableView *couponTableView;
 
@@ -31,18 +33,7 @@
     if (!_couponArray) {
         _couponArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
-    
-//    if (_isCoupon == YES) {
-//        
-//        //优惠券
-//        [self requestData];
-//    } else {
-//        //红包
-//        [self requestDataRedPacket];
-//    }
-    
-//    [self requestData];
-//    [self requestDataRedPacket];
+
 }
 
 - (void)requestData{
@@ -50,7 +41,7 @@
     if (_couponArray.count > 0) {
         [_couponArray removeAllObjects];
     }
-    
+    label.text = @"店铺优惠券";
      __weak typeof(self)weakself= self;
     
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
@@ -73,13 +64,11 @@
             StoreCouponModel *model = [[StoreCouponModel alloc] init];
             model.name = @"不使用优惠券";
             [_couponArray addObject:model];
-//            [_couponArray insertObject:model atIndex:_couponArray.count];
             [self.couponTableView reloadData];
         } else {
             StoreCouponModel *model = [[StoreCouponModel alloc] init];
             model.name = @"不使用优惠券";
             [_couponArray addObject:model];
-            //            [_couponArray insertObject:model atIndex:_couponArray.count];
             [self.couponTableView reloadData];
         }
     } failure:^(NSError *error) {
@@ -91,6 +80,7 @@
     if (_couponArray.count > 0) {
         [_couponArray removeAllObjects];
     }
+    label.text = @"店铺红包";
     __weak typeof(self)weakself= self;
     
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
@@ -104,7 +94,7 @@
             for (NSDictionary *dic in array) {
                 
                 StoreCouponModel *model = [[StoreCouponModel alloc] init];
-                model.name = dic[@"describe"];
+                model.name = [NSString stringWithFormat:@"%@ 满%@减%@",dic[@"describe"],dic[@"orderprice"],dic[@"price"]];
                 model.id = dic[@"id"];
                 model.order_price = dic[@"orderprice"];
                 model.price = dic[@"price"];
@@ -113,13 +103,11 @@
             StoreCouponModel *model = [[StoreCouponModel alloc] init];
             model.name = @"不使用红包";
             [_couponArray addObject:model];
-            //            [_couponArray insertObject:model atIndex:_couponArray.count];
             [self.couponTableView reloadData];
         } else {
             StoreCouponModel *model = [[StoreCouponModel alloc] init];
             model.name = @"不使用红包";
             [_couponArray addObject:model];
-            //            [_couponArray insertObject:model atIndex:_couponArray.count];
             [self.couponTableView reloadData];
         }
     } failure:^(NSError *error) {
@@ -131,8 +119,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, ScreenW-100, 30)];
-    label.text = @"店铺优惠券";
+    label = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, ScreenW-100, 30)];
+    
     label.font = [UIFont systemFontOfSize:14.0f];
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];

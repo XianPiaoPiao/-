@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *turePayLabel;
 @property (nonatomic ,copy)NSString * idName;
 @property (weak, nonatomic) IBOutlet UILabel *redwalletLabel;
+@property (weak, nonatomic) IBOutlet UILabel *couponLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ViewTop;
 @end
