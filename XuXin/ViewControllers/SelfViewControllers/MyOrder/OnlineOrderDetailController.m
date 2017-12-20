@@ -366,8 +366,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                 
                 [giveBtn addTarget:self action:@selector(backGoodsMoney) forControlEvents:UIControlEventTouchDown];
                 [giveBtn setTitle:@"退款" forState:UIControlStateNormal];
-            }
-            else if (self.model.status == waitPayType){
+            } else if (self.model.status == waitPayType){
                 cancelOrderBtn.hidden = YES;
 //                [cancelOrderBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchDown];
 //                [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
@@ -376,8 +375,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                 
                 [giveBtn setTitle:@"付款" forState:UIControlStateNormal];
                 
-            }
-            else if (self.model.status == waitSendGoods){
+            } else if (self.model.status == waitSendGoods){
                 cancelOrderBtn.hidden = YES;
 //                [cancelOrderBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchDown];
 //                [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
@@ -386,7 +384,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                 
                 [giveBtn setTitle:@"支付快递费" forState:UIControlStateNormal];
                 
-            }else if(self.model.status == haveDoneSend || self.model.status == sellerRejectGoods){
+            } else if(self.model.status == haveDoneSend || self.model.status == sellerRejectGoods){
                 
                 UIButton * retureBtn =[[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 220, 45 , 50, 30)];
                 retureBtn.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -605,6 +603,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
     
     MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
     myOrderVC.orderPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
+    myOrderVC.sendFee = self.model.freight;
     //订单类型，线上订单
     myOrderVC.orderType = 1;
     

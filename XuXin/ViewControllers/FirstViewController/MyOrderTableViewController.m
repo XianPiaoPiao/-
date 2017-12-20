@@ -256,14 +256,18 @@
 -(void)settingUI{
     
     //确认支付
-    UIButton * surePayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 502, ScreenW - 20, 50)];
-    [self.view addSubview:surePayBtn];
-    [surePayBtn setTitle:@"确认支付" forState:UIControlStateNormal];
-    surePayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [surePayBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [surePayBtn addTarget:self action:@selector(choosePayWay:) forControlEvents:UIControlEventTouchUpInside];
-    surePayBtn.backgroundColor = [UIColor colorWithHexString:MainColor];
-    surePayBtn.layer.cornerRadius = 25;
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+//    UIButton * surePayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, ScreenW - 20, 50)];
+////    [self.view addSubview:surePayBtn];
+////    [self.tableView addSubview:surePayBtn];
+//    [view addSubview:surePayBtn];
+//    [surePayBtn setTitle:@"确认支付" forState:UIControlStateNormal];
+//    surePayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+//    [surePayBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [surePayBtn addTarget:self action:@selector(choosePayWay:) forControlEvents:UIControlEventTouchUpInside];
+//    surePayBtn.backgroundColor = [UIColor colorWithHexString:MainColor];
+//    surePayBtn.layer.cornerRadius = 25;
+//    self.tableView.tableFooterView = view;
 }
 #pragma mark  ---选择支付方式
 -(void)choosePayWay:(UIButton *)btn{
@@ -352,6 +356,24 @@
     }
 
     return 58;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, screenH, ScreenW, 80)];
+    UIButton * surePayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, ScreenW - 20, 50)];
+    //    [self.view addSubview:surePayBtn];
+    //    [self.tableView addSubview:surePayBtn];
+    [view addSubview:surePayBtn];
+    [surePayBtn setTitle:@"确认支付" forState:UIControlStateNormal];
+    surePayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [surePayBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [surePayBtn addTarget:self action:@selector(choosePayWay:) forControlEvents:UIControlEventTouchUpInside];
+    surePayBtn.backgroundColor = [UIColor colorWithHexString:MainColor];
+    surePayBtn.layer.cornerRadius = 25;
+//    self.tableView.tableFooterView = view;
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 80;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -573,7 +595,7 @@
         
         CGFloat price =  [_useRedWalletPrice floatValue] - _sendFee;
         readPayVC.price =[NSString stringWithFormat:@"%.1f", price];
-        
+        readPayVC.sendPriceValue = [NSString stringWithFormat:@"%.1f",self.sendFee];
         //订单类型,根据订单类型
         readPayVC.orderType = _orderType;
         

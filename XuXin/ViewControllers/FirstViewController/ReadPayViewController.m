@@ -245,6 +245,7 @@
 
        if (i == 1) {
            
+           //预存款支付的
            if (_payType == 1) {
                
                NSString * str = responseObject[@"result"][@"ship_price"];
