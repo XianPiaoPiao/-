@@ -25,6 +25,13 @@
     self.valueLabel.text = [NSString stringWithFormat:@"%@",model.price];
     self.conditionLabel.text = [NSString stringWithFormat:@"满%@使用",model.order_price];
     self.dateLabel.text = [NSString stringWithFormat:@"有效期：%@",model.end_time];
+    if (model.receivestate == 0) {
+        [self.getCouponButton setImage:[UIImage imageNamed:@"receive"] forState: UIControlStateNormal];
+    } else if (model.receivestate == 1) {
+        [self.getCouponButton setImage:[UIImage imageNamed:@"already_received"] forState: UIControlStateNormal];
+    } else if (model.receivestate == 2) {
+        [self.getCouponButton setImage:[UIImage imageNamed:@"already_finished"] forState: UIControlStateNormal];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

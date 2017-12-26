@@ -27,4 +27,7 @@
 
 @property (nonatomic, assign) BOOL selected;
 
+//receivestate领取状态，0未领取，1已领取，2已领完
+@property (nonatomic, assign) NSInteger receivestate;
+
 @end

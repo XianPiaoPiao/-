@@ -138,7 +138,7 @@
     
     MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
     myOrderVC.orderPrice =_priceTextfield.text;
-    
+    myOrderVC.factPrice = _priceTextfield.text;
     //订单类型,面对面
     myOrderVC.orderType = 3;
     myOrderVC.type = 1;//面对面
@@ -169,6 +169,7 @@
            
            MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
            myOrderVC.orderPrice =_priceTextfield.text;
+           myOrderVC.factPrice =_priceTextfield.text;
            myOrderVC.orderId = orderId;
 //               myOrderVC.storecartId = sto
            //订单号

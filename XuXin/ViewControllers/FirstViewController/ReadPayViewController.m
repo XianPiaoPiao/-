@@ -163,17 +163,16 @@
         if (_couponId != nil) {
             param[@"couponid"] = _couponId;
         }
-        
-        param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
-        param[@"payPassword"] = _payField.text;
-        urlString = payFace2FaceOrderUseCouponUrl;
-    } else {
-        
-        param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
-        param[@"payPassword"] = _payField.text;
-        urlString = payOrderUrl;
     }
-    
+//    else {
+//
+//        param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
+//        param[@"payPassword"] = _payField.text;
+//        urlString = payOrderUrl;
+//    }
+    param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
+    param[@"payPassword"] = _payField.text;
+    urlString = payFace2FaceOrderUseCouponUrl;
     [self POST:urlString parameters:param success:^(id responseObject) {
        
        [SVProgressHUD dismiss];
@@ -207,9 +206,6 @@
        
    } failure:^(NSError *error) {
        
-       
-
-       
 }];
 
 
@@ -225,21 +221,16 @@
     
     param[@"type"] = [NSString stringWithFormat:@"%ld",_payType];
     
-    NSString *urlString;
-    
     if (_isUseRedWallet == YES) {
         
         if (_redpacketId != nil) {
             param[@"packetid"] = _redpacketId;
         }
-        urlString = lineoutlinePayOrderUsePracktUrl;
-    } else {
-        urlString = lineoutlinePayOrderUrl;
     }
     
     param[@"pwd"] = _payField.text;
 
-   [self POST:urlString parameters:param success:^(id responseObject) {
+   [self POST:lineoutlinePayOrderUsePracktUrl parameters:param success:^(id responseObject) {
        
        NSInteger  i = [responseObject[@"isSucc"] integerValue];
 
@@ -251,7 +242,7 @@
                NSString * str = responseObject[@"result"][@"ship_price"];
                
                
-               if ([str integerValue]  > 0) {
+               if ([str doubleValue]  > 0) {
                    
                    qucklySendViewController * qucklyVC = [[qucklySendViewController alloc] init];
                    
@@ -266,14 +257,15 @@
                    qucklyVC.price = str;
                    //快递支付
                    qucklyVC.sendType = 1;
-                   
                    //线上线下
                    qucklyVC.payType = 1;
                    
                    qucklyVC.ordertType = 1;
 
                    [weakself.navigationController pushViewController:qucklyVC animated:YES];
+                   
                }else{
+                   
                    //去订单列表
                    
                    MyOrderBaseViewController * myOrderVC =[[MyOrderBaseViewController alloc] init];

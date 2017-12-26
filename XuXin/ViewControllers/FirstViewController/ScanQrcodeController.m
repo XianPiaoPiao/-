@@ -192,26 +192,16 @@
             
             MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
             myOrderVC.orderPrice =_priceValue;
+            myOrderVC.factPrice =_priceValue;
             myOrderVC.orderId = orderId;
+            myOrderVC.orderType = 3;
+            myOrderVC.type = 1;
             myOrderVC.orderNumber = orderOk;
             //    myOrderVC.storeName = _store;
             [self.navigationController pushViewController:myOrderVC animated:YES];
-                
-//            }else{
-//                
-//                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//                
-//                SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-//                myOrderVC.orderPrice = _priceValue;
-//                myOrderVC.orderId = orderId;
-//                myOrderVC.orderNumber = orderOk;
-//                //   myOrderVC.storeName = _storeName;
-//                [self.navigationController pushViewController:myOrderVC animated:YES];
-//            }
             
         }
         
-
     } failure:^(NSError *error) {
         
     }];

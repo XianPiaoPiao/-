@@ -27,11 +27,13 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
 @property (nonatomic, strong) UIView *bgView;
 
 @property (nonatomic, copy) NSString *couponId;
+
 @end
 
 @implementation groupGoodsController{
     HaiDuiTextView * _textView;
     UITextField * _phoneField;
+    CGFloat factPrice;
 }
 
 - (void)viewDidLoad {
@@ -40,6 +42,8 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     [self creatNavgationBar];
     [self creatTableView];
     [self createCouponView];
+    
+    factPrice = [_amountMoney floatValue];
     
 }
 -(NSMutableArray *)ImageArray{
@@ -90,6 +94,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     [self.view addSubview:_contentView];
     
     _couponVC = [[ChooseCouponViewController alloc] init];
+    _couponVC.view.frame = CGRectMake(0, 0, ScreenW, screenH/2);
     __weak typeof(self)weakself= self;
     _couponVC.storevcartId = _storeCartId;
     _couponVC.orderId = _orderId;
@@ -102,7 +107,12 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     _couponVC.couponBlock = ^(StoreCouponModel *couponModel) {
         if ([couponModel.price intValue] > 0) {
             _couponId = couponModel.id;
-            
+            NSString *amountmoney = [NSString stringWithFormat:@"%.2f",[_amountMoney floatValue] - [couponModel.price floatValue]];
+            UILabel *moneyLabel = [weakself.view viewWithTag:58];
+            moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",[amountmoney floatValue]];
+        } else {
+            UILabel *moneyLabel = [weakself.view viewWithTag:58];
+            moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",[weakself.amountMoney floatValue]];
         }
         UILabel *valueLbl = [weakself.view viewWithTag:122];
         valueLbl.text = couponModel.name;
@@ -128,6 +138,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
         
         [UIView commitAnimations];
     }else {
+        self.tableView.scrollEnabled = NO;
         _bgView.hidden = NO;
         _contentView.hidden = NO;
         [UIView beginAnimations:nil context:nil];
@@ -142,6 +153,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
     
 }
 - (void)didAfterHidden{
+    self.tableView.scrollEnabled = YES;
     _bgView.hidden = YES;
     self.contentView.hidden = YES;
     
@@ -159,6 +171,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
             
             MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
             myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+            myOrderVC.factPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
             //订单类型,线下订单
             myOrderVC.orderType = 2;
             
@@ -169,23 +182,6 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
             myOrderVC.type = 0;
             
             [self.navigationController pushViewController:myOrderVC animated:YES];
-            
-//        }else{
-//
-//            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//
-//            SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-//            myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-//
-//            myOrderVC.orderId = self.orderId;
-//            //订单类型，线下订单
-//            myOrderVC.orderType = 2;
-//            //订单号
-//            myOrderVC.orderNumber = self.orderSn;
-//
-//            [self.navigationController pushViewController:myOrderVC animated:YES];
-//
-//      }
     
     }else{
         
@@ -228,7 +224,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
          urlString = app_save_line_orderUrl;
      }
     
-    [self POST:urlString parameters:param success:^(id responseObject) {
+    [self POST:appSaveLineOrderUseCouponUrl parameters:param success:^(id responseObject) {
         
         NSString * str = responseObject[@"isSucc"];
         weakself.orderId = responseObject[@"result"][@"orderId"];
@@ -236,7 +232,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
         
         if ([str integerValue] == 1) {
             
-          CGFloat  totalMoney = [_amountMoney floatValue];
+          CGFloat  totalMoney = [responseObject[@"result"][@"price"] floatValue];
                 
 //            if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
             
@@ -244,6 +240,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
                 
                 MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
                 myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+                myOrderVC.factPrice = [NSString stringWithFormat:@"%.2f", factPrice];
                 //订单类型,线下订单
                 myOrderVC.orderType = 2;
                 if (_couponId == nil ) {
@@ -257,25 +254,8 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
                 //订单号
                 myOrderVC.orderNumber = weakself.orderSn;
             
-//                myOrderVC.storecartId = _storeCartId;
-            
                 [weakself.navigationController pushViewController:myOrderVC animated:YES];
-                
-//            }else{
-//                
-//                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//                
-//                SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-//                myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-//                
-//                myOrderVC.orderId = weakself.orderId;
-//                //订单类型，线下订单
-//                myOrderVC.orderType = 2;
-//                //订单号
-//                myOrderVC.orderNumber = weakself.orderSn;
-//                
-//                [weakself.navigationController pushViewController:myOrderVC animated:YES];
-//            }
+
         }
 
     } failure:^(NSError *error) {
@@ -357,6 +337,7 @@ NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";
         UILabel * moneyLabel =[[UILabel alloc] initWithFrame:CGRectMake(ScreenW - 110, 100, 100, 20)];
         
         moneyLabel.textAlignment = 2;
+        moneyLabel.tag = 58;
         moneyLabel.font = [UIFont systemFontOfSize:15];
       
         moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",[_amountMoney floatValue]];

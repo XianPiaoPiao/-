@@ -199,9 +199,9 @@ NSString * const trueMethodIndertfier2 = @"TrueMethodTableViewCell";
     
     param[@"orderId"] = self.orderId;
     
-//    param[@"type"] =[NSString stringWithFormat:@"%ld", _ordertType];
-    param[@"type"] = @"2";
-    [self.httpManager POST:lineoutlinePayOrderUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    param[@"type"] =[NSString stringWithFormat:@"%ld", _ordertType];
+//    param[@"type"] = @"2";
+    [self.httpManager POST:self.requestUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -291,7 +291,7 @@ NSString * const trueMethodIndertfier2 = @"TrueMethodTableViewCell";
     param[@"orderId"] = self.orderId;
     
     param[@"type"] = type;
-    [self.httpManager POST:lineoutlinePayOrderUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self.httpManager POST:lineoutlinePayOrderUsePracktUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

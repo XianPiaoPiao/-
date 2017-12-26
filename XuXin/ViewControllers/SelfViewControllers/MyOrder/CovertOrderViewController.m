@@ -192,6 +192,7 @@
     MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
     
     myOrderVC.orderPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
+    myOrderVC.factPrice = [NSString stringWithFormat:@"%.2f",model.orderPrice];
     myOrderVC.orderType = 3;
     myOrderVC.orderId =[NSString stringWithFormat:@"%ld", model.orderId];
     myOrderVC.orderNumber = model.orderSn;

@@ -12,11 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.backgroundColor = [UIColor colorWithHexString:BackColor];
     _useButton.layer.borderColor = [[UIColor colorWithHexString:@"#557fd8"] CGColor];
     _useButton.layer.borderWidth = 1.0f;
-    _useButton.layer.cornerRadius = 10.0f;
+    _useButton.layer.cornerRadius = 12.0f;
     _useButton.layer.masksToBounds = YES;
+    _useButton.userInteractionEnabled = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

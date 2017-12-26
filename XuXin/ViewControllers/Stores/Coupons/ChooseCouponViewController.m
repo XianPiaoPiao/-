@@ -20,6 +20,7 @@
 
 @property (nonatomic, copy) NSMutableArray *couponArray;
 
+@property (assign, nonatomic) NSIndexPath *selIndex;//单选，当前选中的行
 @end
 
 @implementation ChooseCouponViewController
@@ -125,21 +126,33 @@
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
     if (!_couponTableView) {
-        _couponTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, ScreenW, screenH/2-100-self.TabbarHeight) style:UITableViewStylePlain];
+        _couponTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];//CGRectMake(0, 50, ScreenW, screenH/2-100-self.TabbarHeight)
         _couponTableView.delegate = self;
         _couponTableView.dataSource = self;
         _couponTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         [_couponTableView registerNib:[UINib nibWithNibName:@"ChooseCouponTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChooseCouponTableViewCell"];
     }
     [self.view addSubview:_couponTableView];
+    [self.couponTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).offset(50);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-50);
+    }];
     
     if (!_finishBtn) {
-        _finishBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, screenH/2-50-self.TabbarHeight, ScreenW, 50)];
+        _finishBtn = [[UIButton alloc] init];//WithFrame:CGRectMake(0, screenH/2-50-self.TabbarHeight, ScreenW, 50)
         [_finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_finishBtn setTitle:@"关闭" forState:UIControlStateNormal];
         [_finishBtn setBackgroundColor:[UIColor colorWithHexString:MainColor]];
     }
     [self.view addSubview:_finishBtn];
+    [self.finishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_offset(50);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom).offset(0);
+    }];
     [self.finishBtn addTarget:self action:@selector(clickFinishButton) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -154,14 +167,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ChooseCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChooseCouponTableViewCell" forIndexPath:indexPath];
-    cell.model = _couponArray[indexPath.row];
+    StoreCouponModel *model = _couponArray[indexPath.row];
+    
+    //当上下拉动的时候，因为cell的复用性，我们需要重新判断一下哪一行是打勾的
+    if (_selIndex == indexPath) {
+        //        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        model.selected = YES;
+    }else {
+        //        cell.accessoryType = UITableViewCellAccessoryNone;
+        model.selected = NO;
+    }
+    
+    cell.model = model;
+    
+    
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //之前选中的，取消选择
+    ChooseCouponTableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndex];
+    StoreCouponModel *modeled = _couponArray[_selIndex.row];
+    modeled.selected = NO;
+    celled.chooseButton.selected = NO;
+    //记录当前选中的位置索引
+    _selIndex = indexPath;
+    
+    ChooseCouponTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     StoreCouponModel *model = _couponArray[indexPath.row];
     model.selected = !model.selected;
-    ChooseCouponTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.chooseButton.selected = model.selected;
     if (model.selected == YES) {
         if (_isCoupon) {
@@ -170,6 +205,7 @@
             self.redpacketBlock(model);
         }
     }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

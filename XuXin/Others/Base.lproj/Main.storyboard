@@ -1556,7 +1556,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_center_my_coupon" translatesAutoresizingMaskIntoConstraints="NO" id="69Y-WE-GIy">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_redpacket_icon" translatesAutoresizingMaskIntoConstraints="NO" id="69Y-WE-GIy">
                                                     <rect key="frame" x="11" y="16" width="26" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="69Y-WE-GIy" secondAttribute="height" multiplier="1:1" id="a99-qZ-RJq"/>
@@ -1827,6 +1827,38 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="30" id="0kG-4k-nqn">
+                                        <rect key="frame" x="0.0" y="476" width="375" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0kG-4k-nqn" id="CFq-Mb-KZ8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92150187490000002" green="0.92147433759999997" blue="0.921489954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="NgJ-Fd-jZr">
+                                        <rect key="frame" x="0.0" y="506" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NgJ-Fd-jZr" id="LTL-3y-rA5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOX-SN-W3Z">
+                                                    <rect key="frame" x="10" y="5" width="355" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="Er6-fz-I9e"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jOX-SN-W3Z" firstAttribute="leading" secondItem="LTL-3y-rA5" secondAttribute="leading" constant="10" id="WTP-GV-8fJ"/>
+                                                <constraint firstItem="jOX-SN-W3Z" firstAttribute="centerY" secondItem="LTL-3y-rA5" secondAttribute="centerY" id="Y8I-Ll-wrB"/>
+                                                <constraint firstAttribute="trailing" secondItem="jOX-SN-W3Z" secondAttribute="trailing" constant="10" id="wSv-uU-fgY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92150187490000002" green="0.92147433759999997" blue="0.921489954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1845,6 +1877,7 @@
                         <outlet property="redpacketDescLabel" destination="4ZY-iU-ojf" id="YVh-vg-QoK"/>
                         <outlet property="supendLabel" destination="zXc-8l-0GA" id="kzM-qD-XEV"/>
                         <outlet property="supendPayBtn" destination="aU6-Ld-apn" id="2y1-Dk-XQy"/>
+                        <outlet property="surePayBtn" destination="jOX-SN-W3Z" id="O0k-xn-4dm"/>
                         <outlet property="weixinBtn" destination="S7s-6D-7M1" id="ebr-7m-vhW"/>
                         <outlet property="zhifubaoBtn" destination="fnu-F7-Fs4" id="zsE-7p-zUp"/>
                     </connections>
@@ -18970,6 +19003,7 @@ AA9OnQAPTqUAD06oAA9OugAPTr0AD07CAAAAAAAABAEAAAAAAAAAQQAAAAAAAAAAAAAAAAAPTsQ
         <image name="my_icon_setup@3x.png" width="375" height="667"/>
         <image name="my_icon_shoppingcart@3x" width="375" height="667"/>
         <image name="my_icon_wallet.png" width="23" height="23"/>
+        <image name="my_redpacket_icon" width="65" height="70"/>
         <image name="pay_bg@2x" width="360" height="203"/>
         <image name="pay_head_icon.png" width="40" height="39"/>
         <image name="personal_center_my_coupon" width="24" height="24"/>

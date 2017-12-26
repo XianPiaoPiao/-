@@ -20,6 +20,8 @@
 // 微信支付头文件
 //红包选择
 #import "ChooseCouponViewController.h"
+#import "OnlineOrderController.h"
+#import "groupGoodsController.h"
 
 @interface MyOrderTableViewController ()
 
@@ -33,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *redpacketDescLabel;
 @property (weak, nonatomic) IBOutlet UILabel *couponDescLabel;
+@property (weak, nonatomic) IBOutlet UIButton *surePayBtn;
 @property (nonatomic ,copy)NSString * outTrade_no;
 @property (nonatomic ,copy)NSString * orderBody;
 @property(nonatomic,copy)NSString * orderSubjiect;
@@ -42,6 +45,7 @@
 @property (nonatomic ,copy)NSString * sign;
 @property (nonatomic, copy)NSString *redPacketId;
 @property (nonatomic, copy) NSString *couponId;
+@property (nonatomic, assign) float couponValue;
 //微信
 @property (nonatomic ,copy)NSString * prepareId;
 
@@ -81,10 +85,10 @@
  
     //红包
     isUseRedwallet = NO;
+    _couponValue = 0;
     self.orderPriceLabel.text = [NSString stringWithFormat:@"￥%@",_orderPrice];
     _useRedWalletPrice = _orderPrice;
     self.orderNuberLabel.text =[NSString stringWithFormat:@"订单号:%@", _orderNumber];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(junmpOrderVC) name:@"AlipaySucess" object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(junmpOrderVC) name:@"weixinSucess" object:nil];
@@ -95,29 +99,61 @@
    
     [self settingUI];
     
+    [self addBackBarButtonItem];
+    
     [self createCouponView];
     
-//    if (_type != 3) {
-//        if (_type == 1 || [User defalutManager].redPacket > 0) {
-//
-//            [self createCouponView];
-//
-//        }
-//    } else {
-//        if ([User defalutManager].redPacket > 0) {
-//
-//            [self createCouponView];
-//
-//        }
-//
-//
-//
-//    }
     if (_couponmoeny > 0) {
         self.couponDescLabel.text = [NSString stringWithFormat:@"抵用%ld元",_couponmoeny];
     }
     CGFloat orderValue =  [self.orderPrice floatValue];
     self.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue];
+}
+
+-(void)addBackBarButtonItem{
+    
+    UIButton * barButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    barButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    barButton.selected = NO;
+    //设置按钮的标题
+    [barButton setTitle:@"返回" forState:UIControlStateNormal];
+    [barButton setImagePositionWithType:SSImagePositionTypeLeft spacing:-4];
+    
+    //设置按钮背景
+    [barButton setImage:[UIImage imageNamed:@"fanhui"] forState:UIControlStateNormal];
+    barButton.tintColor = [UIColor blackColor];
+    
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 20.0f);
+    [barButton setImageEdgeInsets:insets];//Offset
+    
+    [barButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    //创建uibarButtonItem
+    UIBarButtonItem * barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButton];
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+-(void)backAction{
+    //简单写法
+    BOOL flag = NO;
+    for(UIViewController *controller in self.navigationController.viewControllers) {
+        if([controller isKindOfClass:[OnlineOrderController  class]]) {
+            
+            flag = YES;
+        } else if([controller isKindOfClass:[groupGoodsController  class]]) {
+            
+            flag = YES;
+        }
+    }
+    if (flag) {
+        
+        NSUInteger index = [[self.navigationController viewControllers] indexOfObject:self];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index-2]animated:YES];
+        
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 - (void)createCouponView{
@@ -133,6 +169,7 @@
     [self.view addSubview:_contentView];
     
     _couponVC = [[ChooseCouponViewController alloc] init];
+    _couponVC.view.frame = CGRectMake(0, 0, ScreenW, screenH/2);
     __weak typeof(self)weakself= self;
     //面对面用orderID查询优惠券
     _couponVC.storevcartId = _orderId;
@@ -149,14 +186,14 @@
             _couponId = couponModel.id;
             
             CGFloat orderValue =  [weakself.orderPrice floatValue];
-            CGFloat couponValue = [couponModel.price floatValue];
+            _couponValue = [couponModel.price floatValue];
             
             if (weakself.redPacketId != nil) {
-                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - 5 - couponValue];
-                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - 5 - couponValue];
+                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - 5 - _couponValue];
+                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - 5 - _couponValue];
             } else {
-                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - couponValue];
-                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - couponValue];
+                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - _couponValue];
+                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - _couponValue];
             }
             
             
@@ -165,8 +202,14 @@
             //未使用优惠券显示
             CGFloat orderValue =  [weakself.orderPrice floatValue];
             _couponId = nil;
-            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue];
-            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue];
+            _couponValue = 0;
+            if (weakself.redPacketId != nil) {
+                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - 5 - _couponValue];
+                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - 5 - _couponValue];
+            } else {
+                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - _couponValue];
+                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - _couponValue];
+            }
             weakself.couponDescLabel.text = couponModel.name;
         }
         
@@ -181,15 +224,15 @@
             CGFloat redValue = [couponModel.price floatValue];
             //使用红包显示
             
-            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - redValue];
-            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - redValue];
+            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - redValue - _couponValue];
+            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - redValue - _couponValue];
             weakself.redpacketDescLabel.text = couponModel.name;
         }else {
             //未使用红包显示
             CGFloat orderValue =  [weakself.orderPrice floatValue];
-            
-            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue];
-            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue];
+            _redPacketId = nil;
+            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - _couponValue];
+            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - _couponValue];
             weakself.redpacketDescLabel.text = couponModel.name;
             isUseRedwallet = NO;
         }
@@ -205,6 +248,7 @@
 
 - (void)hiddenOrShowCouponVC:(BOOL)flag{
     if (flag) {
+        
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
@@ -215,6 +259,8 @@
         
         [UIView commitAnimations];
     }else {
+        self.tableView.scrollsToTop = YES;
+        self.tableView.scrollEnabled = NO;
         _bgView.hidden = NO;
         _contentView.hidden = NO;
         [UIView beginAnimations:nil context:nil];
@@ -229,9 +275,9 @@
     
 }
 - (void)didAfterHidden{
+    self.tableView.scrollEnabled = YES;
     _bgView.hidden = YES;
     self.contentView.hidden = YES;
-    
 }
 
 //钱包
@@ -256,76 +302,64 @@
 -(void)settingUI{
     
     //确认支付
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-//    UIButton * surePayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, ScreenW - 20, 50)];
-////    [self.view addSubview:surePayBtn];
-////    [self.tableView addSubview:surePayBtn];
-//    [view addSubview:surePayBtn];
-//    [surePayBtn setTitle:@"确认支付" forState:UIControlStateNormal];
-//    surePayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-//    [surePayBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [surePayBtn addTarget:self action:@selector(choosePayWay:) forControlEvents:UIControlEventTouchUpInside];
-//    surePayBtn.backgroundColor = [UIColor colorWithHexString:MainColor];
-//    surePayBtn.layer.cornerRadius = 25;
-//    self.tableView.tableFooterView = view;
+    [_surePayBtn setTitle:@"确认支付" forState:UIControlStateNormal];
+    _surePayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_surePayBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_surePayBtn addTarget:self action:@selector(choosePayWay:) forControlEvents:UIControlEventTouchUpInside];
+    _surePayBtn.backgroundColor = [UIColor colorWithHexString:MainColor];
+    _surePayBtn.layer.cornerRadius = 25;
 }
 #pragma mark  ---选择支付方式
 -(void)choosePayWay:(UIButton *)btn{
-    if (_type != 2 ) {
-        if (!isUseRedwallet && _couponId == nil && !_isUseCoupon) {
-            _type = 2;
-        }
+
+    if (self.weixinBtn.selected == YES) {
+        [SVProgressHUD showWithStatus:@"正在打开微信"];
+        [self requestDataByUsePacketPay:4];
+        
+    } else if (self.zhifubaoBtn.selected == YES){
+        [SVProgressHUD showWithStatus:@"正在打开支付宝"];
+        [self requestDataByUsePacketPay:3];
+        
+    } else if (self.supendPayBtn.selected == YES){
+        [self jumpNextVCWithBalanceOrSupend:NO];
+        
+    }else if (self.balanceBtn.selected == YES){
+        [self jumpNextVCWithBalanceOrSupend:YES];
     }
-    if (_type == 2) {
-        if (self.weixinBtn.selected == YES) {
-            
-            [SVProgressHUD showWithStatus:@"正在打开微信"];
-            
-            if (_orderType == 1 || _orderType == 2) {
-                
-                [self requestWeixinDataIsOnline:YES];
-            }else{
-                
-                [self requestWeixinDataIsOnline:NO];
-                
-            }
-        } else if (self.zhifubaoBtn.selected == YES){
-            [SVProgressHUD showWithStatus:@"正在打开支付宝"];
-            
-            if (_orderType == 1 || _orderType == 2) {
-                
-//                [self requestOnlineData];
-                [self requestAlipayDataIsOnline:YES];
-                
-            }else{
-                
-                [self requestAlipayDataIsOnline:NO];
-                
-            }
-        } else if (self.supendPayBtn.selected == YES){
-            [self jumpNextVCWithBalanceOrSupend:NO];
-            
-        }else if (self.balanceBtn.selected == YES){
-            [self jumpNextVCWithBalanceOrSupend:YES];
-        }
-    } else {
-        //有优惠券或者红包的
-        //支付方式（1预充值、2余额、3支付宝、4微信）
-        if (self.weixinBtn.selected == YES) {
-            [SVProgressHUD showWithStatus:@"正在打开微信"];
-            [self requestDataByUsePacketPay:4];
-            
-        } else if (self.zhifubaoBtn.selected == YES){
-            [SVProgressHUD showWithStatus:@"正在打开支付宝"];
-            [self requestDataByUsePacketPay:3];
-            
-        } else if (self.supendPayBtn.selected == YES){
-            [self jumpNextVCWithBalanceOrSupend:NO];
-            
-        }else if (self.balanceBtn.selected == YES){
-            [self jumpNextVCWithBalanceOrSupend:YES];
-        }
-    }
+    
+//    if (_type == 2) {
+//        if (self.weixinBtn.selected == YES) {
+//
+//            [SVProgressHUD showWithStatus:@"正在打开微信"];
+//
+//            if (_orderType == 1 || _orderType == 2) {
+//
+//                [self requestWeixinDataIsOnline:YES];
+//            }else{
+//
+//                [self requestWeixinDataIsOnline:NO];
+//
+//            }
+//        } else if (self.zhifubaoBtn.selected == YES){
+//            [SVProgressHUD showWithStatus:@"正在打开支付宝"];
+//
+//            if (_orderType == 1 || _orderType == 2) {
+//
+////                [self requestOnlineData];
+//                [self requestAlipayDataIsOnline:YES];
+//
+//            }else{
+//
+//                [self requestAlipayDataIsOnline:NO];
+//
+//            }
+//        } else if (self.supendPayBtn.selected == YES){
+//            [self jumpNextVCWithBalanceOrSupend:NO];
+//
+//        }else if (self.balanceBtn.selected == YES){
+//            [self jumpNextVCWithBalanceOrSupend:YES];
+//        }
+//    }
     
 }
 #pragma mark ---选择付款方式
@@ -338,7 +372,7 @@
         return 8;
     }
     if (_type != 3) {
-        if (indexPath.row == 2 && ([User defalutManager].redPacket <= 0 || [_orderPrice floatValue] < 150)){
+        if (indexPath.row == 2 && ([User defalutManager].redPacket <= 0 || [_factPrice floatValue] < 150)){
             return 0;
             
         }
@@ -356,24 +390,6 @@
     }
 
     return 58;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, screenH, ScreenW, 80)];
-    UIButton * surePayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, ScreenW - 20, 50)];
-    //    [self.view addSubview:surePayBtn];
-    //    [self.tableView addSubview:surePayBtn];
-    [view addSubview:surePayBtn];
-    [surePayBtn setTitle:@"确认支付" forState:UIControlStateNormal];
-    surePayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [surePayBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [surePayBtn addTarget:self action:@selector(choosePayWay:) forControlEvents:UIControlEventTouchUpInside];
-    surePayBtn.backgroundColor = [UIColor colorWithHexString:MainColor];
-    surePayBtn.layer.cornerRadius = 25;
-//    self.tableView.tableFooterView = view;
-    return view;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 80;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -473,13 +489,7 @@
     
     //面对面
     if(_type == 1){
-        /*
-         1    couponid    优惠券ID    是    [string]
-         2    redpacketid    红包ID    是    [string]
-         3    payType    支付方式；1为预充值，2为余额，3为支付宝，4为微信    是    [string]
-         4    orderId    订单ID    是    [string]
-         5    payPassword    余额预、充值支付密码
-         */
+        
         if (_couponId) {
             param[@"couponid"] = _couponId;
         }
@@ -491,12 +501,7 @@
         urlString = payFace2FaceOrderUseCouponUrl;
     }
     if (_type == 0) {
-        /*
-         1    pwd    支付密码（微信，支付宝，不必传此参数）    是    [string]
-         2    orderId    订单ID    是    [int]
-         3    type    支付方式（1预充值、2余额、3支付宝、4微信）    是    [int]        查看
-         4    packetid    红包ID
-         */
+        
         if (_redPacketId) {
             param[@"packetid"] = _redPacketId;
         }
@@ -651,49 +656,6 @@
 
 }
 #pragma mark --线上
--(void)requestOnlineWeixinData{
-    
-    __weak typeof(self)weakself = self;
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    param[@"orderId"] = self.orderId;
-    //微信支付
-    param[@"type"] = @"4";
-    
-    if (isUseRedwallet == YES) {
-        
-        param[@"userRedPacket"] = @"1";
-    }
-    
-    [weakself.httpManager POST:lineoutlinePayOrderUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSInteger  i = [responseObject[@"isSucc"] integerValue];
-        
-        if (i ==1) {
-            
-            [SVProgressHUD dismiss];
-            
-            NSMutableDictionary * dict = responseObject[@"result"];
-            
-            weakself.prepareId = dict[@"prepayid"];
-            
-            [self sendPay_demo];
-            
-        } else{
-            
-            [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        [SVProgressHUD showErrorWithStatus:@"网络错误"];
-        
-        [SVProgressHUD dismissWithDelay:1];
-    }];
-    
-    
-}
 
 - (void)sendPay_demo
 {
@@ -788,49 +750,7 @@
 
     }];
 }
--(void)requestOnlineData{
-    __weak typeof(self)weakself = self;
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    
-    param[@"orderId"] = self.orderId;
-    if (isUseRedwallet == YES) {
-        
-        param[@"userRedPacket"] = @"1";
-    }
-    param[@"type"] = @"3";
-    
-    [self.httpManager POST:lineoutlinePayOrderUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        [SVProgressHUD dismiss];
-        
-        NSInteger  i = [responseObject[@"isSucc"] integerValue];
-        if (i ==1) {
-            
-            weakself.outTrade_no = responseObject[@"result"][@"out_trade_no"];
-            weakself.orderBody = responseObject[@"result"][@"body"];
-            weakself.orderSubjiect = responseObject[@"result"][@"subject"];
-            weakself.total_fee =  responseObject[@"result"][@"total_fee"];
-            weakself.notify_url = responseObject[@"result"][@"notify_url"];
-            
-            
-            [weakself doAlipayPay];
-            
-        } else{
-            
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
-            
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        [SVProgressHUD showErrorWithStatus:@"网路错误"];
-        
-        [SVProgressHUD dismissWithDelay:2];
-        
-    }];
-}
+
 #pragma mark   ==============点击订单模拟支付行为==============
 //
 //选中商品调用支付宝极简支付

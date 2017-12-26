@@ -603,6 +603,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
     
     MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
     myOrderVC.orderPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
+    myOrderVC.factPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
     myOrderVC.sendFee = self.model.freight;
     //订单类型，线上订单
     myOrderVC.orderType = 1;

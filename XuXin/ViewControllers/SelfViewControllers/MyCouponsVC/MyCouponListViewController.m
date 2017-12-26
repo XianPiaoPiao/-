@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [self addNavgationTitle:@"我的优惠券"];
     [self addBackBarButtonItem];
     [self createUI];
@@ -29,11 +30,13 @@
 }
 
 - (void)createUI{
+    self.view.backgroundColor = [UIColor colorWithHexString:BackColor];
     if (!_couponTableView) {
         _couponTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _couponTableView.dataSource = self;
         _couponTableView.delegate = self;
         _couponTableView.separatorStyle = NO;
+        self.couponTableView.backgroundColor = [UIColor colorWithHexString:BackColor];
         [self.view addSubview:_couponTableView];
     }
     [_couponTableView registerNib:[UINib nibWithNibName:@"MyCouponTableViewCell" bundle:nil] forCellReuseIdentifier:@"MyCouponTableViewCell"];
@@ -71,6 +74,7 @@
     if (!cell) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponTableViewCell" forIndexPath:indexPath];
     }
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     StoreCouponModel *model = _couponArray[indexPath.row];
     cell.descLabel.text = [NSString stringWithFormat:@"满%@元可使用",model.order_price];
     cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];

@@ -111,18 +111,40 @@
 }
 
 - (void)clickGetCoupon:(UIButton *)getCouponBtn{
-    __weak typeof(self)weakself= self;
-    
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
     StoreCouponModel *model = [_couponArray objectAtIndex:getCouponBtn.tag];
-    param[@"id"] = model.id;
-    [weakself POST:sellerCouponSendSaveUrl parameters:param success:^(id responseObject) {
-        if ([responseObject[@"isSucc"] intValue] == 1) {
-            [SVProgressHUD showSuccessWithStatus:@"已领取"];
+    
+    switch (model.receivestate) {
+        case 0:
+        {
+            __weak typeof(self)weakself= self;
+            NSMutableDictionary * param = [NSMutableDictionary dictionary];
+            param[@"id"] = model.id;
+            [weakself POST:sellerCouponSendSaveUrl parameters:param success:^(id responseObject) {
+                if ([responseObject[@"isSucc"] intValue] == 1) {
+                     [self showStaus:@"已领取"];
+                    
+                    [getCouponBtn setImage:[UIImage imageNamed:@"already_received"] forState:UIControlStateNormal];
+                }
+            } failure:^(NSError *error) {
+                
+            }];
         }
-    } failure:^(NSError *error) {
-        
-    }];
+            break;
+        case 1:
+        {
+            [self showStaus:@"您已经领取过该优惠券"];
+        }
+            break;
+        case 2:
+        {
+            [self showStaus:@"该优惠券已经被领光啦"];
+        }
+            
+        default:
+            break;
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -49,6 +49,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     UILabel * _sendLabel;
     
     HaiDuiTextView * _textView;
+    NSString *factPrice;
 }
 -(NSMutableArray * )ImageArray{
     if (!_ImageArray) {
@@ -85,6 +86,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectAdress:) name:@"refreshingData" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectAdress:) name:@"selectAdress" object:nil];
+    factPrice = _amountMoney;
 }
 -(void)selectAdress:(NSNotification *)dic{
     
@@ -187,6 +189,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     [self.view addSubview:_contentView];
     
     _couponVC = [[ChooseCouponViewController alloc] init];
+    _couponVC.view.frame = CGRectMake(0, 0, ScreenW, screenH/2);
     __weak typeof(self)weakself= self;
     _couponVC.storevcartId = _storeCartId;
     _couponVC.orderId = _orderId;
@@ -225,6 +228,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         
         [UIView commitAnimations];
     }else {
+        self.tableView.scrollEnabled = NO;
         _bgView.hidden = NO;
         _contentView.hidden = NO;
         [UIView beginAnimations:nil context:nil];
@@ -239,6 +243,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     
 }
 - (void)didAfterHidden{
+    self.tableView.scrollEnabled = YES;
     _bgView.hidden = YES;
     self.contentView.hidden = YES;
     
@@ -602,15 +607,12 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
             totalMoney = [_amountMoney floatValue] + _sendFee;
             
         }
-        //            //加上快递费，总的费用
-        //            totalMoney = totalMoney + _sendFee;
-        
-//        if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-        
+    
         UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         
         MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
         myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+        myOrderVC.factPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
                 //订单类型,线上订单
         myOrderVC.orderType = 1;
         
@@ -627,25 +629,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         }
 
         [self.navigationController pushViewController:myOrderVC animated:YES];
-            
-//        }else{
-//
-//            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//
-//            SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-//            //订单类型,线上订单
-//            myOrderVC.orderType = 1;
-//
-//            myOrderVC.sendFee = _sendFee;
-//
-//            myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-//
-//            myOrderVC.orderId = self.orderId;
-//
-//            myOrderVC.orderNumber = self.orderSn;
-//
-//            [self.navigationController pushViewController:myOrderVC animated:YES];
-//        }
+
     
     }else{
         
@@ -692,15 +676,15 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     param[@"addrid"] =[NSString stringWithFormat:@"%ld", self.placeModel.id];
     
     param[@"remarks"] = _textView.text;
-    NSString *urlString ;
+//    NSString *urlString ;
     if (_couponId != nil) {
         param[@"couponid"] = _couponId;
-        urlString = appSaveOnlineOrderUseCouponUrl;
+//        urlString = appSaveOnlineOrderUseCouponUrl;
     } else {
-        urlString = app_save_onLine_orderUrl;
+//        urlString = app_save_onLine_orderUrl;
     }
     
-    [self POST:urlString parameters:param success:^(id responseObject) {
+    [self POST:appSaveOnlineOrderUseCouponUrl parameters:param success:^(id responseObject) {
         
         NSString * str = responseObject[@"isSucc"];
         
@@ -744,6 +728,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
             
             MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
             myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+            myOrderVC.factPrice = factPrice;
             //订单类型,线上订单
             myOrderVC.orderType = 1;
             if (_couponId == nil ) {
@@ -755,7 +740,6 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
             myOrderVC.type = 0;
             
             myOrderVC.orderId = weakself.orderId;
-//            myOrderVC.storecartId = _storeCartId;
             //订单号
             myOrderVC.orderNumber =weakself.orderSn;;
             
@@ -763,23 +747,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
 
             [weakself.navigationController pushViewController:myOrderVC animated:YES];
             
-//        }else{
-//                
-//                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//            
-//                SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-//                //订单类型,线上订单
-//                myOrderVC.orderType = 1;
-//            
-//                myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-//            
-//                myOrderVC.orderId = weakself.orderId;
-//                myOrderVC.orderNumber = weakself.orderSn;
-//            
-//                myOrderVC.sendFee = _sendFee;
-//
-//                [weakself.navigationController pushViewController:myOrderVC animated:YES];
-//            }
+
         }
         
     } failure:^(NSError *error) {

@@ -732,6 +732,7 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
     
     MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
     myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+    myOrderVC.factPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
     //订单类型，线下订单
     myOrderVC.orderType = 2;
 
