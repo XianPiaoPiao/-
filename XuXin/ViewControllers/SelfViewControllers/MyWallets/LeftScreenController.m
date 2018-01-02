@@ -177,9 +177,9 @@
   
     HaiduiTextFiled * buyerField = [[HaiduiTextFiled alloc] init];
     buyerField.tag = buttonTag + 20;
+    buyerField.textColor = [UIColor colorWithHexString:@"#333333"];
     buyerField.layer.cornerRadius = 6;
     buyerField.layer.borderWidth = 1;
-   // buyerField.layer.borderColor = CORE_RGBCOLOR(220, 220, 220).CGColor;
     buyerField.layer.borderColor = [UIColor colorWithHexString:@"#999999"].CGColor;
     buyerField.delegate = self;
     UIButton * categoryrightView =[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -211,6 +211,7 @@
     
     HaiduiTextFiled * startField = [[HaiduiTextFiled alloc] init];
     startField.text = @"起始时间";
+    startField.textColor = [UIColor colorWithHexString:@"#333333"];
     startField.tag = buttonTag + 10;
     
     startField.delegate = self;
@@ -233,6 +234,7 @@
     
     HaiduiTextFiled * endField = [[HaiduiTextFiled alloc] init];
     endField.tag = buttonTag + 11;
+    endField.textColor = [UIColor colorWithHexString:@"#333333"];
     endField.delegate = self;
     endField.layer.cornerRadius = 6;
     endField.backgroundColor = [UIColor whiteColor];
@@ -260,6 +262,7 @@
     
     HaiduiTextFiled * orderField = [[HaiduiTextFiled alloc] init];
     orderField.tag = buttonTag + 21;
+    orderField.textColor = [UIColor colorWithHexString:@"#333333"];
     
     [self.view addSubview:orderField];
     orderField.layer.cornerRadius = 6;

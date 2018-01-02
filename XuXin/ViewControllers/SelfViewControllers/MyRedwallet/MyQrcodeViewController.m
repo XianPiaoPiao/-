@@ -131,8 +131,6 @@ if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
         NSLog(@"失败");
         
     }];
-   
-
     
 }
 -(void)returnAction{

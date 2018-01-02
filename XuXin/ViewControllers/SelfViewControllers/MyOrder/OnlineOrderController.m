@@ -719,11 +719,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
                 totalMoney = [_amountMoney floatValue] + _sendFee;
 
             }
-//            //加上快递费，总的费用
-//            totalMoney = totalMoney + _sendFee;
-            
-//        if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-            
+           
             UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             
             MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];

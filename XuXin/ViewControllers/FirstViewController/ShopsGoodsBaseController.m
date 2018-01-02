@@ -697,28 +697,39 @@ NSString * const goodsCellIndertifer = @"goodsCell";
         UITableViewCell * cell =[[UITableViewCell alloc] init];
         cell.selectionStyle = NO;
         
-        _countView =[[HDCarNumberCOunt alloc] initWithFrame:CGRectMake(ScreenW - 100, 4, 90, 32)];
-        _countView.layer.borderWidth = 1;
-        _countView.layer.borderColor = [UIColor colorWithHexString:BackColor].CGColor;
-        _countView.NumberChangeBlock = ^(NSInteger count){
+        if (_goodsType == 1) {
+            _countView =[[HDCarNumberCOunt alloc] initWithFrame:CGRectMake(ScreenW - 100, 4, 90, 32)];
+            _countView.layer.borderWidth = 1;
+            _countView.layer.borderColor = [UIColor colorWithHexString:BackColor].CGColor;
+            _countView.NumberChangeBlock = ^(NSInteger count){
+                
+                _goodsCount = count;
+                
+            };
+            [cell.contentView addSubview:_countView];
             
-         _goodsCount = count;
+            UILabel * label =[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 40)];
+            label.text = @"数量:";
+            label.font = [UIFont systemFontOfSize:15];
+            [cell.contentView addSubview:label];
             
-        };
-        [cell.contentView addSubview:_countView];
+            StorecouponView *couponView = [[StorecouponView alloc] initWithFrame:CGRectMake(0, 40, ScreenW, 45)];
+            UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(GetCoupons)];
+            couponView.tag = 12;
+            [couponView addGestureRecognizer:tapges];
+            couponView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithHexString:BackColor];
+            couponView.userInteractionEnabled = YES;
+            [cell.contentView addSubview:couponView];
+        } else if (_goodsType == 2) {
+            StorecouponView *couponView = [[StorecouponView alloc] initWithFrame:CGRectMake(0, 5, ScreenW, 45)];
+            UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(GetCoupons)];
+            couponView.tag = 12;
+            [couponView addGestureRecognizer:tapges];
+            couponView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithHexString:BackColor];
+            couponView.userInteractionEnabled = YES;
+            [cell.contentView addSubview:couponView];
+        }
         
-        UILabel * label =[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 40)];
-        label.text = @"数量:";
-        label.font = [UIFont systemFontOfSize:15];
-        [cell.contentView addSubview:label];
-        
-        StorecouponView *couponView = [[StorecouponView alloc] initWithFrame:CGRectMake(0, 40, ScreenW, 45)];
-        UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(GetCoupons)];
-        couponView.tag = 12;
-        [couponView addGestureRecognizer:tapges];
-        couponView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithHexString:BackColor];
-        couponView.userInteractionEnabled = YES;
-        [cell.contentView addSubview:couponView];
         
         return  cell;
         
@@ -825,8 +836,12 @@ NSString * const goodsCellIndertifer = @"goodsCell";
 
     }
     else if(indexPath.section == 2){
-        
-        return 40+45;
+        if (_goodsType == 1) {
+            return 40+45;
+        } else {
+            
+            return 45;
+        }
     }else if (indexPath.section == 3){
         
         return 100;
@@ -1084,7 +1099,6 @@ NSString * const goodsCellIndertifer = @"goodsCell";
 }
 #pragma mark -----领取优惠券
 - (void)GetCoupons{
-    NSLog(@"领取优惠券");
     [self hiddenOrShowCouponVC:NO];
 }
 #pragma mark  -----查看更多商品

@@ -22,8 +22,8 @@
 
 - (void)setModel:(StoreCouponModel *)model{
     _model = model;
-    self.valueLabel.text = [NSString stringWithFormat:@"%@",model.price];
-    self.conditionLabel.text = [NSString stringWithFormat:@"满%@使用",model.order_price];
+    self.valueLabel.text = [NSString stringWithFormat:@"%.2f",[model.price doubleValue]];
+    self.conditionLabel.text = [NSString stringWithFormat:@"满%.2f使用",[model.order_price doubleValue]];
     self.dateLabel.text = [NSString stringWithFormat:@"有效期：%@",model.end_time];
     if (model.receivestate == 0) {
         [self.getCouponButton setImage:[UIImage imageNamed:@"receive"] forState: UIControlStateNormal];
