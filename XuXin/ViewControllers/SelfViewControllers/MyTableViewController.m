@@ -22,6 +22,7 @@
 #import "RecomodRankBaseViewController.h"
 #import "RecommondStoreBaseController.h"
 #import "UserCommentController.h"
+#import "MyCouponListViewController.h"
 #import "UIButton+WebCache.h"
 @interface MyTableViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *HeaderButton;
@@ -363,6 +364,22 @@
         
     }
     if (indexPath.row == 7) {
+        //我的优惠券
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
+            
+            MyCouponListViewController * myCouponVC = [[MyCouponListViewController alloc] init];
+            
+            [self.navigationController pushViewController:myCouponVC animated:YES];
+            
+            
+        } else{
+            LandingViewController * landVC = [[LandingViewController alloc] init];
+            [self.navigationController pushViewController:landVC animated:YES];
+        }
+        
+        
+    }
+    if (indexPath.row == 8) {
     
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
             //我的钱包
@@ -375,7 +392,7 @@
             [self.navigationController pushViewController:landVC animated:YES];
         }
     
-    } else if (indexPath.row == 8){
+    } else if (indexPath.row == 9){
         
 //        MyBusinessViewController * myBusinessVC = [[MyBusinessViewController alloc] init];
 //        
@@ -393,7 +410,7 @@
         }
     }
     
-      else if (indexPath.row == 9){//兑换券
+      else if (indexPath.row == 10){//兑换券
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
             
@@ -410,7 +427,7 @@
        
         //我的收藏
     }
-    if (indexPath.row == 10) {
+    if (indexPath.row == 11) {
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
             
@@ -425,7 +442,7 @@
             [self.navigationController pushViewController:landVC animated:YES];
         }
  
-    }else if (indexPath.row == 12){
+    }else if (indexPath.row == 13){
       
         
         UIWebView * webVIew = [[UIWebView alloc] init];
@@ -436,7 +453,7 @@
         [self.view addSubview:webVIew];
         
     }
-    else if(indexPath.row == 13){
+    else if(indexPath.row == 14){
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
             

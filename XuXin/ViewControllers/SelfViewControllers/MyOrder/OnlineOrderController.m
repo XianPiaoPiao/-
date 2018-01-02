@@ -17,6 +17,7 @@
 #import "SBMyOrderTableviewController.h"
 #import "HDShopCarModel.h"
 #import "GoodsLIstViewController.h"
+#import "ChooseCouponViewController.h"
 NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
 @interface OnlineOrderController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (nonatomic ,strong)UITableView * tableView;
@@ -28,6 +29,12 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
 @property (nonatomic ,copy)NSString * orderSn;
 
 @property (nonatomic ,assign)NSInteger sendType;
+
+@property (nonatomic, strong) ChooseCouponViewController *couponVC;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *bgView;
+
+@property (nonatomic, copy) NSString *couponId;
 
 @end
 
@@ -42,6 +49,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     UILabel * _sendLabel;
     
     HaiDuiTextView * _textView;
+    NSString *factPrice;
 }
 -(NSMutableArray * )ImageArray{
     if (!_ImageArray) {
@@ -71,11 +79,14 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     
     [self creatTableView];
     
+    [self createCouponView];
+    
     [self requestData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectAdress:) name:@"refreshingData" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectAdress:) name:@"selectAdress" object:nil];
+    factPrice = _amountMoney;
 }
 -(void)selectAdress:(NSNotification *)dic{
     
@@ -166,6 +177,78 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     
     _tableView.tableFooterView = footView;
 }
+
+- (void)createCouponView{
+    _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _bgView.backgroundColor = [UIColor colorWithHexString:WordColor alpha:0.5];
+    
+    [self.view addSubview:_bgView];
+    
+    _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenH/2, ScreenW, screenH/2)];
+    _contentView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_contentView];
+    
+    _couponVC = [[ChooseCouponViewController alloc] init];
+    _couponVC.view.frame = CGRectMake(0, 0, ScreenW, screenH/2);
+    __weak typeof(self)weakself= self;
+    _couponVC.storevcartId = _storeCartId;
+    _couponVC.orderId = _orderId;
+    _couponVC.isCoupon = YES;
+    _couponVC.orderType = [NSString stringWithFormat:@"0"];
+    [_couponVC requestData];
+    _couponVC.cancelBtnBlock = ^(BOOL flag) {
+        [weakself hiddenOrShowCouponVC:YES];
+    };
+    _couponVC.couponBlock = ^(StoreCouponModel *couponModel) {
+        if ([couponModel.price intValue] > 0) {
+            _couponId = couponModel.id;
+            
+        }
+        UILabel *valueLbl = [weakself.view viewWithTag:122];
+        valueLbl.text = couponModel.name;
+        [weakself hiddenOrShowCouponVC:YES];
+    };
+    [self addChildViewController:_couponVC];
+    [self.contentView addSubview:_couponVC.view];
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    [_bgView setAlpha:0.0f];
+    [_contentView setAlpha:0.0f];
+}
+
+- (void)hiddenOrShowCouponVC:(BOOL)flag{
+    if (flag) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
+        [UIView setAnimationDuration:0.5];
+        
+        [_bgView setAlpha:0.0f];
+        [_contentView setAlpha:0.0f];
+        
+        [UIView commitAnimations];
+    }else {
+        self.tableView.scrollEnabled = NO;
+        _bgView.hidden = NO;
+        _contentView.hidden = NO;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:0.5];
+        
+        [_bgView setAlpha:1.0f];
+        [_contentView setAlpha:1.0f];
+        
+        [UIView commitAnimations];
+    }
+    
+}
+- (void)didAfterHidden{
+    self.tableView.scrollEnabled = YES;
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         
@@ -245,7 +328,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
                 }
 
             }
-}
+        }
         //分割线
         UIView * sptString = [[UIView alloc] initWithFrame:CGRectMake(0, 89, ScreenW , 1)];
         sptString.backgroundColor = [UIColor colorWithHexString:BackColor];
@@ -270,7 +353,30 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         
         return cell;
         
-    }else if (indexPath.section == 2){
+    } else if (indexPath.section == 2) {
+        //店铺优惠
+        UITableViewCell * cell = [[UITableViewCell alloc] init];
+        cell.selectionStyle = NO;
+        
+        UILabel * couponLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+        couponLabel.text = @"店铺优惠:";
+        couponLabel.font = [UIFont systemFontOfSize:15];
+        [cell.contentView addSubview:couponLabel];
+        
+        UILabel * valueLabel =[[UILabel alloc] initWithFrame:CGRectMake(130, 10, ScreenW-160, 20)];
+        
+        valueLabel.textAlignment = 2;
+        valueLabel.tag = 122;
+        valueLabel.font = [UIFont systemFontOfSize:15];
+        
+        valueLabel.textColor = [UIColor colorWithHexString:MainColor];
+        [cell.contentView addSubview:valueLabel];
+        UIImageView *rightImgView = [[UIImageView alloc] initWithFrame:CGRectMake(ScreenW-20, 15, 8, 10)];
+        rightImgView.image = [UIImage imageNamed:@"icon_address_right_arrow"];
+        [cell.contentView addSubview:rightImgView];
+        return cell;
+        
+    } else if (indexPath.section == 3){
         
         UITableViewCell * cell = [[UITableViewCell alloc] init];
         UILabel * sendTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
@@ -339,6 +445,10 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         
     }else if (indexPath.section == 2){
         
+        return 40;
+        
+    }else if (indexPath.section == 3){
+        
         return 70;
         
     }else{
@@ -360,6 +470,9 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     }else if (indexPath.section == 1){
         
         [self jumpGoodsListVC];
+    } else if (indexPath.section == 2) {
+        
+        [self hiddenOrShowCouponVC:NO];
     }
 }
 #pragma mark ---商品列表
@@ -369,8 +482,6 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     
     goodListVC.goodsCount  = _goodsCount;
    
-    
-
     //从购物车进来
     if (_orderType == 1) {
         
@@ -393,18 +504,22 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.0000001;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
-    return 0.01;
+    return nil;
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 8;
+    return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return  4;
+    return  5;
 }
 #pragma mark ---计算快递费
 
@@ -492,44 +607,29 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
             totalMoney = [_amountMoney floatValue] + _sendFee;
             
         }
-        //            //加上快递费，总的费用
-        //            totalMoney = totalMoney + _sendFee;
+    
+        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         
-        if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-            
-            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            
-            MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
-            myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-            //订单类型,线上订单
-            myOrderVC.orderType = 1;
-            
-            myOrderVC.orderId = self.orderId;
-            //订单号
-            myOrderVC.orderNumber =self.orderSn;;
-            
-            myOrderVC.sendFee = _sendFee;
-
-            [self.navigationController pushViewController:myOrderVC animated:YES];
-            
-        }else{
-            
-            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            
-            SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-            //订单类型,线上订单
-            myOrderVC.orderType = 1;
-            
-            myOrderVC.sendFee = _sendFee;
-            
-            myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-            
-            myOrderVC.orderId = self.orderId;
-            
-            myOrderVC.orderNumber = self.orderSn;
-            
-            [self.navigationController pushViewController:myOrderVC animated:YES];
+        MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
+        myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+        myOrderVC.factPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+                //订单类型,线上订单
+        myOrderVC.orderType = 1;
+        
+        myOrderVC.orderId = self.orderId;
+                //订单号
+        myOrderVC.orderNumber =self.orderSn;
+        
+        myOrderVC.sendFee = _sendFee;
+        
+        myOrderVC.type = 0;
+        
+        if (_couponId != nil) {
+            myOrderVC.isUseCoupon = YES;
         }
+
+        [self.navigationController pushViewController:myOrderVC animated:YES];
+
     
     }else{
         
@@ -557,12 +657,12 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
             
         }else{
             
-        GroupGoodsMOdel * model  = weakself.ImageArray[i];
+            GroupGoodsMOdel * model  = weakself.ImageArray[i];
         
-        [goodsID appendString:[NSString stringWithFormat:@"%@,",model.goods_id]];
+            [goodsID appendString:[NSString stringWithFormat:@"%@,",model.goods_id]];
             
         }
-}
+    }
     if (goodsID.length) {
         
         [goodsID deleteCharactersInRange:NSMakeRange([goodsID length]-1, 1)];
@@ -576,81 +676,74 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
     param[@"addrid"] =[NSString stringWithFormat:@"%ld", self.placeModel.id];
     
     param[@"remarks"] = _textView.text;
+//    NSString *urlString ;
+    if (_couponId != nil) {
+        param[@"couponid"] = _couponId;
+//        urlString = appSaveOnlineOrderUseCouponUrl;
+    } else {
+//        urlString = app_save_onLine_orderUrl;
+    }
     
-    [self POST:app_save_onLine_orderUrl parameters:param success:^(id responseObject) {
-        
+    [self POST:appSaveOnlineOrderUseCouponUrl parameters:param success:^(id responseObject) {
         
         NSString * str = responseObject[@"isSucc"];
         
-        
-        
         if ([str integerValue] == 1) {
             
-           
-            
             CGFloat totalMoney = 0;
-           weakself.orderId = responseObject[@"result"][@"orderId"];
+            weakself.orderId = responseObject[@"result"][@"orderId"];
             //订单号
             weakself.orderSn = responseObject[@"result"][@"order"];
             
-        if (_orderType == 1) {
+            if (_orderType == 1) {
                 
-        for (HDShopCarModel * model in self.ImageArray) {
-                    
-        totalMoney = totalMoney + model.price* model.count;
-            
-        [User defalutManager].lineShopCart = [User defalutManager].lineShopCart - model.count ;
-     
-}
-            //购物车进来
-            if (weakself.shopcarType == 1) {
+//                for (HDShopCarModel * model in self.ImageArray) {
+//
+//                    totalMoney = totalMoney + model.price* model.count;
+//
+//                    [User defalutManager].lineShopCart = [User defalutManager].lineShopCart - model.count ;
+//
+//                }
+//            //购物车进来
+//                if (weakself.shopcarType == 1) {
+//
+//                    totalMoney = totalMoney + _sendFee;
+//
+//                }
                 
-            totalMoney = totalMoney + _sendFee;
-                
-        }
-            
-}else{
+                totalMoney = [responseObject[@"result"][@"price"] floatValue];
+            }else if (_couponId != nil){
+                totalMoney = [responseObject[@"result"][@"price"] floatValue];
+            }else{
                 
                 totalMoney = [_amountMoney floatValue] + _sendFee;
 
-    }
-//            //加上快递费，总的费用
-//            totalMoney = totalMoney + _sendFee;
-            
-    if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-                
-                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                
-                MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
-                myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-                //订单类型,线上订单
-                myOrderVC.orderType = 1;
-                
-                myOrderVC.orderId = weakself.orderId;
-                //订单号
-                myOrderVC.orderNumber =weakself.orderSn;;
-                
-                myOrderVC.sendFee = _sendFee;
-
-                [weakself.navigationController pushViewController:myOrderVC animated:YES];
-                
-            }else{
-                
-                UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                
-                SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-                //订单类型,线上订单
-                myOrderVC.orderType = 1;
-                
-                myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-                
-                myOrderVC.orderId = weakself.orderId;
-                myOrderVC.orderNumber = weakself.orderSn;
-                
-                myOrderVC.sendFee = _sendFee;
-
-                [weakself.navigationController pushViewController:myOrderVC animated:YES];
             }
+           
+            UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            
+            MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
+            myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+            myOrderVC.factPrice = factPrice;
+            //订单类型,线上订单
+            myOrderVC.orderType = 1;
+            if (_couponId == nil ) {
+                myOrderVC.isUseCoupon = NO;
+            } else {
+                myOrderVC.isUseCoupon = YES;
+            }
+            
+            myOrderVC.type = 0;
+            
+            myOrderVC.orderId = weakself.orderId;
+            //订单号
+            myOrderVC.orderNumber =weakself.orderSn;;
+            
+            myOrderVC.sendFee = _sendFee;
+
+            [weakself.navigationController pushViewController:myOrderVC animated:YES];
+            
+
         }
         
     } failure:^(NSError *error) {

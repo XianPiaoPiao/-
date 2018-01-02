@@ -291,7 +291,7 @@ static int count = 0;
 //设置UI
 -(void)settingUI{
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, KNAV_TOOL_HEIGHT, ScreenW, screenH) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenW, screenH-64) style:UITableViewStylePlain];
 
     [self.view addSubview:_tableView];
     _tableView.separatorStyle = NO;

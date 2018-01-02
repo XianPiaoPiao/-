@@ -15,7 +15,7 @@
     
     self.backgroundColor = [UIColor whiteColor];
     
-    self.textColor = [UIColor colorWithHexString:@"#333333"];
+//    self.textColor = [UIColor colorWithHexString:@"#333333"];
     
     self.font = [UIFont systemFontOfSize:15];
     

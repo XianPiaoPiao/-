@@ -993,29 +993,29 @@ NSString * const recomondGoodsIndertifer = @"CovertDetailTableViewCell";
         _categorySrollView.backgroundColor = [UIColor whiteColor];
     
         //添加分类pagecontrol
-        _categoryControl = [[UIPageControl alloc] init];
-        [cell.contentView addSubview:_categoryControl];
+//        _categoryControl = [[UIPageControl alloc] init];
+//        [cell.contentView addSubview:_categoryControl];
       //创建约束
-        [_categoryControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_categorySrollView.mas_left);
-        make.right.equalTo(_categorySrollView.mas_right);
-        make.bottom.equalTo(_categorySrollView.mas_bottom);
-        make.height.equalTo(@20);
-        }];
+//        [_categoryControl mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(_categorySrollView.mas_left);
+//        make.right.equalTo(_categorySrollView.mas_right);
+//        make.bottom.equalTo(_categorySrollView.mas_bottom);
+//        make.height.equalTo(@20);
+//        }];
     
         if (self.shopCategoryArray.count % 8 == 0) {
         
-        _categoryControl.numberOfPages = self.shopCategoryArray.count / 8 ;
+//        _categoryControl.numberOfPages = self.shopCategoryArray.count / 8 ;
         _categorySrollView.contentSize = CGSizeMake(ScreenW * (self.shopCategoryArray.count / 8), 0);
         
         }else{
-            _categoryControl.numberOfPages = self.shopCategoryArray.count / 8 + 1;
+//            _categoryControl.numberOfPages = self.shopCategoryArray.count / 8 + 1;
             _categorySrollView.contentSize = CGSizeMake(ScreenW * (self.shopCategoryArray.count / 8 + 1), 0);
         }
-        [_categoryControl setCurrentPageIndicatorTintColor:[UIColor colorWithHexString:MainColor]];
+//        [_categoryControl setCurrentPageIndicatorTintColor:[UIColor colorWithHexString:MainColor]];
         _categoryControl.pageIndicatorTintColor = [UIColor colorWithHexString:BackColor];
         //保持tableView滑动时
-        _categoryControl.currentPage = _categoryPage;
+//        _categoryControl.currentPage = _categoryPage;
         _categorySrollView.contentOffset = CGPointMake(ScreenW * _categoryPage, 0);
     
         CGFloat buttonW = ScreenW/4 ;

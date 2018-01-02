@@ -25,6 +25,7 @@
 #import "AllCommnetsController.h"
 #import "AllStoresGoodsController.h"
 #import "MapLocationViewController.h"
+#import "StorecouponView.h"
 //友盟分享
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
@@ -32,6 +33,7 @@
 #import "UMSocialQQHandler.h"
 
 #import "recmondShopModel.h"
+#import "CouponsViewController.h"
 
 #define kHeadH 140.0f //头视图的高度
 #define kHeadMinH 64.0f //状态栏高度20 + 导航栏高度44
@@ -70,6 +72,11 @@ NSString * const goodsCellIndertifer = @"goodsCell";
 //@property (nonatomic ,strong)NSDictionary * stockdic;//商品库存量
 
 //@property(nonatomic ,strong)NSMutableDictionary * metureDic;
+
+@property (nonatomic, strong) CouponsViewController *couponVC;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *bgView;
+
 @end
 
 @implementation ShopsGoodsBaseController{
@@ -184,7 +191,7 @@ NSString * const goodsCellIndertifer = @"goodsCell";
         [self initTabbar];
 
     }
-
+    
     [self creatNavgatonBar];
     
     [self creatTableView];
@@ -195,6 +202,10 @@ NSString * const goodsCellIndertifer = @"goodsCell";
     //规格数据请求
     [self requestMetureData];
     // Do any additional setup after loading the view.
+    
+    
+    [self createCouponView];
+
     
     //
     [self settingPictureUI];
@@ -304,6 +315,61 @@ NSString * const goodsCellIndertifer = @"goodsCell";
     [self.view addSubview:_vcScrollView];
     
 }
+
+- (void)createCouponView{
+    _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _bgView.backgroundColor = [UIColor colorWithHexString:WordColor alpha:0.5];
+    
+    [self.view addSubview:_bgView];
+    
+    _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenH/3, ScreenW, screenH/3*2)];
+    _contentView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_contentView];
+    
+    _couponVC = [[CouponsViewController alloc] init];
+    __weak typeof(self)weakself= self;
+    _couponVC.finishBtnBlock = ^(BOOL flag) {
+        [weakself hiddenOrShowCouponVC:YES];
+    };
+    [self addChildViewController:_couponVC];
+    [self.contentView addSubview:_couponVC.view];
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    [_bgView setAlpha:0.0f];
+    [_contentView setAlpha:0.0f];
+}
+
+- (void)hiddenOrShowCouponVC:(BOOL)flag{
+    if (flag) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(didAfterHidden)];
+        [UIView setAnimationDuration:0.5];
+        
+        [_bgView setAlpha:0.0f];
+        [_contentView setAlpha:0.0f];
+        
+        [UIView commitAnimations];
+    }else {
+        _bgView.hidden = NO;
+        _contentView.hidden = NO;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:0.5];
+        
+        [_bgView setAlpha:1.0f];
+        [_contentView setAlpha:1.0f];
+        
+        [UIView commitAnimations];
+    }
+    
+}
+- (void)didAfterHidden{
+    _bgView.hidden = YES;
+    self.contentView.hidden = YES;
+    
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if (scrollView.contentOffset.x ==  ScreenW) {
@@ -371,6 +437,8 @@ NSString * const goodsCellIndertifer = @"goodsCell";
             NSArray * modelArray = [NSArray yy_modelArrayWithClass:[UserCommentsModel class] json:array];
             
             weakself.commentsArray = [NSMutableArray arrayWithArray:modelArray];
+            
+            _couponVC.storeID = self.storeModel.store_id;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -629,20 +697,39 @@ NSString * const goodsCellIndertifer = @"goodsCell";
         UITableViewCell * cell =[[UITableViewCell alloc] init];
         cell.selectionStyle = NO;
         
-        _countView =[[HDCarNumberCOunt alloc] initWithFrame:CGRectMake(ScreenW - 100, 4, 90, 32)];
-        _countView.layer.borderWidth = 1;
-        _countView.layer.borderColor = [UIColor colorWithHexString:BackColor].CGColor;
-        _countView.NumberChangeBlock = ^(NSInteger count){
+        if (_goodsType == 1) {
+            _countView =[[HDCarNumberCOunt alloc] initWithFrame:CGRectMake(ScreenW - 100, 4, 90, 32)];
+            _countView.layer.borderWidth = 1;
+            _countView.layer.borderColor = [UIColor colorWithHexString:BackColor].CGColor;
+            _countView.NumberChangeBlock = ^(NSInteger count){
+                
+                _goodsCount = count;
+                
+            };
+            [cell.contentView addSubview:_countView];
             
-         _goodsCount = count;
+            UILabel * label =[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 40)];
+            label.text = @"数量:";
+            label.font = [UIFont systemFontOfSize:15];
+            [cell.contentView addSubview:label];
             
-        };
-        [cell.contentView addSubview:_countView];
+            StorecouponView *couponView = [[StorecouponView alloc] initWithFrame:CGRectMake(0, 40, ScreenW, 45)];
+            UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(GetCoupons)];
+            couponView.tag = 12;
+            [couponView addGestureRecognizer:tapges];
+            couponView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithHexString:BackColor];
+            couponView.userInteractionEnabled = YES;
+            [cell.contentView addSubview:couponView];
+        } else if (_goodsType == 2) {
+            StorecouponView *couponView = [[StorecouponView alloc] initWithFrame:CGRectMake(0, 5, ScreenW, 45)];
+            UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(GetCoupons)];
+            couponView.tag = 12;
+            [couponView addGestureRecognizer:tapges];
+            couponView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithHexString:BackColor];
+            couponView.userInteractionEnabled = YES;
+            [cell.contentView addSubview:couponView];
+        }
         
-        UILabel * label =[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 40)];
-        label.text = @"数量:";
-        label.font = [UIFont systemFontOfSize:15];
-        [cell.contentView addSubview:label];
         
         return  cell;
         
@@ -749,8 +836,12 @@ NSString * const goodsCellIndertifer = @"goodsCell";
 
     }
     else if(indexPath.section == 2){
-        
-        return 40;
+        if (_goodsType == 1) {
+            return 40+45;
+        } else {
+            
+            return 45;
+        }
     }else if (indexPath.section == 3){
         
         return 100;
@@ -876,6 +967,7 @@ NSString * const goodsCellIndertifer = @"goodsCell";
     return 0;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
     if (section == 4) {
         if (self.commentsArray.count > 0) {
             UIView * buttonBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, 50)];
@@ -1005,6 +1097,10 @@ NSString * const goodsCellIndertifer = @"goodsCell";
       }
     return 0;
 }
+#pragma mark -----领取优惠券
+- (void)GetCoupons{
+    [self hiddenOrShowCouponVC:NO];
+}
 #pragma mark  -----查看更多商品
 -(void)goTomoreGoodsVC{
     
@@ -1102,7 +1198,7 @@ NSString * const goodsCellIndertifer = @"goodsCell";
                   OnlineOrderController * onlineVC = [[OnlineOrderController alloc] init];
                   [onlineVC.ImageArray addObject:self.goodsModel];
                   onlineVC.goodsCount = _goodsCount;
-                  
+                  onlineVC.storeId = _storeModel.store_id;
                   onlineVC.storeCartId = dic[@"sotreCartId"];
                   onlineVC.goodsCartId = dic[@"goodsCartId"];
                   onlineVC.amountMoney = dic[@"amountMoney"];

@@ -16,152 +16,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/ShopCar/CashPayViewController.m"
-            timestampString = "532603394.612961"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
-            landmarkName = "-requestPayData"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po responseObject[@&quot;msg&quot;]">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/ScanQrcodeController.m"
-            timestampString = "532603394.613058"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "-requestData:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-            timestampString = "532514058.875677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "-surePay"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayViewController.m"
-            timestampString = "533009925.337846"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-requestData"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po responseObject">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/MyOrderDetailViewController.m"
-            timestampString = "532684921.942111"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-requestData"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po responseObject">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/Views/SelfViews/ConvertOrderTableViewCell.m"
-            timestampString = "531819498.747711"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "-setModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/Views/SelfViews/ConvertOrderTableViewCell.m"
-            timestampString = "531819554.981514"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-setOrderModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "XuXin/ViewControllers/FirstViewController/ShopsGoodsBaseController.m"
-            timestampString = "534155870.304778"
+            timestampString = "536206639.756916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "549"
-            endingLineNumber = "549"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "1207"
+            endingLineNumber = "1207"
+            landmarkName = "-buyGoodsAtonce"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/FirstViewController/ShopsGoodsBaseController.m"
+            timestampString = "536206639.768212"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1426"
+            endingLineNumber = "1426"
+            landmarkName = "-buyAtonceRequest:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -171,37 +51,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/ShopsGoodsBaseController.m"
-            timestampString = "534155870.305013"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/HDShopCar/OnlineShopCsarController.m"
+            timestampString = "535102078.731728"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "-settingPictureUI"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po responseObject">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-            timestampString = "532514058.876116"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-requestPayData"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -211,44 +67,60 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-            timestampString = "532514058.876192"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/OnlineOrderController.m"
+            timestampString = "536058986.762064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
-            landmarkName = "-requestBalancPayData"
+            startingLineNumber = "698"
+            endingLineNumber = "698"
+            landmarkName = "-uploadOrderData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/groupGoodsController.m"
+            timestampString = "535709410.758091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "-uploadOrderData"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[IntrgralPayWayViewController requestBalancPayData]"
+                  symbolName = "-[groupGoodsController uploadOrderData]"
                   moduleName = "XuXin"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-                  timestampString = "534672689.481208"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/SelfViewControllers/MyOrder/groupGoodsController.m"
+                  timestampString = "535622087.210281"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "242"
-                  endingLineNumber = "242"
-                  offsetFromSymbolStart = "376">
+                  startingLineNumber = "222"
+                  endingLineNumber = "222"
+                  offsetFromSymbolStart = "1517">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__52-[IntrgralPayWayViewController requestBalancPayData]_block_invoke"
+                  symbolName = "__39-[groupGoodsController uploadOrderData]_block_invoke"
                   moduleName = "XuXin"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-                  timestampString = "534672689.488235"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/SelfViewControllers/MyOrder/groupGoodsController.m"
+                  timestampString = "535622087.212909"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "244"
-                  endingLineNumber = "244"
-                  offsetFromSymbolStart = "52">
+                  startingLineNumber = "224"
+                  endingLineNumber = "224"
+                  offsetFromSymbolStart = "54">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -259,43 +131,59 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-            timestampString = "532514058.876259"
+            filePath = "XuXin/ViewControllers/FirstViewController/ScanQrcodeController.m"
+            timestampString = "535971358.38354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "-requestPayByCash"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-qrView:ScanResult:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/LandAndRegisterVC/HDRegisterController.m"
+            timestampString = "535347575.935461"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-getUserPhoneNumber"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[IntrgralPayWayViewController requestPayByCash]"
+                  symbolName = "-[HDRegisterController getUserPhoneNumber]"
                   moduleName = "XuXin"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-                  timestampString = "534672689.500811"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/LandAndRegisterVC/HDRegisterController.m"
+                  timestampString = "536223221.075199"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "384"
-                  endingLineNumber = "384"
-                  offsetFromSymbolStart = "132">
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "200">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__48-[IntrgralPayWayViewController requestPayByCash]_block_invoke"
+                  symbolName = "__42-[HDRegisterController getUserPhoneNumber]_block_invoke"
                   moduleName = "XuXin"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-                  timestampString = "534672689.505981"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/LandAndRegisterVC/HDRegisterController.m"
+                  timestampString = "536223221.078481"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "385"
-                  endingLineNumber = "385"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
                   offsetFromSymbolStart = "51">
                </Location>
             </Locations>
@@ -307,141 +195,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayWayViewController.m"
-            timestampString = "532514058.876327"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyRedwallet/MyQrcodeViewController.m"
+            timestampString = "536223220.890039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
-            landmarkName = "-requestPayByCash"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/MyOrderDetailViewController.m"
-            timestampString = "532684921.942386"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/groupGoodsController.m"
-            timestampString = "532082269.992914"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/IntrgralPayViewController.m"
-            timestampString = "533009925.338609"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "-requestData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/HDShopCar/HDshopCarViewController.m"
-            timestampString = "532603394.614283"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
-            landmarkName = "-bottomAction:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/ReadPayViewController.m"
-            timestampString = "532603394.614436"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "-creatNavgationBar"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/MyOrderDetailViewController.m"
-            timestampString = "532684921.942544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-backAction"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/MyOrderTableViewController.m"
-            timestampString = "532507952.534895"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "-creatNavgationBar"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/OrderConvertViewController.m"
-            timestampString = "532836314.853366"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-requestData:"
             landmarkType = "7">
             <Actions>
                <BreakpointActionProxy
@@ -456,16 +216,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/IntegralToPay/CheckVoucherViewController.m"
-            timestampString = "532857550.402584"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyRedwallet/MyQrcodeViewController.m"
+            timestampString = "536223220.890593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-settingIconImage"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -475,133 +235,33 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/MapLocationViewController.m"
-            timestampString = "532849633.007105"
+            filePath = "XuXin/ViewControllers/FirstViewController/MyOrderTableViewController.m"
+            timestampString = "535886599.042456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "645"
+            endingLineNumber = "645"
+            landmarkName = "-requestWeixinDataIsOnline:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            condition = "self.couponsArray.count&gt;0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/QueueViewController/QueueViewController.m"
-            timestampString = "533034907.102675"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "403"
-            endingLineNumber = "403"
-            landmarkName = "-tableView:numberOfRowsInSection:"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po self.couponsArray.count">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/JoinRegisterController.m"
-            timestampString = "533034907.10333"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "920"
-            endingLineNumber = "920"
-            landmarkName = "-ensure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/Views/ConvertMarkets/CovertDetailTVCell.m"
-            timestampString = "534155870.306004"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-setConvertModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/Views/ConvertMarkets/CovertDetailTVCell.m"
-            timestampString = "534155870.306088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "-setGoodsModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/Paihangbang/StoresDayController.m"
-            timestampString = "533112517.776786"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-requestData"
-            landmarkType = "7">
+            symbolName = "UIViewAlertForUnsatisfiableConstraints"
+            moduleName = "">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[StoresDayController requestData]"
-                  moduleName = "XuXin"
+                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
+                  moduleName = "UIKit"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xian/Documents/XuXin/XuXin/ViewControllers/SelfViewControllers/Paihangbang/StoresDayController.m"
-                  timestampString = "533112521.42642"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "412">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__34-[StoresDayController requestData]_block_invoke"
-                  moduleName = "XuXin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xian/Documents/XuXin/XuXin/ViewControllers/SelfViewControllers/Paihangbang/StoresDayController.m"
-                  timestampString = "533112521.429033"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "64">
+                  offsetFromSymbolStart = "0">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -612,13 +272,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/Paihangbang/ChampionBaseViewController.m"
-            timestampString = "533121539.963406"
+            filePath = "XuXin/ViewControllers/FirstViewController/ReadPayViewController.m"
+            timestampString = "535886599.042559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "-requestDayData"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-requetdData"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ReadPayViewController requetdData]"
+                  moduleName = "XuXin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/ReadPayViewController.m"
+                  timestampString = "536223221.102037"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "850">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[ReadPayViewController requetdData]_block_invoke"
+                  moduleName = "XuXin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/ReadPayViewController.m"
+                  timestampString = "536223221.104923"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/FirstViewController/MyOrderTableViewController.m"
+            timestampString = "535886599.042639"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "607"
+            endingLineNumber = "607"
+            landmarkName = "-jumpNextVCWithBalanceOrSupend:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -628,14 +336,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/SelfViewControllers/Paihangbang/ChampionBaseViewController.m"
-            timestampString = "533121539.963478"
+            filePath = "XuXin/ViewControllers/FirstViewController/MyOrderTableViewController.m"
+            timestampString = "535886599.042715"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "-requestWeekData"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
+            landmarkName = "-requestDataByUsePacketPay:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MyOrderTableViewController requestDataByUsePacketPay:]"
+                  moduleName = "XuXin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/MyOrderTableViewController.m"
+                  timestampString = "536223221.116591"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "513"
+                  endingLineNumber = "513"
+                  offsetFromSymbolStart = "1166">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__56-[MyOrderTableViewController requestDataByUsePacketPay:]_block_invoke"
+                  moduleName = "XuXin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xian/Documents/GitHub/%E5%97%A8%E5%85%91/XuXin/ViewControllers/FirstViewController/MyOrderTableViewController.m"
+                  timestampString = "536223221.119049"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "515"
+                  endingLineNumber = "515"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -644,13 +384,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/HDMainViewController.m"
-            timestampString = "534155870.306354"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/groupGoodsController.m"
+            timestampString = "535709410.759497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1137"
-            endingLineNumber = "1137"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "-uploadOrderData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -660,13 +400,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/FirstViewController/OrderCommentsController.m"
-            timestampString = "534155870.306436"
+            filePath = "XuXin/ViewControllers/FirstViewController/PayViewController.m"
+            timestampString = "535709410.759651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "-requestData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -676,13 +416,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/Stores/LrdSuperMenu.m"
-            timestampString = "534238471.396345"
+            filePath = "XuXin/ViewControllers/FirstViewController/PayViewController.m"
+            timestampString = "535709410.759724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "647"
-            endingLineNumber = "647"
-            landmarkName = "-selectIndexPath:"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-jumpToNextVC"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -692,13 +432,93 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XuXin/ViewControllers/Stores/LrdSuperMenu.m"
-            timestampString = "534238471.39654"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/groupGoodsController.m"
+            timestampString = "535709410.759794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "638"
-            endingLineNumber = "638"
-            landmarkName = "-selectIndexPath:"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "-uploadOrderData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/GroupOrderDetilController.m"
+            timestampString = "535709410.75987"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "733"
+            endingLineNumber = "733"
+            landmarkName = "-payGroupOrder"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/MyOrder/OnlineOrderDetailController.m"
+            timestampString = "535867058.4698"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "628"
+            endingLineNumber = "628"
+            landmarkName = "-paySendFee"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/ShopCar/qucklySendViewController.m"
+            timestampString = "535886599.043106"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "-requestPayData:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/SelfViewControllers/ShopCar/qucklySendViewController.m"
+            timestampString = "535886599.043187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "-requestPayData:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XuXin/ViewControllers/FirstViewController/JoinRegisterController.m"
+            timestampString = "536223220.891779"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "-settingUI"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

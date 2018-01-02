@@ -90,8 +90,15 @@ NSString * const selectBankCardInderfier = @"SelectBankCardCell";
     btn.frame =  CGRectMake(0, 0, 25, 25);
     btn.tintColor = [UIColor colorWithHexString:MainColor];
     
+    if (@available(iOS 9.0, *)) {
+        [btn.widthAnchor constraintEqualToConstant:25].active = YES;
+        [btn.heightAnchor constraintEqualToConstant:25].active = YES;
+    } else {
+        // Fallback on earlier versions
+    }
     [btn addTarget:self action:@selector(addBankCard) forControlEvents:UIControlEventTouchDown];
     [btn setImage:[UIImage imageNamed:@"addBankCard"] forState:UIControlStateNormal];
+    
     UIBarButtonItem * barBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem= barBtn;
     

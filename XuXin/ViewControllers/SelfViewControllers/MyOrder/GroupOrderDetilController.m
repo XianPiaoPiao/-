@@ -390,8 +390,8 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
             UITableViewCell * cell = [[UITableViewCell alloc] init];
             cell.selectionStyle = NO;
             
-            NSArray * array = @[@"支付方式",@"消费金额",@"红包折扣"];
-            for (int i = 0; i< 3; i++) {
+            NSArray * array = @[@"支付方式",@"消费金额",@"红包折扣",@"优惠券折扣"];
+            for (int i = 0; i< 4; i++) {
                 UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + i * 40, 100, 20)];
                 label.textColor = [UIColor blackColor];
                 label.text = array[i];
@@ -399,7 +399,7 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
                 [cell.contentView addSubview:label];
             }
             //分割线
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 
                 UIView * sptString = [[UIView alloc] initWithFrame:CGRectMake(0, 40 * (i + 1), ScreenW, 1)];
                 sptString.backgroundColor = [UIColor colorWithHexString:BackColor];
@@ -441,23 +441,35 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
             //红包折扣
             UILabel * redLabel =[[UILabel alloc] initWithFrame:CGRectMake(60, 90, ScreenW - 70, 20)];
             redLabel.textAlignment = 2;
-            if (self.model.usedRedPacket == 0) {
+            if (self.model.redpacketmoeny > 0) {
                 
-                 redLabel.text = @"￥0";
+                redLabel.text = [NSString stringWithFormat:@"￥%ld",self.model.redpacketmoeny];
             }else{
                 
-                redLabel.text = [NSString stringWithFormat:@"￥5"];
+                redLabel.text = @"￥0";
             }
            
-            
-            
             redLabel.textColor = [UIColor colorWithHexString:@"#05b5ef"];
             redLabel.textAlignment = 2;
             [cell.contentView addSubview:redLabel];
             redLabel.font = [UIFont systemFontOfSize:15];
+            //优惠券折扣
+            UILabel * couponLabel =[[UILabel alloc] initWithFrame:CGRectMake(60, 130, ScreenW - 70, 20)];
+            couponLabel.textAlignment = 2;
+            if (self.model.couponmoeny > 0) {
+                
+                couponLabel.text = [NSString stringWithFormat:@"￥%ld",self.model.couponmoeny];
+            }else{
+                
+                couponLabel.text = @"￥0";
+            }
             
+            couponLabel.textColor = [UIColor colorWithHexString:@"#05b5ef"];
+            couponLabel.textAlignment = 2;
+            [cell.contentView addSubview:couponLabel];
+            couponLabel.font = [UIFont systemFontOfSize:15];
             //
-            UIButton * Btn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 80, 125, 70, 30)];
+            UIButton * Btn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 80, 165, 70, 30)];
             Btn.layer.cornerRadius = 3;
             
             Btn.backgroundColor = [UIColor colorWithHexString:MainColor];
@@ -468,7 +480,7 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
                 [Btn addTarget:self action:@selector(payGroupOrder) forControlEvents:UIControlEventTouchDown];
                 
                 //取消订单
-                UIButton * cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 160,125, 70, 30)];
+                UIButton * cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 160,165, 70, 30)];
                 cancelOrderBtn.layer.cornerRadius = 3;
                 cancelOrderBtn.titleLabel.font = [UIFont systemFontOfSize:13];
                 
@@ -517,7 +529,7 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
             Btn.titleLabel.font = [UIFont systemFontOfSize:14];
             
     //申请退款按钮
-            UIButton * backMoneyBtn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 80, 125, 70, 30)];
+            UIButton * backMoneyBtn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 80, 165, 70, 30)];
             backMoneyBtn.layer.cornerRadius = 3;
             
             backMoneyBtn.backgroundColor = [UIColor colorWithHexString:MainColor];
@@ -689,7 +701,7 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
             
         }else{
             
-            return 160;
+            return 200;
         }
 
     }else{
@@ -715,38 +727,30 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
     CGFloat totalMoney = 0;
     
     totalMoney = self.model.price + self.model.freight;
+   
+    UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
-    if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-        
-        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
-        myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-        //订单类型，线下订单
-        myOrderVC.orderType = 2;
-        
-        myOrderVC.orderId = self.model.id;
-        //订单号
-        myOrderVC.orderNumber = self.model.order_sn;
-        
-        [self.navigationController pushViewController:myOrderVC animated:YES];
-        
-    }else{
-        
-        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-        //订单类型，线下订单
-        myOrderVC.orderType = 2;
-        
-        myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
-        myOrderVC.orderId =  self.model.id;
-        //订单号
-        myOrderVC.orderNumber =  self.model.order_sn;
-        
-        [self.navigationController pushViewController:myOrderVC animated:YES];
-    }
+    MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
+    myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+    myOrderVC.factPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+    //订单类型，线下订单
+    myOrderVC.orderType = 2;
 
+    if (self.model.couponmoeny > 0 || self.model.redpacketmoeny > 0) {
+        myOrderVC.type = 0;
+        myOrderVC.redpacketmoeny = self.model.redpacketmoeny;
+        myOrderVC.couponmoeny = self.model.couponmoeny;
+        myOrderVC.isUseCoupon = YES;
+    } else {
+        myOrderVC.type = 0;
+    }
+    
+    myOrderVC.orderId = self.model.id;
+    //订单号
+    myOrderVC.orderNumber = self.model.order_sn;
+    
+    [self.navigationController pushViewController:myOrderVC animated:YES];
+    
 }
 #pragma mark ---申请退款
 -(void)backMoney{

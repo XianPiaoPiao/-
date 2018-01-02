@@ -148,21 +148,32 @@
 #pragma  mark ---面对面密码验证
 -(void)requetdData{
     
-    
     __weak typeof(self)weakself = self;
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     
     param[@"orderId"] = self.orderId;
     
-    param[@"payType"] = [NSString stringWithFormat:@"%ld",(long)self.payType];
-    param[@"payPassword"] =_payField.text;
-   
-    if (_isUseRedWallet == YES) {
-          
-        param[@"userRedPacket"] = @"1";
-    }
+    NSString *urlString;
     
-    [self POST:payOrderUrl parameters:param success:^(id responseObject) {
+    if (_isUseRedWallet == YES) {
+        
+        if (_redpacketId != nil) {
+            param[@"redpacketid"] = _redpacketId;
+        }
+        if (_couponId != nil) {
+            param[@"couponid"] = _couponId;
+        }
+    }
+//    else {
+//
+//        param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
+//        param[@"payPassword"] = _payField.text;
+//        urlString = payOrderUrl;
+//    }
+    param[@"payType"] = [NSString stringWithFormat:@"%ld",_payType];
+    param[@"payPassword"] = _payField.text;
+    urlString = payFace2FaceOrderUseCouponUrl;
+    [self POST:urlString parameters:param success:^(id responseObject) {
        
        [SVProgressHUD dismiss];
        //
@@ -195,9 +206,6 @@
        
    } failure:^(NSError *error) {
        
-       
-
-       
 }];
 
 
@@ -215,23 +223,26 @@
     
     if (_isUseRedWallet == YES) {
         
-        param[@"userRedPacket"] = @"1";
+        if (_redpacketId != nil) {
+            param[@"packetid"] = _redpacketId;
+        }
     }
     
     param[@"pwd"] = _payField.text;
 
-   [self POST:lineoutlinePayOrderUrl parameters:param success:^(id responseObject) {
+   [self POST:lineoutlinePayOrderUsePracktUrl parameters:param success:^(id responseObject) {
        
        NSInteger  i = [responseObject[@"isSucc"] integerValue];
 
        if (i == 1) {
            
+           //预存款支付的
            if (_payType == 1) {
                
                NSString * str = responseObject[@"result"][@"ship_price"];
                
                
-               if ([str integerValue]  > 0) {
+               if ([str doubleValue]  > 0) {
                    
                    qucklySendViewController * qucklyVC = [[qucklySendViewController alloc] init];
                    
@@ -246,14 +257,15 @@
                    qucklyVC.price = str;
                    //快递支付
                    qucklyVC.sendType = 1;
-                   
                    //线上线下
                    qucklyVC.payType = 1;
                    
                    qucklyVC.ordertType = 1;
 
                    [weakself.navigationController pushViewController:qucklyVC animated:YES];
+                   
                }else{
+                   
                    //去订单列表
                    
                    MyOrderBaseViewController * myOrderVC =[[MyOrderBaseViewController alloc] init];
@@ -398,6 +410,7 @@
 
     }];
 }
+
 -(void)creatNavgationBar{
     
     [self addNavgationTitle:@"支付订单"];

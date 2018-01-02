@@ -178,7 +178,7 @@ NSString * const trueMethodIndertfier2 = @"TrueMethodTableViewCell";
         [SVProgressHUD showWithStatus:@"请稍等..."];
 
         self.requestUrl = payIntegralOrderCourierUrl;
-        [self requestPayData];
+        [self requestPayData:@"3"];
 
     }else if (_selectIndex == 2){
         //微信支付
@@ -186,7 +186,7 @@ NSString * const trueMethodIndertfier2 = @"TrueMethodTableViewCell";
 
         self.requestUrl = payIntegralOrderWeChatUrl;
         
-        [self requestPayData];
+        [self requestPayData:@"4"];
         
     }
 }
@@ -200,7 +200,7 @@ NSString * const trueMethodIndertfier2 = @"TrueMethodTableViewCell";
     param[@"orderId"] = self.orderId;
     
     param[@"type"] =[NSString stringWithFormat:@"%ld", _ordertType];
-    
+//    param[@"type"] = @"2";
     [self.httpManager POST:self.requestUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -283,14 +283,15 @@ NSString * const trueMethodIndertfier2 = @"TrueMethodTableViewCell";
 
 }
 #pragma mark ---支付数据请求
--(void)requestPayData{
+-(void)requestPayData:(NSString *)type{
     
     __weak typeof(self)weakself = self;
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     
     param[@"orderId"] = self.orderId;
     
-    [self.httpManager POST:self.requestUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    param[@"type"] = type;
+    [self.httpManager POST:lineoutlinePayOrderUsePracktUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

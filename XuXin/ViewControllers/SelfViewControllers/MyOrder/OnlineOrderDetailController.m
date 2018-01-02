@@ -97,7 +97,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
         [[EaseLoadingView defalutManager] stopLoading];
         
         NSString * str = responseObject[@"isSucc"];
-        
+        NSLog(@"线上订单详情=======\n%@",responseObject);
         if ([str intValue] == 1) {
             
             NSDictionary * dic = responseObject[@"result"];
@@ -205,8 +205,8 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
             
             cell.selectionStyle = NO;
             
-            NSArray * array = @[@"支付方式",@"配送方式",@"红包折扣",@"邮  费"];
-            for (int i = 0; i < 4; i ++) {
+            NSArray * array = @[@"支付方式",@"配送方式",@"红包折扣",@"优惠券折扣",@"邮  费"];
+            for (int i = 0; i < 5; i ++) {
                 
                 UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + i * 40, 80, 20)];
                 label.font = [UIFont systemFontOfSize:15];
@@ -223,10 +223,15 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                     label.frame = CGRectMake(10, 110, 80, 20);
                     
                 }
+                if (i == 4) {
+                    
+                    label.frame = CGRectMake(10, 140, 80, 20);
+                    
+                }
               
             }
             //分割线
-            for (int i = 1; i < 4; i++) {
+            for (int i = 1; i < 5; i++) {
                 
                 UIView * sptString = [[UIView alloc] initWithFrame:CGRectMake(0,i * 40, ScreenW , 1)];
                 sptString.backgroundColor = [UIColor colorWithHexString:BackColor];
@@ -235,9 +240,12 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                 if (i == 2) {
                     
                     sptString.frame = CGRectMake(10, 75, ScreenW, 1);
-                }else if (i ==3){
+                }else if (i == 3) {
                     
                     sptString.frame = CGRectMake(10, 105, ScreenW, 1);
+                }else if (i ==4){
+                    
+                    sptString.frame = CGRectMake(10, 135, ScreenW, 1);
 
                 }
                 
@@ -266,18 +274,31 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
             redLabel.textColor = [UIColor colorWithHexString:@"#05b5ef"];
             [cell.contentView addSubview:redLabel];
             
-            if (self.model.usedRedPacket == 0) {
+            if (self.model.redpacketmoeny > 0) {
                 
-                redLabel.text =@"￥0";
+                redLabel.text =[NSString stringWithFormat:@"￥%ld",self.model.redpacketmoeny];
                 
             }else{
-                
-              redLabel.text =[NSString stringWithFormat:@"￥5"];
+                redLabel.text =@"￥0";
             }
-
+            //优惠券
+            UILabel * couponLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 110, ScreenW - 110, 20)];
+            
+            couponLabel.textAlignment = 2;
+            couponLabel.font = [UIFont systemFontOfSize:14];
+            couponLabel.textColor = [UIColor colorWithHexString:@"#05b5ef"];
+            [cell.contentView addSubview:couponLabel];
+            
+            if (self.model.couponmoeny > 0) {
+                
+                couponLabel.text =[NSString stringWithFormat:@"￥%ld",self.model.couponmoeny];
+                
+            }else{
+                couponLabel.text =@"￥0";
+            }
             
             //快递费
-            UILabel * sendFeeLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 110, ScreenW - 110, 20)];
+            UILabel * sendFeeLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 140, ScreenW - 110, 20)];
             
             sendFeeLabel.font = [UIFont systemFontOfSize:14];
             
@@ -345,8 +366,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                 
                 [giveBtn addTarget:self action:@selector(backGoodsMoney) forControlEvents:UIControlEventTouchDown];
                 [giveBtn setTitle:@"退款" forState:UIControlStateNormal];
-            }
-            else if (self.model.status == waitPayType){
+            } else if (self.model.status == waitPayType){
                 cancelOrderBtn.hidden = YES;
 //                [cancelOrderBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchDown];
 //                [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
@@ -355,8 +375,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                 
                 [giveBtn setTitle:@"付款" forState:UIControlStateNormal];
                 
-            }
-            else if (self.model.status == waitSendGoods){
+            } else if (self.model.status == waitSendGoods){
                 cancelOrderBtn.hidden = YES;
 //                [cancelOrderBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchDown];
 //                [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
@@ -365,7 +384,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
                 
                 [giveBtn setTitle:@"支付快递费" forState:UIControlStateNormal];
                 
-            }else if(self.model.status == haveDoneSend || self.model.status == sellerRejectGoods){
+            } else if(self.model.status == haveDoneSend || self.model.status == sellerRejectGoods){
                 
                 UIButton * retureBtn =[[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 220, 45 , 50, 30)];
                 retureBtn.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -496,7 +515,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
             return 105;
         } else if (indexPath.section ==3){
             
-            return 140;
+            return 170;
         } else if (indexPath.section ==4){
             
             return 80;
@@ -579,39 +598,31 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
     CGFloat totalMoney = 0;
     
     totalMoney = self.model.price;
+   
+    UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
-    if (totalMoney >= 150 && [User defalutManager].redPacket > 0 ) {
-        
-        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
-        myOrderVC.orderPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
-        //订单类型，线上订单
-        myOrderVC.orderType = 1;
-        
-        myOrderVC.orderId = self.model.id;
-        //订单号
-        myOrderVC.orderNumber = self.model.order_sn;
-        
-        [self.navigationController pushViewController:myOrderVC animated:YES];
-        
-    }else{
-        
-        UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        SBMyOrderTableviewController * myOrderVC =  (SBMyOrderTableviewController *)[storybord instantiateViewControllerWithIdentifier:@"SBMyOrderTableviewController"];
-        //订单类型，线上订单
-        myOrderVC.orderType = 1;
-        
-        myOrderVC.orderPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
-        myOrderVC.orderId =  self.model.id;
-        //订单号
-        myOrderVC.orderNumber =  self.model.order_sn;
-        
-        [self.navigationController pushViewController:myOrderVC animated:YES];
+    MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
+    myOrderVC.orderPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
+    myOrderVC.factPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
+    myOrderVC.sendFee = self.model.freight;
+    //订单类型，线上订单
+    myOrderVC.orderType = 1;
+    
+    if (self.model.couponmoeny > 0 || self.model.redpacketmoeny > 0) {
+        myOrderVC.type = 0;
+        myOrderVC.redpacketmoeny = self.model.redpacketmoeny;
+        myOrderVC.couponmoeny = self.model.couponmoeny;
+        myOrderVC.isUseCoupon = YES;
+    } else {
+        myOrderVC.type = 0;
     }
+        
+    myOrderVC.orderId = self.model.id;
+    //订单号
+    myOrderVC.orderNumber = self.model.order_sn;
 
-    
+    [self.navigationController pushViewController:myOrderVC animated:YES];
+   
 }
 -(void)paySendFee{
     qucklySendViewController * qucklyVC = [[qucklySendViewController alloc] init];

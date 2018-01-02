@@ -36,6 +36,13 @@
 
 @property (nonatomic, copy) NSString *payment;
 
-
 @property (nonatomic, assign) long long orderCreateTime;
+/*
+ 13    couponmoeny    优惠券抵扣金额（未使用的情况下为0，使用了就是金额大小）    是    [string]
+ 14    redpacketmoeny    红包抵扣金额（未使用的情况下为0，使用了就是金额大小）    是    [string]
+ */
+
+@property (nonatomic, assign) NSInteger couponmoeny;
+@property (nonatomic, assign) NSInteger redpacketmoeny;
+
 @end

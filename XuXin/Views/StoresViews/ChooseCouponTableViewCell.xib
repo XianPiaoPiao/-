@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ChooseCouponTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bws-LM-8HH">
+                        <rect key="frame" x="24" y="12" width="231" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K39-Nk-xF1">
+                        <rect key="frame" x="285" y="10" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="HwQ-Gh-LLX"/>
+                            <constraint firstAttribute="width" constant="25" id="wVW-2l-6jp"/>
+                        </constraints>
+                        <state key="normal" image="icon_money_check_off.png"/>
+                        <connections>
+                            <action selector="clickChooseButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qwD-tO-ODu"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="K39-Nk-xF1" secondAttribute="trailing" constant="10" id="5Pb-Kz-RJK"/>
+                    <constraint firstItem="K39-Nk-xF1" firstAttribute="leading" secondItem="bws-LM-8HH" secondAttribute="trailing" constant="30" id="Vo4-hf-uZW"/>
+                    <constraint firstItem="K39-Nk-xF1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZeN-wR-0BY"/>
+                    <constraint firstItem="bws-LM-8HH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="cvI-LJ-FYr"/>
+                    <constraint firstItem="bws-LM-8HH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="uws-Di-ddV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="chooseButton" destination="K39-Nk-xF1" id="EuJ-z4-bxo"/>
+                <outlet property="valueLabel" destination="bws-LM-8HH" id="CQf-cz-SE3"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_money_check_off.png" width="22" height="22"/>
+    </resources>
+</document>

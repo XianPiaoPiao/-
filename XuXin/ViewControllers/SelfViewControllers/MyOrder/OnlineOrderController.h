@@ -12,6 +12,7 @@
 @property (nonatomic ,strong)NSMutableArray * ImageArray;
 
 @property (nonatomic ,copy)NSString * storeCartId;
+@property (nonatomic, copy)NSString * storeId;
 @property (nonatomic ,copy)NSString * goodsCartId;
 @property (nonatomic ,copy)NSString * amountMoney;
 @property (nonatomic ,copy)NSString * userMobile;

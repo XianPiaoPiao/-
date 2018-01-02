@@ -11,7 +11,7 @@
 
 #endif /* API_h */
 
-#define                     Host    @"https://hidui.com.cn"//正式环境//@"https://hiidui.com"//119.23.143.136//测试环境//@"http://192.168.1.20"//本地//@"http://192.168.1.134:80"//名片1.134//@"http://192.168.1.134:8080"//名片//@"https://hiidui.com:80"//@"http://192.168.1.105/shopping"//
+#define                     Host    @"https://hiidui.com"//119.23.143.136//测试环境//@"http://192.168.1.20"//本地//@"http://192.168.1.134:80"//名片1.134//@"http://192.168.1.134:8080"//名片//@"https://hiidui.com:80"//@"http://192.168.1.105/shopping"//@"https://hidui.com.cn"//正式环境//
 
 #define fullURL(path)       [NSString stringWithFormat:@"%@%@",Host,path]
 
@@ -270,5 +270,45 @@
 #define paymentPointsUrl fullURL(@"/app/paymentPoints.htm")
 //用户使用现金支付积分订单（APP）
 #define cashPaymentUrl fullURL(@"/app/cashPayment.htm")
+
+//店铺优惠券接口
+
+//查询某店铺的优惠券
+#define findUnclaimedUrl fullURL(@"/findUnclaimed.htm")
+//APP线上线下立即购买和购物车购买通过storeCartId获取用户可以使用的优惠券
+#define findUserCouponInfoByStoreIdUrl fullURL(@"/app/findUserCouponInfoByStoreId.htm")
+//领取优惠券
+#define sellerCouponSendSaveUrl fullURL(@"/seller/coupon_send_save.htm")
+//APP根据订单ID查询可以使用的红包列表
+#define findUserRedPacketByOrderUrl fullURL(@"/app/findUserRedPacketByOrder.htm")
+//查询当前登录用户的所有优惠券
+#define findUserCouponUrl fullURL(@"/app/findUserCoupon.htm")
+//线上线下使用优惠券红包支付1.0版本
+#define lineoutlinePayOrderUsePracktUrl fullURL(@"/app/lineoutline/payOrderUsePrackt.htm")
+//面对面支付使用优惠券红包1.0版本
+#define payFace2FaceOrderUseCouponUrl fullURL(@"/app/pay/payFace2FaceOrderUseCoupon.htm")
+//创建线上订单1.0版本（使用优惠券）
+#define appSaveOnlineOrderUseCouponUrl fullURL(@"/app/app_save_onLine_order_use_coupon.htm")
+//创建线下订单1.0版本（使用优惠券）
+#define appSaveLineOrderUseCouponUrl fullURL(@"/app/app_save_line_order_use_coupon.htm")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

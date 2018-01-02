@@ -110,8 +110,6 @@ NSString * const OnlineOrderIndertifer = @"ConvertOrderTableViewCell";
     
     [self POST:findOrderByTypeUrl parameters:param success:^(id responseObject) {
         
-        NSLog(@"线上=======\n\n%@",responseObject);
-        
         NSString * str = responseObject[@"isSucc"];
         //状态码，我也是服了
         int i = [responseObject[@"code"] intValue];
