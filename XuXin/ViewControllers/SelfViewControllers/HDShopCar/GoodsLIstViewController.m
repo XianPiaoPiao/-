@@ -69,7 +69,7 @@ NSString * const goodsListIndertifer = @"GoodsListTableViewCell";
         GroupGoodsMOdel * model =self.goodsModelArray[indexPath.row];
         [cell.goodsImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:HaiduiBgImage]];
         cell.goodsNameLabel.text = model.goods_name;
-        cell.pointLabel.text = [NSString stringWithFormat:@"单价:%.1f",model.goods_price];
+        cell.pointLabel.text = [NSString stringWithFormat:@"单价:%.2f",model.goods_price];
         cell.numberLabel.text =[NSString stringWithFormat:@"数量:x%ld",_goodsCount];
     }else{
         //从购物车进来
@@ -80,7 +80,7 @@ NSString * const goodsListIndertifer = @"GoodsListTableViewCell";
             cell.goodsNameLabel.text = model.ig_goods_name;
             
             
-            cell.pointLabel.text = [NSString stringWithFormat:@"单价:%.0f",model.price];
+            cell.pointLabel.text = [NSString stringWithFormat:@"单价:%.2f",model.price];
             
             cell.numberLabel.text =[NSString stringWithFormat:@"数量:x%ld",(long)model.count];
         }else{

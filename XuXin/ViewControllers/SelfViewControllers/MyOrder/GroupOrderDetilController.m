@@ -11,7 +11,6 @@
 #import "OnlineGoodsModel.h"
 #import "GoodsListTableViewCell.h"
 #import "MyOrderTableViewController.h"
-#import "SBMyOrderTableviewController.h"
 #import "OrderCommentsController.h"
 #import "InsetLabel.h"
 #import "QrcodeModel.h"
@@ -259,7 +258,7 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
             
             cell.goodsNameLabel.text = model.goodsName;
             cell.numberLabel.text = [NSString stringWithFormat:@"数量:x%ld",model.count];
-            cell.pointLabel.text= [NSString stringWithFormat:@"消费:￥%.1f",model.goodsPrice];
+            cell.pointLabel.text= [NSString stringWithFormat:@"消费:￥%.2f",model.goodsPrice];
             //创建约束
             [ cell.goodsNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(cell.goodsImageView.mas_right).offset(50) ;
@@ -433,7 +432,7 @@ NSString * const saleQrcodeInderfier = @"SaleQrcodeCell";
             //消费金额
             UILabel * saleMoneyLable =[[UILabel alloc] initWithFrame:CGRectMake(60, 50, ScreenW - 70, 20)];
             saleMoneyLable.textAlignment = 2;
-            saleMoneyLable.text = [NSString stringWithFormat:@"￥%.1f",self.model.price];
+            saleMoneyLable.text = [NSString stringWithFormat:@"￥%.2f",self.model.price];
             saleMoneyLable.textColor = [UIColor colorWithHexString:MainColor];
             saleMoneyLable.textAlignment = 2;
             [cell.contentView addSubview:saleMoneyLable];

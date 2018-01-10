@@ -19,7 +19,7 @@
     _onlineGoodsModel = onlineGoodsModel;
     [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:onlineGoodsModel.img] placeholderImage:[UIImage imageNamed:HaiduiBgImage]];
     _goodsNameLbael.text = onlineGoodsModel.goods_name;
-    _goodsPriceLabel.text = [NSString stringWithFormat:@"￥%.1f", onlineGoodsModel.goods_price];
+    _goodsPriceLabel.text = [NSString stringWithFormat:@"￥%.2f", onlineGoodsModel.goods_price];
     _goodsCountLabel.text= [NSString stringWithFormat:@"%ld人付款", onlineGoodsModel.goods_salenum];
     
 }

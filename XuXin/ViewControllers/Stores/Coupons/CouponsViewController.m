@@ -101,18 +101,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     StoreCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StoreCouponTableViewCell" forIndexPath:indexPath];
     cell.model = _couponArray[indexPath.row];
-    cell.getCouponButton.tag = indexPath.row;
-    [cell.getCouponButton addTarget:self action:@selector(clickGetCoupon:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 115.0f;
 }
-
-- (void)clickGetCoupon:(UIButton *)getCouponBtn{
-    StoreCouponModel *model = [_couponArray objectAtIndex:getCouponBtn.tag];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    StoreCouponModel *model = [_couponArray objectAtIndex:indexPath.row];
+    StoreCouponTableViewCell *cell = [self.couponTableView cellForRowAtIndexPath:indexPath];
     switch (model.receivestate) {
         case 0:
         {
@@ -121,9 +119,13 @@
             param[@"id"] = model.id;
             [weakself POST:sellerCouponSendSaveUrl parameters:param success:^(id responseObject) {
                 if ([responseObject[@"isSucc"] intValue] == 1) {
-                     [self showStaus:@"已领取"];
+                    [self showStaus:@"已领取"];
+                    model.receivestate = 1;
+                    cell.status = model.receivestate;
+                    cell.userInteractionEnabled = NO;
+                    cell.bgview.backgroundColor = [UIColor colorWithHexString:@"#ffc2a5" alpha:0.85];
+                    [cell.bgImgView setImage:[UIImage imageNamed:@"coupons_have_been_received"]];
                     
-                    [getCouponBtn setImage:[UIImage imageNamed:@"already_received"] forState:UIControlStateNormal];
                 }
             } failure:^(NSError *error) {
                 
@@ -143,7 +145,6 @@
         default:
             break;
     }
-    
     
 }
 

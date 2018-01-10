@@ -10,7 +10,6 @@
 #import "MyOrderTableViewController.h"
 #import "ZenKeyboard.h"
 #import "PayExplainViewController.h"
-#import "SBMyOrderTableviewController.h"
 
 @interface PayViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *storeAdressLabel;

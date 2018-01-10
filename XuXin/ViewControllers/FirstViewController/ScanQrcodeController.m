@@ -10,7 +10,6 @@
 #import "SHBQRView.h"
 #import "ScanErcodeEndingController.h"
 #import "MyOrderTableViewController.h"
-#import "SBMyOrderTableviewController.h"
 #import "PayViewController.h"
 #import "HDRegisterController.h"
 #import "CardDetailViewController.h"

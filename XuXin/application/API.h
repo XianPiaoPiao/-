@@ -11,7 +11,7 @@
 
 #endif /* API_h */
 
-#define                     Host    @"https://hiidui.com"//119.23.143.136//测试环境//@"http://192.168.1.20"//本地//@"http://192.168.1.134:80"//名片1.134//@"http://192.168.1.134:8080"//名片//@"https://hiidui.com:80"//@"http://192.168.1.105/shopping"//@"https://hidui.com.cn"//正式环境//
+#define                     Host    @"https://hidui.com.cn"//正式环境//@"https://hiidui.com"//119.23.143.136//测试环境//@"http://192.168.1.20"//本地//@"http://192.168.1.134:80"//名片1.134//@"http://192.168.1.134:8080"//名片//@"https://hiidui.com:80"//@"http://192.168.1.105/shopping"//
 
 #define fullURL(path)       [NSString stringWithFormat:@"%@%@",Host,path]
 
@@ -82,6 +82,8 @@
 #define goodsAndStoreFavoriteUrl fullURL(@"/app/userFavorite/goodsAndStoreFavorite.htm")
 #define activateRedPacketUrl fullURL(@"/app/redPacket/activateRedPacket.htm")
 #define redPacketUrl fullURL(@"/app/redPacket/redPacket.htm")
+//红包列表1.0版本
+#define findUserRedPacketUrl fullURL(@"/app/redPacket/findUserRedPacket.htm")
 #define batchDeleteGoodsUrl fullURL(@"/app/userFavorite/batchDeleteGoods.htm")
 //推荐朋友排行榜
 #define recommendUserRankingUrl fullURL(@"/app/recommend/recommendUserRanking.htm")
@@ -273,24 +275,26 @@
 
 //店铺优惠券接口
 
-//查询某店铺的优惠券
+/// 查询某店铺的优惠券
 #define findUnclaimedUrl fullURL(@"/findUnclaimed.htm")
-//APP线上线下立即购买和购物车购买通过storeCartId获取用户可以使用的优惠券
+/// APP线上线下立即购买和购物车购买通过storeCartId获取用户可以使用的优惠券
 #define findUserCouponInfoByStoreIdUrl fullURL(@"/app/findUserCouponInfoByStoreId.htm")
-//领取优惠券
+/// 领取优惠券
 #define sellerCouponSendSaveUrl fullURL(@"/seller/coupon_send_save.htm")
-//APP根据订单ID查询可以使用的红包列表
+/// APP根据订单ID查询可以使用的红包列表
 #define findUserRedPacketByOrderUrl fullURL(@"/app/findUserRedPacketByOrder.htm")
-//查询当前登录用户的所有优惠券
+/// 查询当前登录用户的所有优惠券
 #define findUserCouponUrl fullURL(@"/app/findUserCoupon.htm")
-//线上线下使用优惠券红包支付1.0版本
+/// 线上线下使用优惠券红包支付1.0版本
 #define lineoutlinePayOrderUsePracktUrl fullURL(@"/app/lineoutline/payOrderUsePrackt.htm")
-//面对面支付使用优惠券红包1.0版本
+/// 面对面支付使用优惠券红包1.0版本
 #define payFace2FaceOrderUseCouponUrl fullURL(@"/app/pay/payFace2FaceOrderUseCoupon.htm")
-//创建线上订单1.0版本（使用优惠券）
+/// 创建线上订单1.0版本（使用优惠券）
 #define appSaveOnlineOrderUseCouponUrl fullURL(@"/app/app_save_onLine_order_use_coupon.htm")
-//创建线下订单1.0版本（使用优惠券）
+/// 创建线下订单1.0版本（使用优惠券）
 #define appSaveLineOrderUseCouponUrl fullURL(@"/app/app_save_line_order_use_coupon.htm")
+/// 获取用户购物车商品数量(没有用过)
+#define findUserCartCountUrl fullURL(@"/app/user/findUserCartCount.htm")
 
 
 

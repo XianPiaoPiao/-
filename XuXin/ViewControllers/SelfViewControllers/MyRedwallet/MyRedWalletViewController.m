@@ -163,7 +163,7 @@ NSString * const myredwalletInderfierss = @"MyRedWalletTableViewCell";
 -(void)requestWalletListData{
     
     __weak typeof(self)weakself = self;
-    [self POST:redPacketUrl parameters:nil success:^(id responseObject) {
+    [self POST:findUserRedPacketUrl parameters:nil success:^(id responseObject) {
         
         NSString * str = responseObject[@"isSucc"];
         if ([str intValue] == 1) {
@@ -209,7 +209,7 @@ NSString * const myredwalletInderfierss = @"MyRedWalletTableViewCell";
     
     UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0,0, ScreenW, 40)];
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, ScreenW -20, 15)];
-    label.text = @"在线上支付可以选则红包";
+    label.text = @"在线上支付可以选择红包";
     label.font = [UIFont systemFontOfSize:13];
     label.textColor = [UIColor colorWithHexString:@"333333"];
     UILabel * label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, ScreenW -10, 15)];

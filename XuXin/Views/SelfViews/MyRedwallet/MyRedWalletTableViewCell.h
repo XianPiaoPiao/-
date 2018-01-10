@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *walletNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userPhoneNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderPriceLabel;
 @property (nonatomic ,strong)RedWalletModel * model;
 @end

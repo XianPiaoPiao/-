@@ -82,8 +82,6 @@
     //使用消息中心去监测播放结束的时候(这个消息不需要程序员来发送)
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endPlay) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     
-  
-    
 }
 //播放按钮
 -(void)playAndStop:(UIButton *)sender{

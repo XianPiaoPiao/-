@@ -18,9 +18,12 @@
 
 @property (nonatomic, strong) UIButton *finishBtn;
 
+@property (nonatomic, copy) NSMutableArray *redpacketArray;
+
 @property (nonatomic, copy) NSMutableArray *couponArray;
 
-@property (assign, nonatomic) NSIndexPath *selIndex;//单选，当前选中的行
+@property (assign, nonatomic) NSIndexPath *selIndexRed;//单选，当前选中的行
+@property (assign, nonatomic) NSIndexPath *selIndexCoupon;
 @end
 
 @implementation ChooseCouponViewController
@@ -33,6 +36,10 @@
     
     if (!_couponArray) {
         _couponArray = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    
+    if (!_redpacketArray) {
+        _redpacketArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
 
 }
@@ -78,10 +85,10 @@
 }
 
 - (void)requestDataRedPacket{
-    if (_couponArray.count > 0) {
-        [_couponArray removeAllObjects];
+    if (_redpacketArray.count > 0) {
+        [_redpacketArray removeAllObjects];
     }
-    label.text = @"店铺红包";
+    label.text = @"红包";
     __weak typeof(self)weakself= self;
     
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
@@ -99,16 +106,16 @@
                 model.id = dic[@"id"];
                 model.order_price = dic[@"orderprice"];
                 model.price = dic[@"price"];
-                [_couponArray addObject:model];
+                [_redpacketArray addObject:model];
             }
             StoreCouponModel *model = [[StoreCouponModel alloc] init];
             model.name = @"不使用红包";
-            [_couponArray addObject:model];
+            [_redpacketArray addObject:model];
             [self.couponTableView reloadData];
         } else {
             StoreCouponModel *model = [[StoreCouponModel alloc] init];
             model.name = @"不使用红包";
-            [_couponArray addObject:model];
+            [_redpacketArray addObject:model];
             [self.couponTableView reloadData];
         }
     } failure:^(NSError *error) {
@@ -162,23 +169,37 @@
 
 #pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _couponArray.count;
+    if (_isCoupon) {
+        return _couponArray.count;
+    } else {
+        return _redpacketArray.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ChooseCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChooseCouponTableViewCell" forIndexPath:indexPath];
-    StoreCouponModel *model = _couponArray[indexPath.row];
-    
-    //当上下拉动的时候，因为cell的复用性，我们需要重新判断一下哪一行是打勾的
-    if (_selIndex == indexPath) {
-        //        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        model.selected = YES;
-    }else {
-        //        cell.accessoryType = UITableViewCellAccessoryNone;
-        model.selected = NO;
+    if (_isCoupon) {
+        StoreCouponModel *model = _couponArray[indexPath.row];
+        //当上下拉动的时候，因为cell的复用性，我们需要重新判断一下哪一行是打勾的
+        if (_selIndexCoupon == indexPath) {
+            model.selected = YES;
+        }else {
+            model.selected = NO;
+        }
+        
+        cell.model = model;
+    } else {
+        StoreCouponModel *model = _redpacketArray[indexPath.row];
+        //当上下拉动的时候，因为cell的复用性，我们需要重新判断一下哪一行是打勾的
+        if (_selIndexRed == indexPath) {
+            model.selected = YES;
+        }else {
+            model.selected = NO;
+        }
+        
+        cell.model = model;
     }
     
-    cell.model = model;
     
     
     
@@ -186,23 +207,45 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //之前选中的，取消选择
-    ChooseCouponTableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndex];
-    StoreCouponModel *modeled = _couponArray[_selIndex.row];
-    modeled.selected = NO;
-    celled.chooseButton.selected = NO;
-    //记录当前选中的位置索引
-    _selIndex = indexPath;
-    
-    ChooseCouponTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    StoreCouponModel *model = _couponArray[indexPath.row];
-    model.selected = !model.selected;
-    cell.chooseButton.selected = model.selected;
-    if (model.selected == YES) {
-        if (_isCoupon) {
-            self.couponBlock(model);
-        } else {
-            self.redpacketBlock(model);
+    if (_isCoupon) {
+        //之前选中的，取消选择
+        ChooseCouponTableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndexCoupon];
+        StoreCouponModel *modeled = _couponArray[_selIndexCoupon.row];
+        modeled.selected = NO;
+        celled.chooseButton.selected = NO;
+        //记录当前选中的位置索引
+        _selIndexCoupon = indexPath;
+        
+        ChooseCouponTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        StoreCouponModel *model = _couponArray[indexPath.row];
+        model.selected = !model.selected;
+        cell.chooseButton.selected = model.selected;
+        if (model.selected == YES) {
+            if (_isCoupon) {
+                self.couponBlock(model);
+            } else {
+                self.redpacketBlock(model);
+            }
+        }
+    } else {
+        //之前选中的，取消选择
+        ChooseCouponTableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndexRed];
+        StoreCouponModel *modeled = _redpacketArray[_selIndexRed.row];
+        modeled.selected = NO;
+        celled.chooseButton.selected = NO;
+        //记录当前选中的位置索引
+        _selIndexRed = indexPath;
+        
+        ChooseCouponTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        StoreCouponModel *model = _redpacketArray[indexPath.row];
+        model.selected = !model.selected;
+        cell.chooseButton.selected = model.selected;
+        if (model.selected == YES) {
+            if (_isCoupon) {
+                self.couponBlock(model);
+            } else {
+                self.redpacketBlock(model);
+            }
         }
     }
     

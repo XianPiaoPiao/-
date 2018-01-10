@@ -18,7 +18,6 @@
 #import "CheckTransportationController.h"
 #import "qucklySendViewController.h"
 #import "WriteOrderViewController.h"
-#import "SBMyOrderTableviewController.h"
 #import "MyOrderTableViewController.h"
 #import "OnlineOrderModel.h"
 #import "OrderCommentsController.h"
@@ -306,7 +305,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
             sendFeeLabel.textColor = [UIColor colorWithHexString:MainColor];
             [cell.contentView addSubview:sendFeeLabel];
             
-            sendFeeLabel.text =[NSString stringWithFormat:@"￥%.1f", self.model.freight];
+            sendFeeLabel.text =[NSString stringWithFormat:@"￥%.2f", self.model.freight];
             
             return cell;
             
@@ -325,7 +324,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
             goodsPriceLbael.textAlignment = 2;
             goodsPriceLbael.font = [UIFont systemFontOfSize:15];
             goodsPriceLbael.textColor = [UIColor colorWithHexString:MainColor];
-            goodsPriceLbael.text =[NSString stringWithFormat:@"￥%.1f", self.model.price];
+            goodsPriceLbael.text =[NSString stringWithFormat:@"￥%.2f", self.model.price];
             [cell.contentView addSubview:goodsPriceLbael];
             //
             UIButton * cancelOrderBtn =[[UIButton alloc] initWithFrame:CGRectMake(ScreenW - 160, 45, 70, 30)];
@@ -602,8 +601,8 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
     UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
     MyOrderTableViewController * myOrderVC =  (MyOrderTableViewController *)[storybord instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
-    myOrderVC.orderPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
-    myOrderVC.factPrice =[NSString stringWithFormat:@"%.1f", totalMoney];
+    myOrderVC.orderPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
+    myOrderVC.factPrice =[NSString stringWithFormat:@"%.2f", totalMoney];
     myOrderVC.sendFee = self.model.freight;
     //订单类型，线上订单
     myOrderVC.orderType = 1;
@@ -633,7 +632,7 @@ NSString * const OnlineSendWayandPayInderfier = @"SendWayandPayWayTableViewCell"
     
     qucklyVC.orderSn = self.model.order_sn;
     
-    qucklyVC.price = [NSString stringWithFormat:@"%.1f", self.model.freight];;
+    qucklyVC.price = [NSString stringWithFormat:@"%.2f", self.model.freight];;
     //快递支付
     qucklyVC.sendType = 1;
     

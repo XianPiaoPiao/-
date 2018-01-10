@@ -32,7 +32,7 @@
     self.goodsName.text = goodsModel.goodsName;
     
     //总价格
-    self.pointTotalLabel.text=[NSString stringWithFormat:@"￥%.1f", goodsModel.goodsPrice ];
+    self.pointTotalLabel.text=[NSString stringWithFormat:@"￥%.2f", goodsModel.goodsPrice ];
     
     _metureLabel.text = goodsModel.goodsSpecifications;
 

@@ -12,7 +12,6 @@
 #import "HaiDuiTextView.h"
 #import "InsetLabel.h"
 #import "MyOrderTableViewController.h"
-#import "SBMyOrderTableviewController.h"
 #import "GoodsLIstViewController.h"
 #import "ChooseCouponViewController.h"
 NSString * const GroupReceiveIndertifer = @"RecievePlaceTableViewCell";

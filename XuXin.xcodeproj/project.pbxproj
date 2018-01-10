@@ -139,7 +139,6 @@
 		483A08A71F914D3E00B0B843 /* ReadPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865BD3D1F90E2620040A35A /* ReadPayViewController.m */; };
 		483A08A81F914D3E00B0B843 /* RecomondStoresModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865BD401F90E2620040A35A /* RecomondStoresModel.m */; };
 		483A08A91F914D3E00B0B843 /* RedWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865BD421F90E2620040A35A /* RedWalletModel.m */; };
-		483A08AA1F914D3E00B0B843 /* SBMyOrderTableviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865BD441F90E2620040A35A /* SBMyOrderTableviewController.m */; };
 		483A08AB1F914D3E00B0B843 /* ScanErcodeEndingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865BD461F90E2620040A35A /* ScanErcodeEndingController.m */; };
 		483A08AC1F914D3E00B0B843 /* ScanQrcodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865BD481F90E2620040A35A /* ScanQrcodeController.m */; };
 		483A08AD1F914D3E00B0B843 /* SearchShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865BD4A1F90E2620040A35A /* SearchShopViewController.m */; };
@@ -680,7 +679,6 @@
 		483A15F31F9158FC00B0B843 /* redPackets_icon_small100.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1DF1F90E2650040A35A /* redPackets_icon_small100.png */; };
 		483A15F41F9158FC00B0B843 /* redPackets_icon_small100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1E01F90E2650040A35A /* redPackets_icon_small100@2x.png */; };
 		483A15F51F9158FC00B0B843 /* redPackets_icon_small100@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1E11F90E2650040A35A /* redPackets_icon_small100@3x.png */; };
-		483A15F61F9158FC00B0B843 /* pdui.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1E31F90E2650040A35A /* pdui.png */; };
 		483A15F71F9158FC00B0B843 /* daohang.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1E51F90E2650040A35A /* daohang.png */; };
 		483A15F81F9158FC00B0B843 /* daohang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1E61F90E2650040A35A /* daohang@2x.png */; };
 		483A15F91F9158FC00B0B843 /* daohang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1E71F90E2650040A35A /* daohang@3x.png */; };
@@ -1346,8 +1344,6 @@
 		4865BD401F90E2620040A35A /* RecomondStoresModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecomondStoresModel.m; sourceTree = "<group>"; };
 		4865BD411F90E2620040A35A /* RedWalletModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedWalletModel.h; sourceTree = "<group>"; };
 		4865BD421F90E2620040A35A /* RedWalletModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedWalletModel.m; sourceTree = "<group>"; };
-		4865BD431F90E2620040A35A /* SBMyOrderTableviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBMyOrderTableviewController.h; sourceTree = "<group>"; };
-		4865BD441F90E2620040A35A /* SBMyOrderTableviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBMyOrderTableviewController.m; sourceTree = "<group>"; };
 		4865BD451F90E2620040A35A /* ScanErcodeEndingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanErcodeEndingController.h; sourceTree = "<group>"; };
 		4865BD461F90E2620040A35A /* ScanErcodeEndingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanErcodeEndingController.m; sourceTree = "<group>"; };
 		4865BD471F90E2620040A35A /* ScanQrcodeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanQrcodeController.h; sourceTree = "<group>"; };
@@ -2452,7 +2448,6 @@
 		4865C1DF1F90E2650040A35A /* redPackets_icon_small100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redPackets_icon_small100.png; sourceTree = "<group>"; };
 		4865C1E01F90E2650040A35A /* redPackets_icon_small100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPackets_icon_small100@2x.png"; sourceTree = "<group>"; };
 		4865C1E11F90E2650040A35A /* redPackets_icon_small100@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPackets_icon_small100@3x.png"; sourceTree = "<group>"; };
-		4865C1E31F90E2650040A35A /* pdui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdui.png; sourceTree = "<group>"; };
 		4865C1E51F90E2650040A35A /* daohang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang.png; sourceTree = "<group>"; };
 		4865C1E61F90E2650040A35A /* daohang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang@2x.png"; sourceTree = "<group>"; };
 		4865C1E71F90E2650040A35A /* daohang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang@3x.png"; sourceTree = "<group>"; };
@@ -3145,8 +3140,6 @@
 				4865BD401F90E2620040A35A /* RecomondStoresModel.m */,
 				4865BD411F90E2620040A35A /* RedWalletModel.h */,
 				4865BD421F90E2620040A35A /* RedWalletModel.m */,
-				4865BD431F90E2620040A35A /* SBMyOrderTableviewController.h */,
-				4865BD441F90E2620040A35A /* SBMyOrderTableviewController.m */,
 				4865BD451F90E2620040A35A /* ScanErcodeEndingController.h */,
 				4865BD461F90E2620040A35A /* ScanErcodeEndingController.m */,
 				4865BD471F90E2620040A35A /* ScanQrcodeController.h */,
@@ -4606,7 +4599,6 @@
 		4865C1261F90E2650040A35A /* 公共图标 */ = {
 			isa = PBXGroup;
 			children = (
-				4865C1E31F90E2650040A35A /* pdui.png */,
 				4865C1271F90E2650040A35A /* home_icon_search.png */,
 				4865C1281F90E2650040A35A /* home_icon_search@2x.png */,
 				4865C1291F90E2650040A35A /* home_icon_search@3x.png */,
@@ -5851,7 +5843,6 @@
 				483A15F31F9158FC00B0B843 /* redPackets_icon_small100.png in Resources */,
 				483A15F41F9158FC00B0B843 /* redPackets_icon_small100@2x.png in Resources */,
 				483A15F51F9158FC00B0B843 /* redPackets_icon_small100@3x.png in Resources */,
-				483A15F61F9158FC00B0B843 /* pdui.png in Resources */,
 				483A15F71F9158FC00B0B843 /* daohang.png in Resources */,
 				483A15F81F9158FC00B0B843 /* daohang@2x.png in Resources */,
 				483A15F91F9158FC00B0B843 /* daohang@3x.png in Resources */,
@@ -6413,7 +6404,6 @@
 				483A08A71F914D3E00B0B843 /* ReadPayViewController.m in Sources */,
 				483A08A81F914D3E00B0B843 /* RecomondStoresModel.m in Sources */,
 				483A08A91F914D3E00B0B843 /* RedWalletModel.m in Sources */,
-				483A08AA1F914D3E00B0B843 /* SBMyOrderTableviewController.m in Sources */,
 				483A08AB1F914D3E00B0B843 /* ScanErcodeEndingController.m in Sources */,
 				483A08AC1F914D3E00B0B843 /* ScanQrcodeController.m in Sources */,
 				483A08AD1F914D3E00B0B843 /* SearchShopViewController.m in Sources */,

@@ -666,7 +666,7 @@ NSString * const goodsCellIndertifer = @"goodsCell";
         priceLbael.font = [UIFont systemFontOfSize:28];
 //        priceLbael.text = [NSString stringWithFormat:@"￥%.1f",self.goodsModel.goods_price];
         NSMutableAttributedString *start = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥"]];
-        NSMutableAttributedString *end = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%.1f",self.goodsModel.goods_price]];
+        NSMutableAttributedString *end = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%.2f",self.goodsModel.goods_price]];
         [start addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0] range:NSMakeRange(0, 1)];
         [end addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:28.0] range:NSMakeRange(0, start.length)];
         
@@ -789,7 +789,7 @@ NSString * const goodsCellIndertifer = @"goodsCell";
         cell.goodsDetailLabel.text = self.moreGoodsArray[indexPath.row][@"goods_name"];
         
         CGFloat price  = [self.moreGoodsArray[indexPath.row][@"goods_price"] floatValue];
-        cell.goodsPriceLabel.text = [NSString stringWithFormat:@"￥%.1f",price] ;
+        cell.goodsPriceLabel.text = [NSString stringWithFormat:@"￥%.2f",price] ;
         cell.goodsPriceLabel.textColor = [UIColor colorWithHexString:MainColor];
         
         return cell;

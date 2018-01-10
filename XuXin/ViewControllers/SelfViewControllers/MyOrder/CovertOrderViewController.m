@@ -9,7 +9,6 @@
 #import "CovertOrderViewController.h"
 #import "FaceToFaceOrderModel.h"
 #import "MyOrderTableViewController.h"
-#import "SBMyOrderTableviewController.h"
 #import "OrderCommentsController.h"
 @interface CovertOrderViewController ()<UIAlertViewDelegate>
 
@@ -77,7 +76,7 @@
     
     _priceLabel .textColor = [UIColor colorWithHexString:MainColor];
     
-    _priceLabel.text = [NSString stringWithFormat:@"￥%.1f", model.orderPrice];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%.2f", model.orderPrice];
     
     _redwalletLabel.textColor = [UIColor colorWithHexString:@"#05b5ef"];
     
@@ -85,7 +84,7 @@
     
     if (model.redpacketmoeny > 0) {
         
-        _redwalletLabel.text = [NSString stringWithFormat:@"￥%ld",model.redpacketmoeny];
+        _redwalletLabel.text = [NSString stringWithFormat:@"￥%.2f",model.redpacketmoeny];
         
     }else{
         
@@ -93,14 +92,14 @@
     }
     if (model.couponmoeny > 0) {
         
-        _couponLabel.text = [NSString stringWithFormat:@"￥%ld",model.couponmoeny];
+        _couponLabel.text = [NSString stringWithFormat:@"￥%.2f",model.couponmoeny];
         
     }else{
         
         _couponLabel.text = [NSString stringWithFormat:@"￥0"];
     }
     
-    _turePayLabel.text = [NSString stringWithFormat:@"￥%.1f", model.orderPrice - model.redpacketmoeny - model.couponmoeny];
+    _turePayLabel.text = [NSString stringWithFormat:@"￥%.2f", model.orderPrice - model.redpacketmoeny - model.couponmoeny];
 
     _turePayLabel.textColor = [UIColor colorWithHexString:MainColor];
     _orderStutasLabel.textColor = [UIColor colorWithHexString:MainColor];

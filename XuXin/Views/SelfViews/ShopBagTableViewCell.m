@@ -29,7 +29,7 @@
     if (model.ig_goods_integral > 0) {
         [self.priceLabel labelWithIntegral:model.ig_goods_integral money:model.price];
     } else {
-        self.priceLabel.text = [NSString stringWithFormat:@"￥%.1f",model.price];
+        self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",model.price];
     }
     self.metureLabel.text = model.goodsSpecifications;
     
@@ -42,7 +42,7 @@
 -(void)setOnlineModel:(GroupGoodsMOdel *)onlineModel{
     
     [self.shopBagImageView sd_setImageWithURL:[NSURL URLWithString:onlineModel.img] placeholderImage:[UIImage imageNamed:HaiduiBgImage]];
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%.1f",onlineModel.goods_price];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",onlineModel.goods_price];
     
     self.goodsNameLabel.text = onlineModel.goods_name;
     self.selectedBtn.selected = onlineModel.isSelect;

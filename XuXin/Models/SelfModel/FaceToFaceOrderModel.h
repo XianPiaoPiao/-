@@ -42,7 +42,7 @@
  14    redpacketmoeny    红包抵扣金额（未使用的情况下为0，使用了就是金额大小）    是    [string]
  */
 
-@property (nonatomic, assign) NSInteger couponmoeny;
-@property (nonatomic, assign) NSInteger redpacketmoeny;
+@property (nonatomic, assign) CGFloat couponmoeny;
+@property (nonatomic, assign) CGFloat redpacketmoeny;
 
 @end

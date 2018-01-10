@@ -15,4 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *getCouponButton;
 @property (nonatomic, copy) StoreCouponModel *model;
+@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, strong) UIView *bgview;
+@property (nonatomic, strong) UIImageView *bgImgView ;
 @end

@@ -46,6 +46,7 @@
 @property (nonatomic, copy)NSString *redPacketId;
 @property (nonatomic, copy) NSString *couponId;
 @property (nonatomic, assign) float couponValue;
+@property (nonatomic, assign) float redpackerValue;
 //微信
 @property (nonatomic ,copy)NSString * prepareId;
 
@@ -86,6 +87,7 @@
     //红包
     isUseRedwallet = NO;
     _couponValue = 0;
+    _redpackerValue = 0;
     self.orderPriceLabel.text = [NSString stringWithFormat:@"￥%@",_orderPrice];
     _useRedWalletPrice = _orderPrice;
     self.orderNuberLabel.text =[NSString stringWithFormat:@"订单号:%@", _orderNumber];
@@ -181,61 +183,44 @@
     };
     _couponVC.couponBlock = ^(StoreCouponModel *couponModel) {
         [weakself hiddenOrShowCouponVC:YES];
+        CGFloat orderValue =  [weakself.orderPrice floatValue];
         if ([couponModel.price intValue] > 0) {
-            
             _couponId = couponModel.id;
-            
-            CGFloat orderValue =  [weakself.orderPrice floatValue];
             _couponValue = [couponModel.price floatValue];
-            
-            if (weakself.redPacketId != nil) {
-                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - 5 - _couponValue];
-                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - 5 - _couponValue];
-            } else {
-                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - _couponValue];
-                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - _couponValue];
-            }
-            
-            
-            weakself.couponDescLabel.text = couponModel.name;
         }else {
             //未使用优惠券显示
-            CGFloat orderValue =  [weakself.orderPrice floatValue];
             _couponId = nil;
             _couponValue = 0;
-            if (weakself.redPacketId != nil) {
-                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - 5 - _couponValue];
-                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - 5 - _couponValue];
-            } else {
-                weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - _couponValue];
-                weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - _couponValue];
-            }
-            weakself.couponDescLabel.text = couponModel.name;
         }
+        CGFloat factPrice = orderValue - _redpackerValue - _couponValue;
+        if (factPrice <= 0) {
+            factPrice = _sendFee;
+        }
+        weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", factPrice];
+        weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", factPrice];
+        weakself.couponDescLabel.text = couponModel.name;
         
     };
     _couponVC.redpacketBlock = ^(StoreCouponModel *couponModel) {
         [weakself hiddenOrShowCouponVC:YES];
+        CGFloat orderValue =  [weakself.orderPrice floatValue];
         if ([couponModel.price intValue] > 0) {
             isUseRedwallet = YES;
             _redPacketId = couponModel.id;
-            
-            CGFloat orderValue =  [weakself.orderPrice floatValue];
-            CGFloat redValue = [couponModel.price floatValue];
-            //使用红包显示
-            
-            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - redValue - _couponValue];
-            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - redValue - _couponValue];
-            weakself.redpacketDescLabel.text = couponModel.name;
+            _redpackerValue = [couponModel.price floatValue];
         }else {
             //未使用红包显示
-            CGFloat orderValue =  [weakself.orderPrice floatValue];
             _redPacketId = nil;
-            weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", orderValue - _couponValue];
-            weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", orderValue - _couponValue];
-            weakself.redpacketDescLabel.text = couponModel.name;
+            _redpackerValue = 0;
             isUseRedwallet = NO;
         }
+        CGFloat factPrice = orderValue - _redpackerValue - _couponValue;
+        if (factPrice <= 0) {
+            factPrice = _sendFee;
+        }
+        weakself.orderPriceLabel.text =[NSString stringWithFormat:@"￥%.2f", factPrice];
+        weakself.useRedWalletPrice = [NSString stringWithFormat:@"%.2f", factPrice];
+        weakself.redpacketDescLabel.text = couponModel.name;
     };
     
     [self addChildViewController:_couponVC];
@@ -327,40 +312,6 @@
         [self jumpNextVCWithBalanceOrSupend:YES];
     }
     
-//    if (_type == 2) {
-//        if (self.weixinBtn.selected == YES) {
-//
-//            [SVProgressHUD showWithStatus:@"正在打开微信"];
-//
-//            if (_orderType == 1 || _orderType == 2) {
-//
-//                [self requestWeixinDataIsOnline:YES];
-//            }else{
-//
-//                [self requestWeixinDataIsOnline:NO];
-//
-//            }
-//        } else if (self.zhifubaoBtn.selected == YES){
-//            [SVProgressHUD showWithStatus:@"正在打开支付宝"];
-//
-//            if (_orderType == 1 || _orderType == 2) {
-//
-////                [self requestOnlineData];
-//                [self requestAlipayDataIsOnline:YES];
-//
-//            }else{
-//
-//                [self requestAlipayDataIsOnline:NO];
-//
-//            }
-//        } else if (self.supendPayBtn.selected == YES){
-//            [self jumpNextVCWithBalanceOrSupend:NO];
-//
-//        }else if (self.balanceBtn.selected == YES){
-//            [self jumpNextVCWithBalanceOrSupend:YES];
-//        }
-//    }
-    
 }
 #pragma mark ---选择付款方式
 
@@ -372,7 +323,7 @@
         return 8;
     }
     if (_type != 3) {
-        if (indexPath.row == 2 && ([User defalutManager].redPacket <= 0 || [_factPrice floatValue] < 150)){
+        if (indexPath.row == 2 && ([User defalutManager].redPacket <= 0)){// || [_factPrice floatValue] < 150
             return 0;
             
         }
@@ -599,8 +550,8 @@
         readPayVC.order_sn = [NSString stringWithFormat:@"订单号:%@", _orderNumber];
         
         CGFloat price =  [_useRedWalletPrice floatValue] - _sendFee;
-        readPayVC.price =[NSString stringWithFormat:@"%.1f", price];
-        readPayVC.sendPriceValue = [NSString stringWithFormat:@"%.1f",self.sendFee];
+        readPayVC.price =[NSString stringWithFormat:@"%.2f", price];
+        readPayVC.sendPriceValue = [NSString stringWithFormat:@"%.2f",self.sendFee];
         //订单类型,根据订单类型
         readPayVC.orderType = _orderType;
         

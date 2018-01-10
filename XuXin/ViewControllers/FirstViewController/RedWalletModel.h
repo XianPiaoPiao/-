@@ -12,25 +12,25 @@
 
 @property (nonatomic, assign) NSInteger id;
 
-@property (nonatomic, copy) NSString *packet_name;
-
-@property (nonatomic, copy) NSString *user;
-
-@property (nonatomic, copy) NSString *is_send;
+//@property (nonatomic, copy) NSString *packet_name;
+//
+//@property (nonatomic, copy) NSString *user;
+//
+//@property (nonatomic, copy) NSString *is_send;
 
 @property (nonatomic, assign) long long packet_start_time;
 
-@property (nonatomic, assign) long long start_time;
+//@property (nonatomic, assign) long long start_time;
 
-@property (nonatomic, copy) NSString *type;
+//@property (nonatomic, copy) NSString *type;
 
 @property (nonatomic, assign) NSInteger value;
 
-@property (nonatomic, assign) long long addTime;
+//@property (nonatomic, assign) long long addTime;
+//
+//@property (nonatomic, assign) long long end_time;
 
-@property (nonatomic, assign) long long end_time;
-
-@property (nonatomic, copy) NSString *is_close;
+//@property (nonatomic, copy) NSString *is_close;
 
 @property (nonatomic, assign) NSInteger is_userd;
 
@@ -38,6 +38,8 @@
 
 @property (nonatomic, copy) NSString *name;
 
-@property (nonatomic, assign) NSInteger ownerID;
+//@property (nonatomic, assign) NSInteger ownerID;
+
+@property (nonatomic, assign) NSInteger orderValue;
 
 @end

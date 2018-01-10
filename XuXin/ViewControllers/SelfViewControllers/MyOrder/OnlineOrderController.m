@@ -14,7 +14,6 @@
 #import "receivePlaceModel.h"
 #import "GroupGoodsMOdel.h"
 #import "MyOrderTableViewController.h"
-#import "SBMyOrderTableviewController.h"
 #import "HDShopCarModel.h"
 #import "GoodsLIstViewController.h"
 #import "ChooseCouponViewController.h"
@@ -405,7 +404,7 @@ NSString * const onLineReceiveIndertifer = @"RecievePlaceTableViewCell";
         [cell.contentView addSubview:_sendLabel];
         
         
-        [_totalLabel setText:[NSString stringWithFormat:@"%.1f元",_sendFee]];
+        [_totalLabel setText:[NSString stringWithFormat:@"%.2f元",_sendFee]];
         if (_isSetAdress) {
             if (_sendFee == 0) {
                 
