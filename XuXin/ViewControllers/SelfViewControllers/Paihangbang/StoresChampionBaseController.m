@@ -160,7 +160,6 @@
             button.selected = YES;
         }
         
-        
         [view addSubview:button];
     }
     

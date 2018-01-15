@@ -52,7 +52,7 @@
     self.queueBtn.layer.cornerRadius = 3;
     
     self.navigationController.navigationBarHidden = YES;
-//    [self setStatusBarBackgroundColor:[UIColor colorWithHexString:MainColor]];
+    self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
     //更新数据
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
         

@@ -162,7 +162,8 @@
     
     _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
     _bgView.backgroundColor = [UIColor colorWithHexString:WordColor alpha:0.5];
-    
+    UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenCouponVC)];
+    [_bgView addGestureRecognizer:tapges];
     [self.view addSubview:_bgView];
     
     _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenH/2 - 64, ScreenW, screenH/2)];
@@ -230,7 +231,9 @@
     [_bgView setAlpha:0.0f];
     [_contentView setAlpha:0.0f];
 }
-
+- (void)hiddenCouponVC{
+    [self hiddenOrShowCouponVC:YES];
+}
 - (void)hiddenOrShowCouponVC:(BOOL)flag{
     if (flag) {
         

@@ -161,8 +161,7 @@
     //进行单次带逆地理定位请求
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:self.completionBlock];
     
-    //设置允许在后台定位
-   //[self.locationManager setAllowsBackgroundLocationUpdates:YES];
+    
 }
 - (void)initCompleteBlock
 {
@@ -190,7 +189,6 @@
             if (regeocode)
             {
              
-  //    NSString * addressStr = [NSString stringWithFormat:@"%@", regeocode.formattedAddress];
              
             }
             else

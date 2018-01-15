@@ -192,7 +192,6 @@
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
-//    _tableView.scrollEnabled = NO;
     [self.view addSubview:_tableView];
     [_tableView registerClass:NSClassFromString(@"CardDetailTableViewCell") forCellReuseIdentifier:@"CardDetailTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -384,6 +383,18 @@
     _categoryControl.currentPage = currentPage;
     _categoryPage = currentPage;
     
+    // 头视图固定
+//    NSInteger pushNewsTableViewHeaderViewHeight = 200;
+//    if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= pushNewsTableViewHeaderViewHeight) {
+//
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//
+//    }else if (scrollView.contentOffset.y >= pushNewsTableViewHeaderViewHeight){
+//
+//        scrollView.contentInset = UIEdgeInsetsMake(-pushNewsTableViewHeaderViewHeight, 0, 0, 0);
+//
+//    }
+   
 }
 
 - (void)jumpDetailVC:(UIButton *)sender{
