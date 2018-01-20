@@ -47,7 +47,7 @@ NSString * const collectionCellIdentifier = @"PriceSortedCollectionViewCell";
 -(UITableView *)categoryTableView{
     if (!_categoryTableView) {
         
-        _categoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, 200) style:UITableViewStylePlain];
+        _categoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, 160) style:UITableViewStylePlain];
         _categoryTableView.dataSource = self;
         _categoryTableView.delegate = self;
         _categoryTableView.scrollEnabled = NO;
@@ -75,7 +75,7 @@ NSString * const collectionCellIdentifier = @"PriceSortedCollectionViewCell";
     if (!_dataSourceArray1) {
         
         _dataSourceArray1 =@[@"全部",@"排队中",@"已完成",@"已兑换"
-                            ,@"已领现"].mutableCopy;
+                            ].mutableCopy;//,@"已领现"
         
     }
     return _dataSourceArray1;
@@ -108,7 +108,7 @@ NSString * const collectionCellIdentifier = @"PriceSortedCollectionViewCell";
         self.collectionView.frame =CGRectMake(0, -screenH, ScreenW, 0);
         
         [self.view addSubview:self.categoryTableView];
-        self.categoryTableView.frame = CGRectMake(0, 0, ScreenW, 200);
+        self.categoryTableView.frame = CGRectMake(0, 0, ScreenW, 160);
     }
 
 }

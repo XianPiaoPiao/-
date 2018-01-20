@@ -328,12 +328,12 @@ NSString  * const AlreadyGetMoneyCellIndertifer = @"AlreadyGetMoneyCell";
 -(void)pickUp{
     
     _priceTableView.frame = CGRectMake(0, -screenH, ScreenW, 280+self.StatusBarHeight);
-    _smartTableView.frame = CGRectMake(0, -screenH, ScreenW, 200+self.StatusBarHeight);
+    _smartTableView.frame = CGRectMake(0, -screenH, ScreenW, 160+self.StatusBarHeight);
     _offView.frame = CGRectMake(0, -screenH , ScreenW, screenH);
 }
 -(void)pickDownSmartTableView{
     
-    _smartTableView.frame = CGRectMake(0, 105+self.StatusBarHeight, ScreenW, 200+self.StatusBarHeight);
+    _smartTableView.frame = CGRectMake(0, 105+self.StatusBarHeight, ScreenW, 160+self.StatusBarHeight);
     _priceTableView.frame = CGRectMake(0, -screenH, ScreenW, 100+self.StatusBarHeight);
     _offView.frame = CGRectMake(0, 105 + _smartTableView.frame.size.height, ScreenW, screenH);
 }
@@ -404,7 +404,7 @@ NSString  * const AlreadyGetMoneyCellIndertifer = @"AlreadyGetMoneyCell";
     }
     else if (tableView == _smartTableView){
         
-        return 5;
+        return 4;//_smartArray.count;
     }
     return 0;
 }
@@ -466,7 +466,7 @@ NSString  * const AlreadyGetMoneyCellIndertifer = @"AlreadyGetMoneyCell";
         //初始化数组
         _smartArray = [[NSArray alloc]
                        init];
-        _smartArray = @[@"全部",@"排队中",@"排队完成",@"已兑换",@"已返现"];
+        _smartArray = @[@"全部",@"排队中",@"排队完成",@"已兑换"];//,@"已返现"
         
         UITableViewCell * cell = [[UITableViewCell alloc] init];
         cell.textLabel.text = _smartArray[indexPath.row];
@@ -485,6 +485,9 @@ NSString  * const AlreadyGetMoneyCellIndertifer = @"AlreadyGetMoneyCell";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [[UIView alloc] init];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

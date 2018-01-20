@@ -134,10 +134,7 @@
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadLogoImg)];
     [self.logoImgView addGestureRecognizer:tapGR];
-    //长按删除图片：接口问题（外键）
-//    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(deleteLogoImg)];
-//    [self.logoImgView addGestureRecognizer:longPress];
-//
+    
     [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.bottom.equalTo(self.view.mas_bottom).offset(-10-tabbarHeight);

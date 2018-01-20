@@ -69,14 +69,6 @@
     [MTA trackPageViewBegin:@"MyTableViewController"];
     
 }
-////设置状态栏颜色
-//- (void)setStatusBarBackgroundColor:(UIColor *)color {
-//
-//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-//    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-//        statusBar.backgroundColor = color;
-//    }
-//}
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -87,11 +79,8 @@
     
     [super viewDidLoad];
     
-    
     self.tableView.showsVerticalScrollIndicator= NO;
     
-//    self.preferredStatusBarStyle
-
     self.view.backgroundColor = [UIColor colorWithHexString:BackColor];
     
     //注册通知

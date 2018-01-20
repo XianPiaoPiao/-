@@ -49,10 +49,7 @@ NSString * const allGoodsInDertifier = @"StoresGoodsCellTableViewCell";
     self.view.backgroundColor = [UIColor colorWithHexString:BackColor];
     [self creatNavgationBar];
 
-
-    
     [self creatTableView];
-    
     
     //加载数据
     [self firstLoad];
@@ -125,7 +122,6 @@ NSString * const allGoodsInDertifier = @"StoresGoodsCellTableViewCell";
         param[@"type"] = [NSString stringWithFormat:@"%ld",_type];
 
     }
-    
     
     param[@"currentPage"]  = [NSString stringWithFormat:@"%ld",page];
     

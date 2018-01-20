@@ -124,47 +124,13 @@
 
             }
             
-   
-            
-            
         }
         
-        
-    
 }
     
     [self.viewModel.cartTableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
        
    }];
-//
-//    [RACObserve(headerView.selectStoreGoodsButton, selected) subscribeNext:^(NSNumber *x) {
-//        
-//        NSLog(@"====%@",x);
-//
-//        
-//        BOOL isSelect = x.boolValue;
-//        
-//        [self.viewModel.shopSelectArray replaceObjectAtIndex:section withObject:@(isSelect)];
-//        
-//        if (headerView.selectStoreGoodsButton.selected == YES) {
-//            
-//            NSLog(@"---===%ld",shopArray.count);
-//            for (HDShopCarModel *model in shopArray) {
-//                
-//                [model setValue:@(isSelect) forKey:@"isSelect"];
-//                
-//                [self.goodsSelectArray addObject:model];
-//            }
-//        }else{
-//            for (HDShopCarModel *model in shopArray) {
-//                [model setValue:@(isSelect) forKey:@"isSelect"];
-//                
-//                [self.goodsSelectArray removeObject:model];
-//                
-//            }
-//        }
-//        [self.viewModel.cartTableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
-//    }];
     
     return headerView;
 }
@@ -176,12 +142,6 @@
     return 8;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-   // NSMutableArray *shopArray = self.viewModel.cartData[section];
-   //
-  //   HDFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HDFooterView"];
-    
- //   footerView.shopGoodsArray = shopArray;
     
     return 0;
 }
@@ -197,7 +157,7 @@
 {
     ShopBagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopBagTableViewCell"
                                                        forIndexPath:indexPath];
-    //
+    
     [self configureCell:cell forRowAtIndexPath:indexPath and:tableView];
 
     return cell;
@@ -217,24 +177,6 @@
         STRONG
         
         x.selected = !x.selected;
-
-//
-//        _currentSection = section;
-//        
-//        if (_currentSection != _lastSection) {
-//            
-//        for (int i = 0; i < [self.viewModel.cartData[_lastSection] count]; i ++) {
-//            
-//        NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:_lastSection];
-//            
-//        ShopBagTableViewCell *cell=  [tableview cellForRowAtIndexPath:index];
-//        cell.selectedBtn.selected = NO;
-//            
-//        }
-//    }
-//        
-//    _lastSection = _currentSection;
-        
 
         //加入到
         if (cell.selectedBtn.selected  == YES) {
@@ -308,21 +250,9 @@
         }
         
     } failure:^(NSError *error) {
-        
-        
+         
     }];
     
-    
 }
-//-(void)jumpShop{
-//    
-//    [User defalutManager].selectedShop = _storeId;
-//    
-//    UIStoryboard * storybord =  [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//    
-//    UIViewController * MyVC = [storybord instantiateViewControllerWithIdentifier:@"ShopDetailViewController"] ;
-//    
-//    [self.navigationController pushViewController:MyVC animated:YES];
-//}
-//
+
 @end
