@@ -101,9 +101,14 @@
 - (void)qrView:(SHBQRView *)view ScanResult:(NSString *)result {
     [view stopScan];
     
+    if (result == nil) {
+        [self showStaus:@"无效二维码"];
+        return;
+    }
+    
     NSMutableString * subResult = [NSMutableString stringWithString:result];
     
-    if ([subResult containsString:@"http://www.hidui.com.cn/wap"] == YES){
+    if ([subResult containsString:@"https://www.hidui.com.cn/wap"] == YES || [subResult containsString:@"http://www.hidui.com.cn/wap"] == YES){
         
         HDRegisterController * registVC = [[HDRegisterController alloc] init];
         registVC.pushType = 1;
@@ -112,7 +117,7 @@
        
         [self.navigationController pushViewController:registVC animated:YES];
        
-    }else if ([subResult containsString:Host] == YES ||[subResult containsString:@"http://hidui.com.cn"] == YES || [subResult containsString:@"http://www.hidui.com.cn"]) {
+    }else if ([subResult containsString:Host] == YES ||[subResult containsString:@"http://www.hidui.com.cn"] == YES || [subResult containsString:@"https://www.hidui.com.cn"]) {
        
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
              

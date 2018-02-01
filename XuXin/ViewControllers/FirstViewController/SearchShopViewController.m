@@ -200,9 +200,7 @@ NSString * const searchGoodsCellIndertifer = @"CovertDetailTableViewCell";
             }
             if (_searchType == 1) {
                 
-                
                 NSArray * array = responseObject[@"result"][@"store"];
-                
                 
                 NSArray * shoplistArray = [NSArray yy_modelArrayWithClass:[shopListDetailModel class] json:array];
                 

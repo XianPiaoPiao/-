@@ -187,7 +187,10 @@
     if (metadataObjects.count > 0) {
         AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects firstObject];
         if ([_delegate respondsToSelector:@selector(qrView:ScanResult:)]) {
-            [_delegate qrView:self ScanResult:metadataObject.stringValue];
+            NSString *string = metadataObject.stringValue;
+            
+            [_delegate qrView:self ScanResult:string];
+            
         }
     }
 }

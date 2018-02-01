@@ -114,11 +114,88 @@
     [UMessage setLogEnabled:YES];
 }
 
-- (void)uploadMessagAboutUser{
+- (void)uploadMessagAboutUser {
     
 }
 
-- (void)checkAppUpDataWithShowOption:(BOOL)showOption{
+- (void)checkAppUpDataWithShowOption{
+    if(![self judgeNeedVersionUpdate])  return ;
+    //App内info.plist文件里面版本号
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = infoDict[@"CFBundleShortVersionString"];
+    
+    //1.创建会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    //2.根据会话对象创建task
+    NSString *string = appVersion_detUrl;
+    NSURL *url = [NSURL URLWithString:string];
+    //3.创建可变的请求对象
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //4.修改请求方法为POST
+    request.HTTPMethod = @"POST";
+    //5.设置请求体
+    /* terminal    1，客户端 2，商家端    是    [int]
+     type    1，Android 2，Ios  */
+    request.HTTPBody = [@"terminal=1&type=2" dataUsingEncoding:NSUTF8StringEncoding];
+    //6.根据会话对象创建一个Task(发送请求）
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //8.解析数据
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"dictionary = %@",dict);
+        if ([dict[@"isSucc"] integerValue] == 1) {
+            NSString *newVersion = dict[@"result"][@"version_name"];
+            if ([self judgeNewVersion:newVersion withOldVersion:appVersion])
+            {
+                UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示:\n您的App不是最新版本，请问是否更新" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"暂不更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    //                    [alertVc dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [alertVc addAction:action1];
+                UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"去更新" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    //跳转到AppStore，该App下载界面
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dict[@"result"][@"apk_url"]]];
+                }];
+                [alertVc addAction:action2];
+                [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:alertVc animated:YES completion:nil];
+            }
+        }
+        
+        
+    }];
+    
+    //7.执行任务
+    [dataTask resume];
+    
+    
+}
+
+
+//每天进行一次版本判断
+- (BOOL)judgeNeedVersionUpdate {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    //获取年-月-日
+    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    NSString *currentDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentDate"];
+    if ([currentDate isEqualToString:dateString]) {
+        return NO;
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:dateString forKey:@"currentDate"];
+    return YES;
+}
+//判断当前app版本和AppStore最新app版本大小
+- (BOOL)judgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
+    NSArray *newArray = [newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    NSArray *oldArray = [oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    for (NSInteger i = 0; i < newArray.count; i ++) {
+        if ([newArray[i] integerValue] > [oldArray[i] integerValue]) {
+            return YES;
+        } else if ([newArray[i] integerValue] < [oldArray[i] integerValue]) {
+            return NO;
+        }
+    }
+    return NO;
     
 }
 @end

@@ -511,7 +511,6 @@
 		483A154B1F9158FC00B0B843 /* icon-public-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C12D1F90E2650040A35A /* icon-public-search.png */; };
 		483A154C1F9158FC00B0B843 /* icon-public-search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C12E1F90E2650040A35A /* icon-public-search@2x.png */; };
 		483A154D1F9158FC00B0B843 /* icon-public-search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C12F1F90E2650040A35A /* icon-public-search@3x.png */; };
-		483A154E1F9158FC00B0B843 /* s01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1301F90E2650040A35A /* s01.png */; };
 		483A154F1F9158FC00B0B843 /* XX.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1311F90E2650040A35A /* XX.png */; };
 		483A15501F9158FC00B0B843 /* bus-icon-position-enlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1331F90E2650040A35A /* bus-icon-position-enlarge.png */; };
 		483A15511F9158FC00B0B843 /* bus-icon-position-enlarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865C1341F90E2650040A35A /* bus-icon-position-enlarge@2x.png */; };
@@ -2280,7 +2279,6 @@
 		4865C12D1F90E2650040A35A /* icon-public-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-public-search.png"; sourceTree = "<group>"; };
 		4865C12E1F90E2650040A35A /* icon-public-search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-public-search@2x.png"; sourceTree = "<group>"; };
 		4865C12F1F90E2650040A35A /* icon-public-search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-public-search@3x.png"; sourceTree = "<group>"; };
-		4865C1301F90E2650040A35A /* s01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s01.png; sourceTree = "<group>"; };
 		4865C1311F90E2650040A35A /* XX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XX.png; sourceTree = "<group>"; };
 		4865C1331F90E2650040A35A /* bus-icon-position-enlarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus-icon-position-enlarge.png"; sourceTree = "<group>"; };
 		4865C1341F90E2650040A35A /* bus-icon-position-enlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus-icon-position-enlarge@2x.png"; sourceTree = "<group>"; };
@@ -3000,6 +2998,7 @@
 		4865BCCF1F90E2620040A35A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				907E9C042022EBAC00B3E016 /* HotelViewControllers */,
 				4865BCD01F90E2620040A35A /* CommonViewControllers */,
 				4865BCF31F90E2620040A35A /* ConvertMarket */,
 				4865BD121F90E2620040A35A /* EnterMainViewController.h */,
@@ -3580,6 +3579,7 @@
 		4865BE871F90E2630040A35A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				907E9C052022EBBC00B3E016 /* HotelViews */,
 				4865BE881F90E2630040A35A /* BusinessCardViews */,
 				4865BE9A1F90E2630040A35A /* CommonViews */,
 				4865BEA31F90E2630040A35A /* ConvertMarkets */,
@@ -4608,7 +4608,6 @@
 				4865C12D1F90E2650040A35A /* icon-public-search.png */,
 				4865C12E1F90E2650040A35A /* icon-public-search@2x.png */,
 				4865C12F1F90E2650040A35A /* icon-public-search@3x.png */,
-				4865C1301F90E2650040A35A /* s01.png */,
 				4865C1311F90E2650040A35A /* XX.png */,
 			);
 			path = "公共图标";
@@ -5342,6 +5341,20 @@
 			path = LJContactManager;
 			sourceTree = "<group>";
 		};
+		907E9C042022EBAC00B3E016 /* HotelViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HotelViewControllers;
+			sourceTree = "<group>";
+		};
+		907E9C052022EBBC00B3E016 /* HotelViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HotelViews;
+			sourceTree = "<group>";
+		};
 		BFA8D56190EB80C107B0A3D4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -5673,7 +5686,6 @@
 				483A154B1F9158FC00B0B843 /* icon-public-search.png in Resources */,
 				483A154C1F9158FC00B0B843 /* icon-public-search@2x.png in Resources */,
 				483A154D1F9158FC00B0B843 /* icon-public-search@3x.png in Resources */,
-				483A154E1F9158FC00B0B843 /* s01.png in Resources */,
 				483A154F1F9158FC00B0B843 /* XX.png in Resources */,
 				483A15501F9158FC00B0B843 /* bus-icon-position-enlarge.png in Resources */,
 				483A15511F9158FC00B0B843 /* bus-icon-position-enlarge@2x.png in Resources */,

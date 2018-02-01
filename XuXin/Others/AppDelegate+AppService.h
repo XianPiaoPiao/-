@@ -36,7 +36,7 @@
  
  @param showOption 是否是最新
  */
-- (void)checkAppUpDataWithShowOption:(BOOL)showOption;
+- (void)checkAppUpDataWithShowOption;
 
 /**
  上传用户设备信息

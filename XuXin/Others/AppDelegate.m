@@ -68,6 +68,9 @@
     
     [self registerMTA];
     
+//    [self uploadMessagAboutUser];
+    [self checkAppUpDataWithShowOption];
+    
     
     [LJContactManager sharedInstance].contactChangeHanlder = ^(BOOL succeed, NSArray<LJPerson *> *newContacts) {
         
