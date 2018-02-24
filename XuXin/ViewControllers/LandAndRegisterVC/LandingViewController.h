@@ -12,4 +12,7 @@ typedef void (^ReturnTextBlock)(NSString *showText);
 
 @property (nonatomic ,copy)ReturnTextBlock returnTexBlock;
 - (void)returnText:(ReturnTextBlock)block;
+
+@property (nonatomic, strong) NSString *mytbVC;
+
 @end

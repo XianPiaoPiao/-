@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="RoomHeaderSectionView">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="134"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gso-y5-Y2U">
+                    <rect key="frame" x="10" y="10" width="112" height="114"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="112" id="RvD-m1-wY5"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="达维登转角豪华房" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRW-Od-6gF">
+                    <rect key="frame" x="132" y="15" width="270" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="39 m 大床" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKw-NM-feE">
+                    <rect key="frame" x="132" y="57" width="79" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59x-RR-6FQ">
+                    <rect key="frame" x="132" y="84" width="46" height="30"/>
+                    <state key="normal" title="优惠券">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig8-Ly-68D">
+                    <rect key="frame" x="356" y="52" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥156起" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvb-Us-ACt">
+                    <rect key="frame" x="283" y="56.5" width="63" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="JKw-NM-feE" firstAttribute="leading" secondItem="gso-y5-Y2U" secondAttribute="trailing" constant="10" id="9wp-hN-Soj"/>
+                <constraint firstItem="59x-RR-6FQ" firstAttribute="bottom" secondItem="gso-y5-Y2U" secondAttribute="bottom" constant="-10" id="DTU-AV-gwq"/>
+                <constraint firstItem="yvb-Us-ACt" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Xh0-QY-AKj"/>
+                <constraint firstItem="kRW-Od-6gF" firstAttribute="leading" secondItem="gso-y5-Y2U" secondAttribute="trailing" constant="10" id="avR-HR-Md9"/>
+                <constraint firstItem="Ig8-Ly-68D" firstAttribute="leading" secondItem="yvb-Us-ACt" secondAttribute="trailing" constant="10" id="beu-0I-6f5"/>
+                <constraint firstItem="kRW-Od-6gF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="ecj-N6-oCn"/>
+                <constraint firstAttribute="trailing" secondItem="kRW-Od-6gF" secondAttribute="trailing" constant="10" id="gIR-09-WzS"/>
+                <constraint firstAttribute="trailing" secondItem="Ig8-Ly-68D" secondAttribute="trailing" constant="10" id="iMh-7e-1rj"/>
+                <constraint firstAttribute="bottom" secondItem="gso-y5-Y2U" secondAttribute="bottom" constant="10" id="j38-he-Jni"/>
+                <constraint firstItem="gso-y5-Y2U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="lUx-O2-dPz"/>
+                <constraint firstItem="JKw-NM-feE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mJJ-T6-6DV"/>
+                <constraint firstItem="59x-RR-6FQ" firstAttribute="leading" secondItem="gso-y5-Y2U" secondAttribute="trailing" constant="10" id="mhP-Ho-8FR"/>
+                <constraint firstItem="gso-y5-Y2U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="w5h-6O-Gvx"/>
+                <constraint firstItem="Ig8-Ly-68D" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wFz-3O-g0W"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="couponButton" destination="59x-RR-6FQ" id="HnD-2p-ChQ"/>
+                <outlet property="hotelImgView" destination="gso-y5-Y2U" id="pEp-Vt-ikD"/>
+                <outlet property="priceLabel" destination="yvb-Us-ACt" id="YWF-KR-QWt"/>
+                <outlet property="rightButton" destination="Ig8-Ly-68D" id="Q63-Ra-Lbg"/>
+                <outlet property="roomNameLabel" destination="kRW-Od-6gF" id="u1Q-by-Dem"/>
+                <outlet property="roomSizeLabel" destination="JKw-NM-feE" id="lxn-yw-2FU"/>
+            </connections>
+            <point key="canvasLocation" x="77" y="20"/>
+        </view>
+    </objects>
+</document>

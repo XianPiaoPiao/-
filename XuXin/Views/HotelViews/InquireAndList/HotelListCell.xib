@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="124" id="KGk-i7-Jjw" customClass="HotelListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="123.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="home_page_banner" translatesAutoresizingMaskIntoConstraints="NO" id="nbh-jc-Opp">
+                        <rect key="frame" x="0.0" y="0.0" width="99" height="120"/>
+                        <color key="backgroundColor" red="0.99607843139999996" green="0.35686274509999999" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="99" id="csk-J9-JQN"/>
+                            <constraint firstAttribute="height" constant="120" id="jjL-Wz-z9o"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="重庆解放碑威斯钉酒店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dK-K3-UDT">
+                        <rect key="frame" x="109" y="10" width="153" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="4.9分" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUL-ey-oZE">
+                        <rect key="frame" x="109" y="34" width="30.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.61960784310000006" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="非常好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYU-zK-hKm">
+                        <rect key="frame" x="144.5" y="34.5" width="37" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.61960784313725492" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="豪华型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bl-Be-Tup">
+                        <rect key="frame" x="186.5" y="34.5" width="37" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="656条点评" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxh-v0-GAX">
+                        <rect key="frame" x="109" y="55" width="59.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="距您8.2公里 | 解放碑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbg-pe-swt">
+                        <rect key="frame" x="109" y="75.5" width="114.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="最新预定49分钟前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZV-9F-lXs">
+                        <rect key="frame" x="109" y="98" width="101.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="0.23137254901960785" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9ZV-9F-lXs" firstAttribute="top" secondItem="nbg-pe-swt" secondAttribute="bottom" constant="8" id="8Dj-xe-nu0"/>
+                    <constraint firstItem="FUL-ey-oZE" firstAttribute="leading" secondItem="nbh-jc-Opp" secondAttribute="trailing" constant="10" id="AQI-6X-z4N"/>
+                    <constraint firstItem="2bl-Be-Tup" firstAttribute="centerY" secondItem="ZYU-zK-hKm" secondAttribute="centerY" id="LJ5-95-WLz"/>
+                    <constraint firstItem="2bl-Be-Tup" firstAttribute="leading" secondItem="ZYU-zK-hKm" secondAttribute="trailing" constant="5" id="MRY-3D-M50"/>
+                    <constraint firstItem="nbg-pe-swt" firstAttribute="top" secondItem="Yxh-v0-GAX" secondAttribute="bottom" constant="6" id="QGW-Z6-FhK"/>
+                    <constraint firstItem="ZYU-zK-hKm" firstAttribute="centerY" secondItem="FUL-ey-oZE" secondAttribute="centerY" id="S4d-7u-y7v"/>
+                    <constraint firstItem="FUL-ey-oZE" firstAttribute="top" secondItem="1dK-K3-UDT" secondAttribute="bottom" constant="6" id="Utw-ZR-R2x"/>
+                    <constraint firstItem="1dK-K3-UDT" firstAttribute="leading" secondItem="nbh-jc-Opp" secondAttribute="trailing" constant="10" id="aAb-IB-zH4"/>
+                    <constraint firstItem="Yxh-v0-GAX" firstAttribute="leading" secondItem="nbh-jc-Opp" secondAttribute="trailing" constant="10" id="c3D-oK-qzv"/>
+                    <constraint firstItem="Yxh-v0-GAX" firstAttribute="top" secondItem="ZYU-zK-hKm" secondAttribute="bottom" constant="6" id="eqD-eb-53N"/>
+                    <constraint firstItem="9ZV-9F-lXs" firstAttribute="leading" secondItem="nbh-jc-Opp" secondAttribute="trailing" constant="10" id="kKF-vg-snX"/>
+                    <constraint firstItem="nbh-jc-Opp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oDr-yb-jgQ"/>
+                    <constraint firstItem="1dK-K3-UDT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="oXL-QH-XQc"/>
+                    <constraint firstItem="ZYU-zK-hKm" firstAttribute="leading" secondItem="FUL-ey-oZE" secondAttribute="trailing" constant="5" id="psF-wf-3oq"/>
+                    <constraint firstItem="nbg-pe-swt" firstAttribute="leading" secondItem="nbh-jc-Opp" secondAttribute="trailing" constant="10" id="sjp-pC-G0m"/>
+                    <constraint firstItem="nbh-jc-Opp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sxD-vz-4eH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="distanceLbl" destination="nbg-pe-swt" id="omf-dl-Gn1"/>
+                <outlet property="hotelIcon" destination="nbh-jc-Opp" id="sUx-UK-md4"/>
+                <outlet property="kindLbl" destination="2bl-Be-Tup" id="fWx-RJ-YbN"/>
+                <outlet property="latestBookLbl" destination="9ZV-9F-lXs" id="bc0-Yy-1Hg"/>
+                <outlet property="nameLbl" destination="1dK-K3-UDT" id="0Gr-Tc-RCO"/>
+                <outlet property="reviewCountLbl" destination="Yxh-v0-GAX" id="WSh-1I-00f"/>
+                <outlet property="scoreLbl" destination="FUL-ey-oZE" id="QUc-CT-JDd"/>
+            </connections>
+            <point key="canvasLocation" x="32" y="107"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="home_page_banner" width="375" height="200"/>
+    </resources>
+</document>

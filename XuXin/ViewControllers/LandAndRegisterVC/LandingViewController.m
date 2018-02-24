@@ -78,6 +78,11 @@
     [navBegView addSubview:label];
     [navBegView addSubview:button];
     [self.view addSubview:navBegView];
+    if ([_mytbVC isEqualToString:@"MyTableViewController"]) {
+        button.hidden = YES;
+    } else {
+        button.hidden = NO;
+    }
 }
 
 -(void)goBackAction{
@@ -262,86 +267,88 @@
         NSMutableDictionary * param = [NSMutableDictionary dictionary];
         param[@"userName"] = _IDfield.text;
         param[@"password"] = _secretField.text;
-[weakself.httpManager POST:landUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
-    
-} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    NSString * str = responseObject[@"isSucc"];
-    NSInteger i = [str intValue];
-    
-    if (i == 1) {
-        
-        NSString * username = _IDfield.text;
-        NSString * userSecret = _secretField.text;
-        [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"userName"];
-        [[NSUserDefaults standardUserDefaults] setObject:userSecret forKey:@"userSecret"];
-        NSString * str = responseObject[@"result"][@"hasReceiveAddress"];
-        [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"hasAddress"];
-        
-        
-        NSDictionary * dic = responseObject[@"result"][@"user"];
-        
-        [User defalutManager].shopcart = [dic[@"ig_count"] integerValue];
-        [User defalutManager].userName = dic[@"userName"];
-        //
-        [User defalutManager].integral  = [dic[@"integral"] integerValue];
-        [User defalutManager].preDeposit = [dic[@"preDeposit"] floatValue];
-        
-        [User defalutManager].balance = [dic[@"balance"] floatValue];
-        //红包
-        [User defalutManager].redPacket = [dic[@"redPacket"] integerValue];
-        [User defalutManager].photo = dic[@"photo"];
-        [User defalutManager].id = dic[@"id"];
-        
-         [User defalutManager].lineShopCart = [dic[@"shopcart"] integerValue];
-        NSString * birthday = dic[@"birthday"];
-        //是否设置了生日
-        if( birthday != nil)
-        {
-        [User defalutManager].birthday = [dic[@"birthday"] longLongValue];
+        [weakself.httpManager POST:landUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
             
-        };
-        
-        [User defalutManager].sex = [dic[@"sex"] integerValue];
-        
-        //个人头像本地保存
-        NSArray * pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString * documentPath = pathArray[0];
-        NSString * imageDocPath = [NSString stringWithFormat:@"%@/ImageFile",documentPath];
-        [[NSFileManager defaultManager] createDirectoryAtPath:imageDocPath withIntermediateDirectories:YES attributes:nil error:nil];
-        NSString * imagePath = [NSString stringWithFormat:@"%@/image.png",imageDocPath];
-        
-        NSData * imageData = [NSData dataWithContentsOfURL:[NSURL  URLWithString:[User defalutManager].photo]];
-        
-        UIImage * currentImage = [UIImage imageWithData:imageData];
-        [UIImageJPEGRepresentation(currentImage, 0.5) writeToFile:imagePath  atomically:YES];
-        
-        [[NSFileManager defaultManager] createFileAtPath:imagePath contents:imageData attributes:nil];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"landOK" object:nil];
-        
-        //发送友盟的token给服务器
-        [self registUMOK];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSString * str = responseObject[@"isSucc"];
+            NSInteger i = [str intValue];
             
-            
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            [SVProgressHUD dismissWithDelay:1];
-            
-        });
-        
-    }else{
-        
-        [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
-        [SVProgressHUD dismissWithDelay:2];
-        
-    }
+            if (i == 1) {
+                
+                NSString * username = _IDfield.text;
+                NSString * userSecret = _secretField.text;
+                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"userName"];
+                [[NSUserDefaults standardUserDefaults] setObject:userSecret forKey:@"userSecret"];
+                NSString * str = responseObject[@"result"][@"hasReceiveAddress"];
+                [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"hasAddress"];
+                
+                
+                NSDictionary * dic = responseObject[@"result"][@"user"];
+                
+                [User defalutManager].shopcart = [dic[@"ig_count"] integerValue];
+                [User defalutManager].userName = dic[@"userName"];
+                //
+                [User defalutManager].integral  = [dic[@"integral"] integerValue];
+                [User defalutManager].preDeposit = [dic[@"preDeposit"] floatValue];
+                
+                [User defalutManager].balance = [dic[@"balance"] floatValue];
+                //红包
+                [User defalutManager].redPacket = [dic[@"redPacket"] integerValue];
+                [User defalutManager].photo = dic[@"photo"];
+                [User defalutManager].id = dic[@"id"];
+                
+                 [User defalutManager].lineShopCart = [dic[@"shopcart"] integerValue];
+                NSString * birthday = dic[@"birthday"];
+                //是否设置了生日
+                if( birthday != nil)
+                {
+                [User defalutManager].birthday = [dic[@"birthday"] longLongValue];
+                    
+                };
+                
+                [User defalutManager].sex = [dic[@"sex"] integerValue];
+                
+                //个人头像本地保存
+                NSArray * pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString * documentPath = pathArray[0];
+                NSString * imageDocPath = [NSString stringWithFormat:@"%@/ImageFile",documentPath];
+                [[NSFileManager defaultManager] createDirectoryAtPath:imageDocPath withIntermediateDirectories:YES attributes:nil error:nil];
+                NSString * imagePath = [NSString stringWithFormat:@"%@/image.png",imageDocPath];
+                
+                NSData * imageData = [NSData dataWithContentsOfURL:[NSURL  URLWithString:[User defalutManager].photo]];
+                
+                UIImage * currentImage = [UIImage imageWithData:imageData];
+                [UIImageJPEGRepresentation(currentImage, 0.5) writeToFile:imagePath  atomically:YES];
+                
+                [[NSFileManager defaultManager] createFileAtPath:imagePath contents:imageData attributes:nil];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"landOK" object:nil];
+                
+                //发送友盟的token给服务器
+                [self registUMOK];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    if (![self.mytbVC isEqualToString:@"MyTableViewController"]) {
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
+                    
+                    [SVProgressHUD dismissWithDelay:1];
+                    
+                });
+                
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+                [SVProgressHUD dismissWithDelay:2];
+                
+            }
 
-} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    
-     [SVProgressHUD showErrorWithStatus:@"网路错误"];
-    
-}];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+             [SVProgressHUD showErrorWithStatus:@"网路错误"];
+            
+        }];
   
         
     }else if(_secretField.text.length< 6){

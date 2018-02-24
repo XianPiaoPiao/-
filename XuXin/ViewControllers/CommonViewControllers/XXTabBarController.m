@@ -49,8 +49,8 @@
     [marketVC.tabBarItem setSelectedImage:[[UIImage imageNamed:@"business2@3x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     marketVC.title = @"逛一逛";
     
-      UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-     UIViewController * myVC = [storybord instantiateViewControllerWithIdentifier:@"MyTableViewController" ];
+    UIStoryboard * storybord = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController * myVC = [storybord instantiateViewControllerWithIdentifier:@"MyTableViewController" ];
     
     XXUiNavigationController * nav4 = [[XXUiNavigationController alloc] initWithRootViewController:myVC];
     [myVC.tabBarItem setImage:[[UIImage imageNamed:@"wode_2@3x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];

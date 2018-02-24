@@ -11,7 +11,7 @@
 
 #endif /* API_h */
 
-#define                     Host    @"http://hiidui.com:8082"//测试环境//@"https://hidui.com.cn"//正式环境//@"http://192.168.1.134"//钟辉阳本地//@"https://hidui.com.cn"//正式环境//@"http://192.168.1.20:8080"//本地//@"http://192.168.1.134:8080"//名片//@"https://hiidui.com:80"//@"http://192.168.1.105/shopping"//
+#define                     Host    @"https://hidui.com.cn"//正式环境//@"http://192.168.1.20:8080"//本地//@"http://hiidui.com:8082"//测试环境//@"https://hidui.com.cn"//正式环境//@"http://192.168.1.134"//钟辉阳本地//@"http://192.168.1.134:8080"//名片//@"https://hiidui.com:80"//@"http://192.168.1.105/shopping"//
 
 #define fullURL(path)       [NSString stringWithFormat:@"%@%@",Host,path]
 

@@ -44,6 +44,7 @@
 #import "YwywViewController.h"
 #import "LandingViewController.h"
 #import "ShopsGoodsBaseController.h"
+#import "HotelMainViewController.h"
 NSString * const ReconmendGoodIndertfier2 = @"AllShopTableViewCell";//@"RecommodMarkCell";
 NSString * const recomondGoodsIndertifer = @"CovertDetailTableViewCell";
 @interface HDMainViewController()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,AVCaptureMetadataOutputObjectsDelegate,AMapLocationManagerDelegate,UIAlertViewDelegate,UITabBarControllerDelegate>
@@ -1196,14 +1197,16 @@ NSString * const recomondGoodsIndertifer = @"CovertDetailTableViewCell";
         XXUiNavigationController * nav =  [self.tabBarController.viewControllers objectAtIndex:1]  ;
         AllStoreAndGoodsBaseController * allGoodsVC =  nav.viewControllers[0];
         allGoodsVC.type = 1;
-        
+
         self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
         
-  
+//            酒店
+//            HotelMainViewController *hotelVC = [[HotelMainViewController alloc] init];
+//            [self.navigationController pushViewController:hotelVC animated:YES];
         
     }else if (btn.tag == buttonTag + 1){
         
-        XXUiNavigationController * nav =  [self.tabBarController.viewControllers objectAtIndex:1]  ;
+        XXUiNavigationController * nav =  [self.tabBarController.viewControllers objectAtIndex:1];
         AllStoreAndGoodsBaseController * allGoodsVC =  nav.viewControllers[0];
         allGoodsVC.type = 2;
         

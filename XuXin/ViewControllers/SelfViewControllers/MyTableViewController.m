@@ -40,7 +40,9 @@
 @property (nonatomic ,strong)AFHTTPSessionManager * httpManager;
 @end
 
-@implementation MyTableViewController
+@implementation MyTableViewController {
+    LandingViewController *_landVC;
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -63,6 +65,8 @@
     }else{
         
         [self updateUserUI];
+        
+        [self addChildVC];
         
     }
     
@@ -93,6 +97,14 @@
 
     [self updateHeaderView];
 
+}
+
+- (void)addChildVC {
+    _landVC = [[LandingViewController alloc] init];
+    _landVC.mytbVC = @"MyTableViewController";
+    [self addChildViewController:_landVC];
+    _landVC.view.frame = CGRectMake(0, 0, ScreenW, screenH);
+    [self.view addSubview:_landVC.view];
 }
 
 -(BOOL)fd_prefersNavigationBarHidden {
@@ -141,14 +153,16 @@
      [self.HeaderButton setBackgroundImage:[UIImage imageNamed:@"the_charts_tx"] forState:UIControlStateNormal];
       
     }
-    
-
-    
+   
 }
 #pragma mark ---更新界面
 -(void)updateUserUI{
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
+        
+        [_landVC.view removeFromSuperview];
+        [_landVC removeFromParentViewController];
+
         //余额
         self.supendChargeLabel.text = [NSString stringWithFormat:@"%.2f",[User defalutManager].balance];
         //预存款
@@ -202,11 +216,11 @@
 }
 #pragma mark  ----通知方法
 -(void)showLandNoState{
-    
-    //更新界面和数据
+        //更新界面和数据
     [self updateUserUI];
     //更新头像
     [self updateHeaderView];
+    
     
 }
 #pragma mark ---购物车
